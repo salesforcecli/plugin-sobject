@@ -39,6 +39,7 @@ type SaveableCustomObject = Pick<
   | 'enableSharing'
   | 'pluralLabel'
   | 'sharingModel'
+  | 'fullName'
 > & { nameField: Pick<CustomField, 'label' | 'type' | 'displayFormat'> };
 
 export type CustomObjectGenerateResult = {
@@ -84,11 +85,10 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
         nameFieldLabel: 'string';
         autoNumberFormat?: string;
         directory: string;
-        apiName: string;
       }
     >(
       [
-        directoryPrompt(this.project.getPackageDirectories()),
+        await directoryPrompt(this.project.getPackageDirectories()),
         pluralPrompt(flags.label),
         apiNamePrompt(flags.label),
         descriptionPrompt,
@@ -171,7 +171,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       flags['use-default-features'] ? defaultFeatures : {}
     );
 
-    const { nameFieldType, nameFieldLabel, autoNumberFormat, directory, apiName, ...customObject } = responses;
+    const { nameFieldType, nameFieldLabel, autoNumberFormat, directory, ...customObject } = responses;
 
     const result: CustomObjectGenerateResult = {
       object: {
@@ -188,9 +188,9 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       },
     };
     this.styledJSON(result as AnyJson);
-    await fs.promises.mkdir(path.join(directory, apiName));
+    await fs.promises.mkdir(path.join(directory, responses.fullName));
     await fs.promises.writeFile(
-      path.join(directory, apiName, `${apiName}.object-meta.xml`),
+      path.join(directory, responses.fullName, `${responses.fullName}.object-meta.xml`),
       convertJsonToXml({ json: result.object, type: 'CustomObject' })
     );
 

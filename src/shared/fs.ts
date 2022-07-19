@@ -11,3 +11,8 @@ export const getObjectDirectories = async (targetPaths: string[]): Promise<strin
   const globs = targetPaths.map((p) => `${p}/**/objects/`);
   return fg(globs, { onlyDirectories: true });
 };
+
+export const getObjectApiNames = async (targetPaths: string[]): Promise<string[]> => {
+  const globs = targetPaths.map((p) => `${p}/**/objects/*`);
+  return await fg(globs, { onlyDirectories: true });
+};
