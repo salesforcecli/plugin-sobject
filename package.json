@@ -10,6 +10,7 @@
     "@salesforce/kit": "^1.5.42",
     "@salesforce/sf-plugins-core": "^1.13.0",
     "fast-glob": "^3.2.11",
+    "fast-xml-parser": "^4.0.9",
     "inquirer": "^8.2.0",
     "js2xmlparser": "^4.0.2",
     "tslib": "^2"

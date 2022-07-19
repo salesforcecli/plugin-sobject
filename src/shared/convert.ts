@@ -5,6 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import * as jsToXml from 'js2xmlparser';
+import { XMLParser } from 'fast-xml-parser';
 import { IOptions } from 'js2xmlparser/lib/options';
 import { CustomObject, CustomField } from 'jsforce/api/metadata';
 import { JsonMap } from '@salesforce/ts-types';
@@ -40,4 +41,9 @@ const fixExistingDollarSign = <T extends WriteJSONasXMLInputs['json']>(existing:
   return existingCopy;
 };
 
-export { convertJsonToXml };
+const parseXml = <T>(fileString: string, mainNodeName: string): T => {
+  const parser = new XMLParser();
+  return (parser.parse(fileString) as unknown as { [key: string]: T })[mainNodeName];
+};
+
+export { convertJsonToXml, parseXml };
