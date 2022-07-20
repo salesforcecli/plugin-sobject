@@ -4,14 +4,21 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as fs from 'fs';
+
+// sf sobject generate
+// sf sobject describe (currently sfdx schema)
+// sf sobject generate field
+// sf sobject generate event
+// sf sobject list (currently sfdx schema)
+
 import * as path from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { CustomObject, CustomField } from 'jsforce/api/metadata';
-import { convertJsonToXml } from '../../shared/convert';
-import { descriptionPrompt, directoryPrompt, pluralPrompt, apiNamePrompt } from '../../shared/prompts';
+import { sentenceCase } from 'change-case';
+import { descriptionPrompt, directoryPrompt, pluralPrompt, apiNamePrompt, namePrompts } from '../../shared/prompts';
+import { writeObjectFile } from '../../shared/fs';
+import { SaveableCustomObject, NameFieldResponse } from '../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.object', [
@@ -21,26 +28,10 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
   'flags.label.summary',
   'flags.use-default-features.summary',
   'flags.use-default-features.description',
+  'prompts.sharingModel',
+  'success.advice',
+  'success',
 ]);
-
-// there are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't.
-type SaveableCustomObject = Pick<
-  CustomObject,
-  | 'label'
-  | 'deploymentStatus'
-  | 'description'
-  | 'enableHistory'
-  | 'enableActivities'
-  | 'enableBulkApi'
-  | 'enableFeeds'
-  | 'enableReports'
-  | 'enableSearch'
-  | 'enableStreamingApi'
-  | 'enableSharing'
-  | 'pluralLabel'
-  | 'sharingModel'
-  | 'fullName'
-> & { nameField: Pick<CustomField, 'label' | 'type' | 'displayFormat'> };
 
 export type CustomObjectGenerateResult = {
   object: SaveableCustomObject;
@@ -79,93 +70,26 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public async run(): Promise<CustomObjectGenerateResult> {
     const { flags } = await this.parse(ObjectGenerate);
 
-    const responses = await this.prompt<
-      SaveableCustomObject & {
-        nameFieldType: 'Text' | 'AutoNumber';
-        nameFieldLabel: 'string';
-        autoNumberFormat?: string;
-        directory: string;
-      }
-    >(
+    const responses = await this.prompt<SaveableCustomObject & NameFieldResponse & { directory: string }>(
       [
         await directoryPrompt(this.project.getPackageDirectories()),
         pluralPrompt(flags.label),
-        apiNamePrompt(flags.label),
+        apiNamePrompt(flags.label, 'CustomObject'),
         descriptionPrompt,
-        {
-          type: 'input',
-          message: 'What should the Name field be called',
-          name: 'nameFieldLabel',
-          default: `${flags.label} Name`,
-        },
-        {
-          type: 'list',
-          message: 'Is the name field autonumber or text?',
-          name: 'nameFieldType',
-          default: 'Text',
-          choices: ['Text', 'AutoNumber'],
-        },
-        {
-          type: 'input',
-          when: (answers: { nameFieldType: 'AutoNumber' | 'Text' }) => answers.nameFieldType === 'AutoNumber',
-          message: 'AutoNumber Format',
-          name: 'autoNumberFormat',
-          default: `${flags.label}-{0}`,
-        },
-        {
+        ...namePrompts(flags.label),
+        // transform the default features into confirm prompts
+        ...Object.keys(defaultFeatures).map((name) => ({
           type: 'confirm',
-          message: 'Enable search',
-          name: 'enableSearch',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable feeds',
-          name: 'enableFeeds',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable reports',
-          name: 'enableReports',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable history',
-          name: 'enableHistory',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable activities',
-          name: 'enableActivities',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable bulk API',
-          name: 'enableBulkApi',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable streaming API',
-          name: 'enableStreamingApi',
-          when: !flags['use-default-features'],
-        },
-        {
-          type: 'confirm',
-          message: 'Enable sharing',
-          name: 'enableSharing',
-          when: !flags['use-default-features'],
-        },
+          name,
+          message: sentenceCase(name).replace('Api', 'API'),
+        })),
         {
           type: 'list',
           choices: ['ReadWrite', 'Read', 'Private'],
-          message: 'Org wide sharing model',
+          message: messages.getMessage('prompts.sharingModel'),
           name: 'sharingModel',
-          when: (answers: { enableSharing: boolean }) => answers.enableSharing || flags['use-default-features'],
+          when: (answers: SaveableCustomObject & NameFieldResponse & { directory: string }) =>
+            answers.enableSharing || flags['use-default-features'],
         },
       ],
       flags['use-default-features'] ? defaultFeatures : {}
@@ -188,12 +112,13 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       },
     };
     this.styledJSON(result as AnyJson);
-    await fs.promises.mkdir(path.join(directory, responses.fullName));
-    await fs.promises.writeFile(
-      path.join(directory, responses.fullName, `${responses.fullName}.object-meta.xml`),
-      convertJsonToXml({ json: result.object, type: 'CustomObject' })
+    await writeObjectFile(directory, responses);
+    this.logSuccess(
+      messages.getMessage('success', [
+        path.join(directory, responses.fullName, `${responses.fullName}.object-meta.xml`),
+      ])
     );
-
+    this.info(messages.getMessage('success.advice'));
     return result;
   }
 }

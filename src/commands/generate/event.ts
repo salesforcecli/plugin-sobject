@@ -5,14 +5,12 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { CustomObject } from 'jsforce/api/metadata';
 import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../shared/prompts';
-import { convertJsonToXml } from '../../shared/convert';
+import { writeObjectFile } from '../../shared/fs';
+import { SaveablePlatformEvent } from '../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.event', [
@@ -21,12 +19,6 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
   'description',
   'flags.label.summary',
 ]);
-
-// there are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't.
-type SaveablePlatformEvent = Pick<
-  CustomObject,
-  'label' | 'deploymentStatus' | 'description' | 'pluralLabel' | 'eventType' | 'publishBehavior'
->;
 
 export type CustomObjectGenerateResult = {
   object: SaveablePlatformEvent;
@@ -49,21 +41,19 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public async run(): Promise<CustomObjectGenerateResult> {
     const { flags } = await this.parse(ObjectGenerate);
 
-    const responses = {
-      ...(await this.prompt<SaveablePlatformEvent & { directory: string; apiName: string }>([
-        directoryPrompt(this.project.getPackageDirectories()),
-        pluralPrompt(flags.label),
-        apiNamePrompt(flags.label),
-        descriptionPrompt,
-        {
-          type: 'list',
-          message: 'Should events publish after a transaction completes, or immediately?',
-          name: 'publishBehavior',
-          choices: ['PublishImmediately', 'PublishAfterCommit'],
-        },
-      ])),
-    };
-    const { directory, apiName, ...platformEvent } = responses;
+    const responses = await this.prompt<SaveablePlatformEvent & { directory: string }>([
+      await directoryPrompt(this.project.getPackageDirectories()),
+      pluralPrompt(flags.label),
+      apiNamePrompt(flags.label, 'PlatformEvent'),
+      descriptionPrompt,
+      {
+        type: 'list',
+        message: 'Should events publish after a transaction completes, or immediately?',
+        name: 'publishBehavior',
+        choices: ['PublishImmediately', 'PublishAfterCommit'],
+      },
+    ]);
+    const { directory, ...platformEvent } = responses;
 
     const result: CustomObjectGenerateResult = {
       object: {
@@ -74,11 +64,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       },
     };
     this.styledJSON(result as AnyJson);
-    await fs.promises.mkdir(path.join(directory, apiName));
-    await fs.promises.writeFile(
-      path.join(directory, apiName, `${apiName}.object-meta.xml`),
-      convertJsonToXml({ json: result.object, type: 'CustomObject' })
-    );
+    await writeObjectFile(directory, result.object);
     return result;
   }
 }

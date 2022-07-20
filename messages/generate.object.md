@@ -21,3 +21,15 @@ Enables search, feeds, reports, history, activities, bulk API, sharing, and stre
 # examples
 
 - TBD
+
+# success
+
+Created %s
+
+# success.advice
+
+If you deploy the file to a source-tracking org, you will want to retrieve the result since additional properties and defaults will be created in the org
+
+# prompts.sharingModel
+
+Org wide sharing model

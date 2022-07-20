@@ -11,7 +11,14 @@ import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 import { CustomField } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../shared/convert';
-import { descriptionPrompt, apiNamePrompt, objectPrompt, integerValidation, buildPicklist } from '../../shared/prompts';
+import {
+  descriptionPrompt,
+  apiNamePrompt,
+  objectPrompt,
+  integerValidation,
+  picklistPrompts,
+  relationshipFieldPrompts,
+} from '../../shared/prompts';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.field', [
@@ -21,6 +28,18 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
   'flags.label.summary',
   'flags.object.summary',
   'flags.object.description',
+  'prompts.type',
+  'prompts.startingNumber',
+  'prompts.defaultValue',
+  'prompts.scale',
+  'prompts.precision',
+  'prompts.inlineHelpText',
+  'prompts.required',
+  'prompts.externalId',
+  'prompts.securityClassification',
+  'error.bigObjects',
+  'error.cmdt',
+  'success',
 ]);
 
 const MAX_LONG_TEXT_LENGTH = 131072;
@@ -28,22 +47,22 @@ const MAX_TEXT_LENGTH = 255;
 
 const supportedFieldTypesCustomObject = [
   'AutoNumber',
-  'Text',
-  'Number',
+  'Checkbox',
+  'Currency',
   'DateTime',
   'Date',
-  'Time',
-  'LongTextArea',
-  'Checkbox',
-  'Url',
   'Email',
-  'Phone',
-  'Currency',
-  'Picklist',
   'Html',
   'Location',
+  'LongTextArea',
   'Lookup',
   'MasterDetail',
+  'Number',
+  'Phone',
+  'Picklist',
+  'Text',
+  'Time',
+  'Url',
 ] as const;
 
 const supportedFieldTypesPlatformEvent = ['Text', 'Number', 'DateTime', 'Date', 'LongTextArea', 'Checkbox'] as const;
@@ -102,17 +121,18 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
     const responses = await this.prompt<Response>(
       [
         await objectPrompt(this.project.getPackageDirectories()),
-        apiNamePrompt(flags.label),
+        apiNamePrompt(flags.label, 'CustomField'),
         {
           type: 'list',
-          message: 'Field type',
+          message: messages.getMessage('prompts.type'),
           name: 'type',
           choices: (answers: { object: string }) => getSupportedFieldTypes(answers.object),
         },
         // AutoNumber
         {
           type: 'list',
-          message: 'Starting Number',
+          message: messages.getMessage('prompts.startingNumber'),
+
           validate: (n: number) => integerValidation(n, 0, Number.MAX_SAFE_INTEGER),
           name: 'startingNumber',
           when: (answers: Response) => answers.type === 'AutoNumber',
@@ -121,7 +141,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         // checkbox type requires a default value
         {
           type: 'list',
-          message: 'Default checkbox value',
+          message: messages.getMessage('prompts.defaultValue'),
           choices: [
             { value: false, name: 'false' },
             { value: true, name: 'true' },
@@ -158,7 +178,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         // number types
         {
           type: 'number',
-          message: 'How many decimal places',
+          message: messages.getMessage('prompts.scale'),
           validate: (n: number) => integerValidation(n, 0, 18),
           name: 'scale',
           when: (answers: Response) => ['Number', 'Currency', 'Location'].includes(answers.type),
@@ -166,7 +186,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         },
         {
           type: 'number',
-          message: 'How many total digits, including those decimal places?',
+          message: messages.getMessage('prompts.precision'),
           validate: (n: number, answers: Response) => integerValidation(n, 1, 18 - answers.scale),
           name: 'precision',
           when: (answers: Response) => ['Number', 'Currency'].includes(answers.type),
@@ -176,14 +196,15 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         descriptionPrompt,
         {
           type: 'input',
-          message: 'User-facing help text (for those bubbles on the record page)',
+          message: messages.getMessage('prompts.inlineHelpText'),
           name: 'inlineHelpText',
+          when: (answers: Response) => !answers.object.includes('__e'),
         },
         {
           type: 'confirm',
-          message: 'Required',
+          message: messages.getMessage('prompts.required'),
           name: 'required',
-          when: (answers: Response) => answers.type !== 'Checkbox',
+          when: (answers: Response) => !['Checkbox', 'MasterDetail', 'Lookup', 'LongTextArea'].includes(answers.type),
           default: false,
         },
         {
@@ -195,14 +216,14 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         },
         {
           type: 'confirm',
-          message: 'Use this field as an external ID',
+          message: messages.getMessage('prompts.externalId'),
           name: 'externalId',
           when: (answers: Response) => ['Number', 'Text'].includes(answers.type) && answers.object?.endsWith('__e'),
           default: false,
         },
         {
           type: 'choice',
-          message: "Security Classification (how sensitive is this field's content",
+          message: messages.getMessage('prompts.securityClassification'),
           name: 'securityClassification',
           choices: ['Public', 'Internal', 'Confidential', 'Restricted', 'Mission Critical'],
           default: 'Internal',
@@ -221,7 +242,15 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         // always use decimal version of location unless someone asks us not to
         ...(customField.type === 'Location' ? { displayLocationInDecimal: true } : {}),
         // building picklists is an independent inquirer series of questions
-        ...(customField.type === 'Picklist' ? { valueSet: await buildPicklist() } : {}),
+        ...(customField.type === 'Picklist' ? { valueSet: await picklistPrompts() } : {}),
+        // relationship fields have their own series of questions
+        ...(responses.type === 'MasterDetail' || responses.type === 'Lookup'
+          ? await relationshipFieldPrompts({
+              type: responses.type,
+              packageDirs: this.project.getPackageDirectories(),
+              childObjectFolderPath: responses.object,
+            })
+          : {}),
       },
     };
     this.styledJSON(result as AnyJson);
@@ -231,22 +260,27 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       convertJsonToXml({ json: result.field, type: 'CustomField' })
     );
 
-    this.logSuccess(`Created ${path.join(path.join(object, 'fields', `${responses.fullName}.field-meta.xml`))}.`);
-
+    this.logSuccess(
+      messages.getMessage('success', [path.join(path.join(object, 'fields', `${responses.fullName}.field-meta.xml`))])
+    );
     return result;
   }
 }
 
+/**
+ *
+ * @param objFolder examples `force-app/main/default/objects/Foo__c` or `force-app/main/default/objects/Foo__e`
+ */
 const getSupportedFieldTypes = (
-  objPath: string
+  objFolder: string
 ): typeof supportedFieldTypesCustomObject | typeof supportedFieldTypesPlatformEvent => {
-  if (objPath.endsWith('__b')) {
-    throw new Error('BigObjects are not suppored by this command');
+  if (objFolder.endsWith('__b')) {
+    throw new Error(messages.getMessage('error.bigObjects'));
   }
-  if (objPath.endsWith('__mdt')) {
-    throw new Error('Custom Metadata Types are not suppored by this command');
+  if (objFolder.endsWith('__mdt')) {
+    throw new Error(messages.getMessage('error.cmdt'));
   }
-  if (objPath.includes('__e')) {
+  if (objFolder.includes('__e')) {
     return supportedFieldTypesPlatformEvent;
   }
   return supportedFieldTypesCustomObject;

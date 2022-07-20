@@ -12,14 +12,62 @@ The label of the field.
 
 # flags.object.summary
 
-The API name of the object you're adding the field to.
+The directory of the object folder
 
 # flags.object.description
 
-The API name of the object you're adding the field to. Include \_\_c if the object is custom.
+The directory of object you're adding the field to. Include \_\_c if the object is custom. For example, `force-app/main/default/objects/MyObj__c`
 
-If not provided, the command will prompt you to choose from your local objects
+If not provided, the command will prompt you to choose from your local objects.
 
 # examples
 
 - TBD
+
+# prompts.type
+
+Field type
+
+# prompts.startingNumber
+
+Starting number
+
+# prompts.defaultValue
+
+Default checkbox value
+
+# prompts.scale
+
+How many decimal places
+
+# prompts.precision
+
+How many total digits, including those decimal places
+
+# prompts.inlineHelpText
+
+User-facing help text (for those bubbles on the record page)
+
+# prompts.required
+
+Require at the database level on every records (consider requiring on layouts instead!)
+
+# prompts.externalId
+
+Use this field as an external ID
+
+# prompts.securityClassification
+
+Security Classification (how sensitive is this field's content
+
+# error.bigObjects
+
+This command does not support big objects.
+
+# error.cmdt
+
+This command does not support Custom Metadata Types
+
+# success
+
+Created %s.
