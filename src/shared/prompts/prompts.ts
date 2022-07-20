@@ -124,7 +124,7 @@ export const picklistPrompts = async (): Promise<Omit<ValueSet, 'valueSettings'>
       type: 'input',
       name: 'picklistValue',
       validate: (input: string) => (output.find((v) => v.fullName === input) ? `${input} already exists` : true),
-      message: output.length === 0 ? messages.getMessage('picklist.first') : messages.getMessage('picklist.first'),
+      message: output.length === 0 ? messages.getMessage('picklist.first') : messages.getMessage('picklist.additional'),
     });
 
     if (response.picklistValue === undefined || response.picklistValue === '') {
