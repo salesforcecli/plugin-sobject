@@ -18,13 +18,15 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
   'summary',
   'description',
   'flags.label.summary',
+  'prompts.publishBehavior',
 ]);
 
-export type CustomObjectGenerateResult = {
+export type PlatformEventGenerateResult = {
   object: SaveablePlatformEvent;
+  path: string;
 };
 
-export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult> {
+export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
@@ -38,7 +40,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
     }),
   };
 
-  public async run(): Promise<CustomObjectGenerateResult> {
+  public async run(): Promise<PlatformEventGenerateResult> {
     const { flags } = await this.parse(ObjectGenerate);
 
     const responses = await this.prompt<SaveablePlatformEvent & { directory: string }>([
@@ -48,23 +50,22 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       descriptionPrompt,
       {
         type: 'list',
-        message: 'Should events publish after a transaction completes, or immediately?',
+        message: messages.getMessage('prompts.publishBehavior'),
         name: 'publishBehavior',
         choices: ['PublishImmediately', 'PublishAfterCommit'],
       },
     ]);
     const { directory, ...platformEvent } = responses;
 
-    const result: CustomObjectGenerateResult = {
-      object: {
-        ...platformEvent,
-        deploymentStatus: 'Deployed',
-        eventType: 'HighVolume',
-        label: flags.label,
-      },
+    const objectToWrite: PlatformEventGenerateResult['object'] = {
+      ...platformEvent,
+      deploymentStatus: 'Deployed',
+      eventType: 'HighVolume',
+      label: flags.label,
     };
-    this.styledJSON(result as AnyJson);
-    await writeObjectFile(directory, result.object);
-    return result;
+
+    this.styledJSON(objectToWrite as AnyJson);
+    const writePath = await writeObjectFile(directory, objectToWrite);
+    return { object: objectToWrite, path: writePath };
   }
 }

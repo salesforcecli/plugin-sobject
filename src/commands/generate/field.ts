@@ -89,6 +89,7 @@ type SaveableCustomField = Pick<
 
 export type FieldGenerateResult = {
   field: SaveableCustomField;
+  path: string;
 };
 
 // the parts of the field you might prompt for, plus additional questions not on the field
@@ -252,13 +253,11 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
             })
           : {}),
       },
+      path: path.join(object, 'fields', `${responses.fullName}.field-meta.xml`),
     };
     this.styledJSON(result as AnyJson);
     await fs.promises.mkdir(path.join(object, 'fields'), { recursive: true });
-    await fs.promises.writeFile(
-      path.join(object, 'fields', `${responses.fullName}.field-meta.xml`),
-      convertJsonToXml({ json: result.field, type: 'CustomField' })
-    );
+    await fs.promises.writeFile(result.path, convertJsonToXml({ json: result.field, type: 'CustomField' }));
 
     this.logSuccess(
       messages.getMessage('success', [path.join(path.join(object, 'fields', `${responses.fullName}.field-meta.xml`))])

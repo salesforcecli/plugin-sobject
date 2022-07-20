@@ -5,13 +5,6 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-// sf sobject generate
-// sf sobject describe (currently sfdx schema)
-// sf sobject generate field
-// sf sobject generate event
-// sf sobject list (currently sfdx schema)
-
-import * as path from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
@@ -41,6 +34,7 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
 
 export type CustomObjectGenerateResult = {
   object: SaveableCustomObject;
+  path: string;
 };
 
 const defaultFeatures: Partial<SaveableCustomObject> = {
@@ -103,28 +97,23 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
 
     const { nameFieldType, nameFieldLabel, autoNumberFormat, directory, ...customObject } = responses;
 
-    const result: CustomObjectGenerateResult = {
-      object: {
-        ...customObject,
-        nameField: {
-          ...{
-            type: nameFieldType,
-            label: nameFieldLabel,
-          },
-          ...(responses.nameFieldType === 'AutoNumber' ? { displayFormat: autoNumberFormat } : {}),
+    const resultsObject = {
+      ...customObject,
+      nameField: {
+        ...{
+          type: nameFieldType,
+          label: nameFieldLabel,
         },
-        deploymentStatus: 'Deployed',
-        label: flags.label,
+        ...(responses.nameFieldType === 'AutoNumber' ? { displayFormat: autoNumberFormat } : {}),
       },
+      deploymentStatus: 'Deployed',
+      label: flags.label,
     };
-    this.styledJSON(result as AnyJson);
-    await writeObjectFile(directory, responses);
-    this.logSuccess(
-      messages.getMessage('success', [
-        path.join(directory, responses.fullName, `${responses.fullName}.object-meta.xml`),
-      ])
-    );
+
+    this.styledJSON(resultsObject as AnyJson);
+    const writePath = await writeObjectFile(directory, resultsObject);
+    this.logSuccess(messages.getMessage('success', [writePath]));
     this.info(messages.getMessage('success.advice'));
-    return result;
+    return { object: resultsObject, path: writePath };
   }
 }

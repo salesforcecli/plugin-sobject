@@ -57,13 +57,16 @@ export const getObjectXmlByFolderAsJson = async (folder: string): Promise<Custom
   return getObjectXmlByPathAsJson(objectMetaPath);
 };
 
+/**
+ *
+ * @returns path where the object was written
+ */
 export const writeObjectFile = async (
   objectDirectory: string,
   object: SaveablePlatformEvent | SaveableCustomObject
-): Promise<void> => {
+): Promise<string> => {
   await fs.promises.mkdir(path.join(objectDirectory, object.fullName), { recursive: true });
-  return fs.promises.writeFile(
-    path.join(objectDirectory, object.fullName, `${object.fullName}.object-meta.xml`),
-    convertJsonToXml({ json: object, type: 'CustomObject' })
-  );
+  const targetFile = path.join(objectDirectory, object.fullName, `${object.fullName}.object-meta.xml`);
+  await fs.promises.writeFile(targetFile, convertJsonToXml({ json: object, type: 'CustomObject' }));
+  return targetFile;
 };

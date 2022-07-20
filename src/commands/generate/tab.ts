@@ -16,8 +16,8 @@ Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-schema-generator', 'generate.tab');
 
 export type GenerateTabResult = {
+  tab: Pick<CustomTab, 'customObject' | 'motif'>;
   path: string;
-  tab: Partial<CustomTab>;
 };
 
 export default class GenerateTab extends SfCommand<GenerateTabResult> {
@@ -53,7 +53,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
     const { flags } = await this.parse(GenerateTab);
     const tabPath = path.join(flags.directory, `${flags.object}.tab-meta.xml`);
 
-    const tab: Partial<CustomTab> = {
+    const tab: GenerateTabResult['tab'] = {
       customObject: true,
       motif: tabDefs.find((tabDef) => tabDef.includes(`Custom${flags.icon}:`)),
     };

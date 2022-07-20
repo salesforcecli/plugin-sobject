@@ -13,3 +13,7 @@ The label of the event.
 # examples
 
 - TBD
+
+# prompts.publishBehavior
+
+Should events publish after a transaction completes, or immediately
