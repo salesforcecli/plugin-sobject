@@ -16,7 +16,13 @@ import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 import { sentenceCase } from 'change-case';
-import { descriptionPrompt, directoryPrompt, pluralPrompt, apiNamePrompt, namePrompts } from '../../shared/prompts';
+import {
+  descriptionPrompt,
+  directoryPrompt,
+  pluralPrompt,
+  apiNamePrompt,
+  namePrompts,
+} from '../../shared/prompts/prompts';
 import { writeObjectFile } from '../../shared/fs';
 import { SaveableCustomObject, NameFieldResponse } from '../../shared/types';
 

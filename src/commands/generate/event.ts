@@ -8,7 +8,7 @@
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../shared/prompts';
+import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../shared/prompts/prompts';
 import { writeObjectFile } from '../../shared/fs';
 import { SaveablePlatformEvent } from '../../shared/types';
 

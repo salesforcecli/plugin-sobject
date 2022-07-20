@@ -4,13 +4,11 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as path from 'path';
 import { NamedPackageDir } from '@salesforce/core';
 import { prompt, Question, ListQuestion } from 'inquirer';
-import { ValueSet, CustomValue, CustomField } from 'jsforce/api/metadata';
+import { ValueSet, CustomValue } from 'jsforce/api/metadata';
 import { Messages } from '@salesforce/core';
-import { getDirectoriesThatContainObjects, getObjectDirectories } from './fs';
-import { getObjectXmlByFolderAsJson } from './fs';
+import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'prompts.shared', [
@@ -145,86 +143,5 @@ export const picklistPrompts = async (): Promise<Omit<ValueSet, 'valueSettings'>
       value: output,
       sorted: true,
     },
-  };
-};
-
-type RelationshipFieldProperties = Pick<
-  CustomField,
-  | 'referenceTo'
-  | 'relationshipLabel'
-  | 'relationshipName'
-  | 'deleteConstraint'
-  | 'reparentableMasterDetail'
-  | 'writeRequiresMasterRead'
-  | 'relationshipOrder'
->;
-
-export const relationshipFieldPrompts = async ({
-  type,
-  packageDirs,
-  childObjectFolderPath,
-}: {
-  type: 'MasterDetail' | 'Lookup';
-  packageDirs: NamedPackageDir[];
-  childObjectFolderPath: string;
-}): Promise<RelationshipFieldProperties> => {
-  const childObjectXml = await getObjectXmlByFolderAsJson(childObjectFolderPath);
-  const response = await prompt<RelationshipFieldProperties>([
-    // prompt the user to select from objects in local source
-    await objectPrompt(packageDirs, 'referenceTo'),
-    {
-      type: 'input',
-      name: 'relationshipLabel',
-      message: 'Relationship label',
-      default: childObjectXml.pluralLabel,
-    },
-    {
-      type: 'input',
-      name: 'relationshipName',
-      message: 'Relationship name',
-      default: (answers: RelationshipFieldProperties) => makeNameApiCompatible(answers.relationshipLabel),
-    },
-    // lookup-only
-    {
-      type: 'list',
-      name: 'deleteConstraint',
-      message: 'What happens to this field when the parent is deleted?',
-      when: type === 'Lookup',
-      default: 'SetNull',
-      choices: [
-        {
-          value: 'SetNull',
-          name: 'If the parent record is deleted, the lookup field is cleared.',
-        },
-        {
-          value: 'Restrict',
-          name: 'Prevent the parent record from being deleted if there are lookups that refer to it ',
-        },
-        {
-          value: 'Cascade',
-          name: 'Deletes the lookup record as well as associated lookup fields',
-        },
-      ],
-    },
-    // master-detail only
-    {
-      type: 'confirm',
-      name: 'reparentableMasterDetail',
-      message: 'Allow reparenting',
-      when: type === 'MasterDetail',
-      default: false,
-    },
-    {
-      type: 'confirm',
-      name: 'writeRequiresMasterRead',
-      message: 'Allow write access if parent is readable',
-      when: type === 'MasterDetail',
-      default: false,
-    },
-  ]);
-
-  return {
-    ...response,
-    referenceTo: response.referenceTo.split(path.sep).pop(),
   };
 };

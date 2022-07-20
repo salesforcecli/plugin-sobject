@@ -17,8 +17,8 @@ import {
   objectPrompt,
   integerValidation,
   picklistPrompts,
-  relationshipFieldPrompts,
-} from '../../shared/prompts';
+} from '../../shared/prompts/prompts';
+import { relationshipFieldPrompts } from '../../shared/prompts/relationshipField';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.field', [
