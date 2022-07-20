@@ -62,7 +62,7 @@ export const writeObjectFile = async (
   object: SaveablePlatformEvent | SaveableCustomObject
 ): Promise<void> => {
   await fs.promises.mkdir(path.join(objectDirectory, object.fullName), { recursive: true });
-  await fs.promises.writeFile(
+  return fs.promises.writeFile(
     path.join(objectDirectory, object.fullName, `${object.fullName}.object-meta.xml`),
     convertJsonToXml({ json: object, type: 'CustomObject' })
   );
