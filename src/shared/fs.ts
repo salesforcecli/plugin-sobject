@@ -16,12 +16,15 @@ const getObjectXmlByPathAsJson = async (objectFilePath: string): Promise<CustomO
   return parseXml<CustomObject>(xml, 'CustomObject');
 };
 
+/** globs don't support windows path, but the input might be */
+const ensurePosixPath = (filePath: string): string => filePath.split(path.sep).join(path.posix.sep);
+
 /**
  * @param targetPaths typically your pkgDirs or project path
  * @returns directories that end in `/objects/`
  */
 export const getDirectoriesThatContainObjects = async (targetPaths: string[]): Promise<string[]> => {
-  const globs = targetPaths.map((p) => `${p}/**/objects/`);
+  const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/`);
   return fg(globs, { onlyDirectories: true });
 };
 
@@ -30,7 +33,7 @@ export const getDirectoriesThatContainObjects = async (targetPaths: string[]): P
  * @returns directories that are children of `/objects/` like `force-app/main/default/objects/Foo__c`
  */
 export const getObjectDirectories = async (targetPaths: string[]): Promise<string[]> => {
-  const globs = targetPaths.map((p) => `${p}/**/objects/*`);
+  const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/*`);
   return await fg(globs, { onlyDirectories: true });
 };
 
@@ -39,7 +42,7 @@ export const getObjectDirectories = async (targetPaths: string[]): Promise<strin
  * @returns CustomObject in json
  */
 export const getObjectXmlByFolderAsJson = async (folder: string): Promise<CustomObject> => {
-  const globs = `${folder}/*.object-meta.xml`;
+  const globs = `${ensurePosixPath(folder)}/*.object-meta.xml`;
   const [objectMetaPath] = await fg(globs);
   return getObjectXmlByPathAsJson(objectMetaPath);
 };
