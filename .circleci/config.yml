@@ -36,7 +36,7 @@ workflows:
             - release-management/test-package
           context: na40-auth-url
       - release-management/release-package:
-          # github-release: true
+          github-release: true
           sign: true
           requires:
             - release-management/test-package
