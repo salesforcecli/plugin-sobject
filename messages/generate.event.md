@@ -12,7 +12,9 @@ The label of the event.
 
 # examples
 
-- TBD
+- Create an platform event with the given
+
+<%= config.bin %> <%= command.id %> --label "Platform Evt"
 
 # prompts.publishBehavior
 

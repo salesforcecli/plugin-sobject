@@ -16,13 +16,19 @@ The directory of the object folder
 
 # flags.object.description
 
-The directory of object you're adding the field to. Include \_\_c if the object is custom. For example, `force-app/main/default/objects/MyObj__c`
+The directory of object you're adding the field to. Include **c if the object is custom. For example, `force-app/main/default/objects/MyObj**c`
 
 If not provided, the command will prompt you to choose from your local objects.
 
 # examples
 
-- TBD
+- Create a field with a given Label (you'll be prompted to choose an object)
+
+<%= config.bin %> <%= command.id %> --label "My Field"
+
+- Specify a local path to the object's folder
+
+<%= config.bin %> <%= command.id %> --label "My Field" -o force-app/main/default/objects/MyObj\_\_c
 
 # prompts.type
 
