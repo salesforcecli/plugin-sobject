@@ -37,12 +37,16 @@ workflows:
           context: na40-auth-url
       - release-management/release-package:
           github-release: true
+          sign: true
           requires:
             - release-management/test-package
           filters:
             branches:
               only: main
-          context: release
+          context:
+            - CLI_CTC
+            - AWS
+            - release
   test-ts-update:
     triggers:
       - schedule:
