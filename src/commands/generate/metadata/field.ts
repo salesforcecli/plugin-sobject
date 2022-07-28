@@ -10,15 +10,15 @@ import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
 import { CustomField } from 'jsforce/api/metadata';
-import { convertJsonToXml } from '../../shared/convert';
+import { convertJsonToXml } from '../../../shared/convert';
 import {
   descriptionPrompt,
   apiNamePrompt,
   objectPrompt,
   integerValidation,
   picklistPrompts,
-} from '../../shared/prompts/prompts';
-import { relationshipFieldPrompts } from '../../shared/prompts/relationshipField';
+} from '../../../shared/prompts/prompts';
+import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.field', [
@@ -100,6 +100,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
+  public static enableJsonFlag = false;
 
   public static flags = {
     label: Flags.string({
@@ -107,6 +108,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       summary: messages.getMessage('flags.label.summary'),
       required: true,
     }),
+    // this a dir and not an API name to support 1 object being in multiple package directories
     object: Flags.directory({
       char: 'o',
       exists: true,
@@ -117,8 +119,6 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
 
   public async run(): Promise<FieldGenerateResult> {
     const { flags } = await this.parse(FieldGenerate);
-    // TODO: if an object was provided, verify that it exists locally
-
     const responses = await this.prompt<Response>(
       [
         await objectPrompt(this.project.getPackageDirectories()),
@@ -240,7 +240,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       field: {
         ...customField,
         label: flags.label,
-        // always use decimal version of location unless someone asks us not to
+        // always use decimal version of location unless someone asks us not to in a feature request
         ...(customField.type === 'Location' ? { displayLocationInDecimal: true } : {}),
         // building picklists is an independent inquirer series of questions
         ...(customField.type === 'Picklist' ? { valueSet: await picklistPrompts() } : {}),
@@ -260,7 +260,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
     await fs.promises.writeFile(result.path, convertJsonToXml({ json: result.field, type: 'CustomField' }));
 
     this.logSuccess(
-      messages.getMessage('success', [path.join(path.join(object, 'fields', `${responses.fullName}.field-meta.xml`))])
+      messages.getMessage('success', [path.join(object, 'fields', `${responses.fullName}.field-meta.xml`)])
     );
     return result;
   }

@@ -10,7 +10,7 @@ import * as path from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { CustomTab } from 'jsforce/api/metadata';
-import { convertJsonToXml } from '../../shared/convert';
+import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.loadMessages('@salesforce/plugin-schema-generator', 'generate.tab');

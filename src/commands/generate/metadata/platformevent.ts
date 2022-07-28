@@ -8,9 +8,9 @@
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../shared/prompts/prompts';
-import { writeObjectFile } from '../../shared/fs';
-import { SaveablePlatformEvent } from '../../shared/types';
+import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts';
+import { writeObjectFile } from '../../../shared/fs';
+import { SaveablePlatformEvent } from '../../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.event', [
@@ -31,6 +31,7 @@ export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResul
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
+  public static enableJsonFlag = false;
 
   public static flags = {
     label: Flags.string({

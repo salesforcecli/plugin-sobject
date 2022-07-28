@@ -4,7 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-
+import { dirname } from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
@@ -15,9 +15,9 @@ import {
   pluralPrompt,
   apiNamePrompt,
   namePrompts,
-} from '../../shared/prompts/prompts';
-import { writeObjectFile } from '../../shared/fs';
-import { SaveableCustomObject, NameFieldResponse } from '../../shared/types';
+} from '../../../shared/prompts/prompts';
+import { writeObjectFile } from '../../../shared/fs';
+import { SaveableCustomObject, NameFieldResponse } from '../../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.object', [
@@ -28,8 +28,9 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.
   'flags.use-default-features.summary',
   'flags.use-default-features.description',
   'prompts.sharingModel',
-  'success.advice',
   'success',
+  'success.advice',
+  'success.field',
 ]);
 
 export type CustomObjectGenerateResult = {
@@ -53,6 +54,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
+  public static enableJsonFlag = false;
 
   public static flags = {
     label: Flags.string({
@@ -113,6 +115,8 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
     this.styledJSON(resultsObject as AnyJson);
     const writePath = await writeObjectFile(directory, resultsObject);
     this.logSuccess(messages.getMessage('success', [writePath]));
+    this.info(messages.getMessage('success.field', [dirname(writePath)]));
+    this.info(messages.getMessage('success.advice'));
     this.info(messages.getMessage('success.advice'));
     return { object: resultsObject, path: writePath };
   }
