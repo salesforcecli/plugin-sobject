@@ -27,8 +27,8 @@ const messages = Messages.load('@salesforce/plugin-schema-generator', 'prompts.s
   'error.noDescription',
 ]);
 
-// TODO: wanna get rid of underscore and maybe just remove disallowed characters?
-export const makeNameApiCompatible = (input: string): string => input.replace(/ /g, '_').replace(/-/g, '_');
+export const makeNameApiCompatible = (input: string): string =>
+  input.replace(/ /g, '').replace(/-/g, '_').replace(/_{2,}/g, '_');
 
 type ObjectType = 'CustomObject' | 'PlatformEvent' | 'CustomField';
 const getSuffix = (objectType: ObjectType): string => {
@@ -96,9 +96,13 @@ export const namePrompts = (label: string): Array<Question | ListQuestion> => [
  * @param packageDirs
  * @param name The "name" property of the Inquirer answer object.  Supports use of the question for multiple scenarios
  */
-export const objectPrompt = async (packageDirs: NamedPackageDir[], name = 'object'): Promise<ListQuestion> => ({
+export const objectPrompt = async (
+  packageDirs: NamedPackageDir[],
+  name: 'object' | 'referenceTo' = 'object',
+  message = messages.getMessage('object')
+): Promise<ListQuestion> => ({
   type: 'list',
-  message: messages.getMessage('object'),
+  message,
   name,
   choices: (await getObjectDirectories(packageDirs.map((pd) => pd.path)))
     .sort()
@@ -107,7 +111,7 @@ export const objectPrompt = async (packageDirs: NamedPackageDir[], name = 'objec
 
 export const integerValidation = (value: number, min: number, max: number): true | string => {
   if (value < min) return messages.getMessage('numberValidationMin', [value, min]);
-  if (value < min) return messages.getMessage('numberValidationMax', [value, max]);
+  if (value > max) return messages.getMessage('numberValidationMax', [value, max]);
   return true;
 };
 

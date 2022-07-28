@@ -14,6 +14,7 @@ import { objectPrompt, makeNameApiCompatible } from './prompts';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-schema-generator', 'prompts.relationship', [
+  'objectPrompt',
   'lookupDeleteConstraint',
   'lookupDeleteConstraint.setNull',
   'lookupDeleteConstraint.restrict',
@@ -45,7 +46,7 @@ export const relationshipFieldPrompts = async ({
   const childObjectXml = await getObjectXmlByFolderAsJson(childObjectFolderPath);
   const response = await prompt<RelationshipFieldProperties>([
     // prompt the user to select from objects in local source
-    await objectPrompt(packageDirs, 'referenceTo'),
+    await objectPrompt(packageDirs, 'referenceTo', messages.getMessage('objectPrompt')),
     {
       type: 'input',
       name: 'relationshipLabel',

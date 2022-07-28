@@ -35,19 +35,6 @@ export const getObjectDirectories = async (targetPaths: string[]): Promise<strin
 };
 
 /**
- * Use when you don't know what pkgDir the object is in, but you know its name
- *
- * @param targetPaths typically your pkgDirs or a project
- * @param objectApiName ex `Foo__c`
- * @returns CustomObject in json
- */
-export const getObjectXmlByNameAsJson = async (targetPaths: string[], objectApiName: string): Promise<CustomObject> => {
-  const globs = targetPaths.map((p) => `${p}/**/objects/${objectApiName}/${objectApiName}.object-meta.xml`);
-  const [objectMetaPath] = await fg(globs);
-  return getObjectXmlByPathAsJson(objectMetaPath);
-};
-
-/**
  * @param folder folder path to the object name (ex: `force-app/main/default/objects/Account`)
  * @returns CustomObject in json
  */
