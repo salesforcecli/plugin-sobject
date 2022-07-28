@@ -13,7 +13,7 @@ import { getObjectXmlByFolderAsJson } from '../fs';
 import { objectPrompt, makeNameApiCompatible } from './prompts';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-generator', 'prompts.relationship', [
+const messages = Messages.load('@salesforce/plugin-schema-sf', 'prompts.relationship', [
   'objectPrompt',
   'lookupDeleteConstraint',
   'lookupDeleteConstraint.setNull',

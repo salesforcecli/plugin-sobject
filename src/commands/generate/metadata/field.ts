@@ -21,7 +21,7 @@ import {
 import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.field', [
+const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.field', [
   'examples',
   'summary',
   'description',

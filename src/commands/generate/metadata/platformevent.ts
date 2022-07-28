@@ -13,7 +13,7 @@ import { writeObjectFile } from '../../../shared/fs';
 import { SaveablePlatformEvent } from '../../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-generator', 'generate.event', [
+const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.event', [
   'examples',
   'summary',
   'description',

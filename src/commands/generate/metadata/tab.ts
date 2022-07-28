@@ -13,7 +13,7 @@ import { CustomTab } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('@salesforce/plugin-schema-generator', 'generate.tab');
+const messages = Messages.loadMessages('@salesforce/plugin-schema-sf', 'generate.tab');
 
 export type GenerateTabResult = {
   tab: Pick<CustomTab, 'customObject' | 'motif'>;

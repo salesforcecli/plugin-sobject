@@ -1,25 +1,25 @@
 [
   {
     "command": "generate:metadata:field",
-    "plugin": "@salesforce/plugin-schema-generator",
+    "plugin": "@salesforce/plugin-schema-sf",
     "flags": ["label", "object"],
     "alias": []
   },
   {
     "command": "generate:metadata:platformevent",
-    "plugin": "@salesforce/plugin-schema-generator",
+    "plugin": "@salesforce/plugin-schema-sf",
     "flags": ["label"],
     "alias": []
   },
   {
     "command": "generate:metadata:sobject",
-    "plugin": "@salesforce/plugin-schema-generator",
+    "plugin": "@salesforce/plugin-schema-sf",
     "flags": ["label", "use-default-features"],
     "alias": []
   },
   {
     "command": "generate:metadata:tab",
-    "plugin": "@salesforce/plugin-schema-generator",
+    "plugin": "@salesforce/plugin-schema-sf",
     "flags": ["directory", "icon", "json", "object"],
     "alias": []
   }
