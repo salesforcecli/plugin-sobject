@@ -91,7 +91,12 @@
     ],
     "topics": {
       "generate": {
-        "description": "generate local metadata for various Salesforce metadata types"
+        "description": "generate local files",
+        "subtopics": {
+          "metadata": {
+            "description": "generate metadata files for various Salesforce metadata types"
+          }
+        }
       }
     }
   },
