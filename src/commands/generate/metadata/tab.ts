@@ -46,6 +46,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
       // max: 100,
       // default: 1,
       summary: messages.getMessage('flags.icon.summary'),
+      description: messages.getMessage('flags.icon.description'),
     }),
   };
 
