@@ -1,51 +1,51 @@
 # directory
 
-Where should this new object be created
+Which local directory do you want to store the source files for this new object?
 
 # pluralLabel
 
-Plural label
+Plural label:
 
 # apiName
 
-API name
+API name (custom objects and fields must end in "__c" and platform events in "__e"):
 
 # description
 
-Description (be kind to your future self or successors!)
+Description (great developers write great descriptions):  
 
 # error.noDescription
 
-Please enter a description
+Please enter a description. Your future self and others will thank you.
 
 # nameFieldPrompts.label
 
-What should the Name field be called
+What do you want to call the required Name field?
 
 # nameFieldPrompts.type
 
-Is the name field autonumber or text
+What's the type of the required Name field?
 
 # nameFieldPrompts.autoNumberFormat
 
-AutoNumber format
+Auto number format:
 
 # object
 
-What object is this field for
+Which object is this new field for?
 
 # picklist.first
 
-Add your default picklist value first
+Enter the first picklist value, which will also be the default: 
 
 # picklist.additional
 
-Enter the next picklist value, or press RETURN to stop adding picklist values
+Enter the next picklist value, or press RETURN to stop adding picklist values.
 
 # numberValidationMin
 
-%s is too low. Minimum is %s
+%s is too low. Minimum value is %s.
 
 # numberValidationMax
 
-%s is too high. Maximum is %s
+%s is too high. Maximum value is %s.

@@ -131,7 +131,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         },
         // AutoNumber
         {
-          type: 'list',
+          type: 'number',
           message: messages.getMessage('prompts.startingNumber'),
 
           validate: (n: number) => integerValidation(n, 0, Number.MAX_SAFE_INTEGER),
@@ -223,7 +223,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
           default: false,
         },
         {
-          type: 'choice',
+          type: 'list',
           message: messages.getMessage('prompts.securityClassification'),
           name: 'securityClassification',
           choices: ['Public', 'Internal', 'Confidential', 'Restricted', 'Mission Critical'],

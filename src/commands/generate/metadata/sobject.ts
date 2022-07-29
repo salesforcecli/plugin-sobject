@@ -116,7 +116,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
     const writePath = await writeObjectFile(directory, resultsObject);
     this.logSuccess(messages.getMessage('success', [writePath]));
     this.info(messages.getMessage('success.field', [dirname(writePath)]));
-    this.info(messages.getMessage('success.advice'));
+    this.log();
     this.info(messages.getMessage('success.advice'));
     return { object: resultsObject, path: writePath };
   }
