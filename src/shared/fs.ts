@@ -25,7 +25,7 @@ const ensurePosixPath = (filePath: string): string => filePath.split(path.sep).j
  */
 export const getDirectoriesThatContainObjects = async (targetPaths: string[]): Promise<string[]> => {
   const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/`);
-  return fg(globs, { onlyDirectories: true });
+  return (await fg(globs, { onlyDirectories: true })).map((dir) => path.normalize(dir));
 };
 
 /**
@@ -34,7 +34,7 @@ export const getDirectoriesThatContainObjects = async (targetPaths: string[]): P
  */
 export const getObjectDirectories = async (targetPaths: string[]): Promise<string[]> => {
   const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/*`);
-  return await fg(globs, { onlyDirectories: true });
+  return (await fg(globs, { onlyDirectories: true })).map((dir) => path.normalize(dir));
 };
 
 /**
