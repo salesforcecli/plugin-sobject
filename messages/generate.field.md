@@ -1,78 +1,80 @@
 # summary
 
-Generate local metadata for a custom field on
+Generate metadata source files for a new custom field on a specified object.
 
 # description
 
-Interactively generate local metadata for a custom field. This requires that the custom object you're adding the field to be present locally
+This command is interactive and must be run in a Salesforce DX project directory. You're required to specify the field's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other field properties, such as its API name.
+
+You can generate a custom field on either a standard object, such as Account, or a custom object. In both cases, the source files for the object must already exist in your local project before you run this command. If you create a relationship field, the source files for the parent object must also exist in your local directory.  Use the command "sf metadata retrieve -m CustomObject:<object>" to retrieve source files for both standard and custom objects from your org.  To create a custom object, run the "sf generate metadata sobject" command or use the Object Manager UI in your Salesforce org.
 
 # flags.label.summary
 
-The label of the field.
+The field's label.
 
 # flags.object.summary
 
-The directory of the object folder
+The directory that contains the object's source files.
 
 # flags.object.description
 
-The directory of object you're adding the field to. Include **c if the object is custom. For example, `force-app/main/default/objects/MyObj**c`
+The object source files in your local project are grouped in a directoy with the same name as the object. Custom object names always end in "__c". An example of the object directory for the Account standard object is "force-app/main/default/objects/Account" An example custom object directory is "force-app/main/default/objects/MyObject__c"
 
-If not provided, the command will prompt you to choose from your local objects.
+If you don't specify this flag, the command prompts you to choose from your local objects.
 
 # examples
 
-- Create a field with a given Label (you'll be prompted to choose an object)
+- Create a field with the specified label; the command prompts you for the object:
 
-<%= config.bin %> <%= command.id %> --label "My Field"
+  <%= config.bin %> <%= command.id %> --label "My Field"
 
-- Specify a local path to the object's folder
+- Specify the local path to the object's folder:
 
-<%= config.bin %> <%= command.id %> --label "My Field" -o force-app/main/default/objects/MyObj\_\_c
+  <%= config.bin %> <%= command.id %> --label "My Field" --object force-app/main/default/objects/MyObject__c
 
 # prompts.type
 
-Field type
+Field type:
 
 # prompts.startingNumber
 
-Starting number
+Starting number:
 
 # prompts.defaultValue
 
-Default checkbox value
+Default checkbox value:
 
 # prompts.scale
 
-How many decimal places
+Number of decimal places:
 
 # prompts.precision
 
-How many total digits, including those decimal places
+Total number of digits, including the decimal places:
 
 # prompts.inlineHelpText
 
-User-facing help text (for those bubbles on the record page)
+Help text (the text displayed when users hover over the Info icon next to this field):
 
 # prompts.required
 
-Require at the database level on every records (consider requiring on layouts instead!)
+Does this field always require a value in order to save a record? (Tip: consider using layouts instead to require a value)
 
 # prompts.externalId
 
-Use this field as an external ID
+Should this field be set as the unique record identifier from an external system?
 
 # prompts.securityClassification
 
-Security Classification (how sensitive is this field's content
+Security classification (how sensitive is this field's content):
 
 # error.bigObjects
 
-This command does not support big objects.
+This command doesn't support big objects.
 
 # error.cmdt
 
-This command does not support Custom Metadata Types
+This command doesn't support custom metadata types.
 
 # success
 
