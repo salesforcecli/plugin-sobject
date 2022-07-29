@@ -113,35 +113,125 @@ sf plugins
 
 <!-- commands -->
 
-- [`sf hello world`](#sf-hello-world)
+- [`sf generate metadata field`](#sf-generate-metadata-field)
+- [`sf generate metadata platformevent`](#sf-generate-metadata-platformevent)
+- [`sf generate metadata sobject`](#sf-generate-metadata-sobject)
+- [`sf generate metadata tab`](#sf-generate-metadata-tab)
 
-## `sf hello world`
+## `sf generate metadata field`
 
-Say hello either to the world or someone you know.
+Generate local metadata for a custom field on
 
 ```
 USAGE
-  $ sf hello world [--json] [-n <value>]
+  $ sf generate metadata field -l <value> [-o <value>]
 
 FLAGS
-  -n, --name=<value>  [default: World] The name of the person you'd like to say hello to.
+  -l, --label=<value>   (required) The label of the field.
+  -o, --object=<value>  The directory of the object folder
+
+DESCRIPTION
+  Generate local metadata for a custom field on
+
+  Interactively generate local metadata for a custom field. This requires that the custom object you're adding the field
+  to be present locally
+
+EXAMPLES
+  - Create a field with a given Label (you'll be prompted to choose an object)
+  $ sf generate metadata field --label "My Field"
+  - Specify a local path to the object's folder
+  $ sf generate metadata field --label "My Field" -o force-app/main/default/objects/MyObj\_\_c
+
+FLAG DESCRIPTIONS
+  -o, --object=<value>  The directory of the object folder
+
+    The directory of object you're adding the field to. Include **c if the object is custom. For example,
+    `force-app/main/default/objects/MyObj**c`
+
+    If not provided, the command will prompt you to choose from your local objects.
+```
+
+## `sf generate metadata platformevent`
+
+Generate local metadata for a platform event
+
+```
+USAGE
+  $ sf generate metadata platformevent -l <value>
+
+FLAGS
+  -l, --label=<value>  (required) The label of the event.
+
+DESCRIPTION
+  Generate local metadata for a platform event
+
+  Interactively generate local metadata for a platform object
+
+EXAMPLES
+  - Create an platform event with the given
+
+    $ sf generate metadata platformevent --label "Platform Evt"
+```
+
+## `sf generate metadata sobject`
+
+Generate local metadata for a custom object
+
+```
+USAGE
+  $ sf generate metadata sobject -l <value> [-f]
+
+FLAGS
+  -f, --use-default-features  Enable all optional features without prompting.
+  -l, --label=<value>         (required) The label of the object.
+
+DESCRIPTION
+  Generate local metadata for a custom object
+
+  Interactively generate local metadata for a custom object
+
+EXAMPLES
+  - Create an object with a given Label and be prompted for additional information
+  $ sf generate metadata sobject --label "My Object"
+  - Create an object and opt in to most defaults (see flag help for details)
+  $ sf generate metadata sobject --label "My Object" --use-default-features
+
+FLAG DESCRIPTIONS
+  -f, --use-default-features  Enable all optional features without prompting.
+
+    Enables search, feeds, reports, history, activities, bulk API, sharing, and streaming API.
+```
+
+## `sf generate metadata tab`
+
+Generate a tab for a custom object.
+
+```
+USAGE
+  $ sf generate metadata tab -o <value> -d <value> -i <value> [--json]
+
+FLAGS
+  -d, --directory=<value>  (required) Path to a `tabs` folder that your new tab will be created in.
+  -i, --icon=<value>       (required) An icon number from <https://lightningdesignsystem.com/icons/#custom> from 1 to
+                           100'
+  -o, --object=<value>     (required) API name of the object to generate a tab for.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Say hello either to the world or someone you know.
+  Generate a tab for a custom object.
 
-  Say hello either to the world or someone you know.
+  Description of a command.
 
 EXAMPLES
-  Say hello to the world:
+  $ sf generate metadata tab -o MyObj\_\_c -i 54 -d force-app/main/default/tabs
 
-    $ sf hello world
+FLAG DESCRIPTIONS
+  -o, --object=<value>  API name of the object to generate a tab for.
 
-  Say hello to someone you know:
-
-    $ sf hello world --name Astro
+    API name of the object to generate a tab for. Custom objects should end in \_\_c. The object need not be present in
+    your local source.
 ```
 
 <!-- commandsstop -->
