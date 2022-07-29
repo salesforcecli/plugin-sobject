@@ -1,21 +1,21 @@
 # summary
 
-Generate local metadata for a platform event
+Generate metadata source files for a new platform event.
 
 # description
 
-Interactively generate local metadata for a platform object
+This command is interactive and must be run in a Salesforce DX project directory. You're required to specify the event's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other event properties, such as its API name.
 
 # flags.label.summary
 
-The label of the event.
+The platform event's label.
 
 # examples
 
-- Create an platform event with the given
+- Create a platform event with the specified label:
 
-<%= config.bin %> <%= command.id %> --label "Platform Evt"
+  <%= config.bin %> <%= command.id %> --label "My Platform Event"
 
 # prompts.publishBehavior
 
-Should events publish after a transaction completes, or immediately
+Do you want platform events to publish after a transaction completes, or immediately?
