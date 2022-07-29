@@ -34,6 +34,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
     }),
     directory: Flags.directory({
       summary: messages.getMessage('flags.directory.summary'),
+      description: messages.getMessage('flags.directory.description'),
       char: 'd',
       required: true,
       exists: true,
