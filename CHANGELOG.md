@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/salesforcecli/plugin-schema-sf/compare/v0.0.2...v0.0.3) (2022-07-29)
+
+### Bug Fixes
+
+- add long --icon flag description to generate tab ([004c418](https://github.com/salesforcecli/plugin-schema-sf/commit/004c4182e971469c8ad295382c87de08d6d50546))
+- add tab description ([6fa1b44](https://github.com/salesforcecli/plugin-schema-sf/commit/6fa1b440047f49bdc95b8d05f517fa11eb638247))
+- autonumber choices bug ([a7ddf61](https://github.com/salesforcecli/plugin-schema-sf/commit/a7ddf618f269dd1762f09e7c27fc9002a0dd2b84))
+- edit platformevent messages ([7b3eb7f](https://github.com/salesforcecli/plugin-schema-sf/commit/7b3eb7ffe7d23a466f1b31e5a3d4ae6f0bd40422))
+- edit/review messages for generate field ([1941e33](https://github.com/salesforcecli/plugin-schema-sf/commit/1941e33674506476f5877ae30b380d7d9c83e654))
+- list for securityClassification ([009617e](https://github.com/salesforcecli/plugin-schema-sf/commit/009617ef753cd5ce8dd869656381f57002d5c5a2))
+- messages for generate sobject ([635a091](https://github.com/salesforcecli/plugin-schema-sf/commit/635a091419b182f9bd9e395365ce0b060ee2039a))
+- messages for generate tab ([ae9d0ef](https://github.com/salesforcecli/plugin-schema-sf/commit/ae9d0efc9c7499b2097ac7f90ef70c4a5cac3a3a))
+- messages for lookup field prompts ([abe96f4](https://github.com/salesforcecli/plugin-schema-sf/commit/abe96f4be1a832692a077eac4e6b4ab6ea33997e))
+- messages for other shared prompts ([1cc511f](https://github.com/salesforcecli/plugin-schema-sf/commit/1cc511f3c550664a45b869339872fbb1b8ed8785))
+- output formatting ([67cf3f5](https://github.com/salesforcecli/plugin-schema-sf/commit/67cf3f548e2dfdd246c3faf900a425a9df55bd67))
+
 ### 0.0.2 (2022-07-29)
 
 ### Features

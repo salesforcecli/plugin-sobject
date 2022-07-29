@@ -120,62 +120,77 @@ sf plugins
 
 ## `sf generate metadata field`
 
-Generate local metadata for a custom field on
+Generate metadata source files for a new custom field on a specified object.
 
 ```
 USAGE
   $ sf generate metadata field -l <value> [-o <value>]
 
 FLAGS
-  -l, --label=<value>   (required) The label of the field.
-  -o, --object=<value>  The directory of the object folder
+  -l, --label=<value>   (required) The field's label.
+  -o, --object=<value>  The directory that contains the object's source files.
 
 DESCRIPTION
-  Generate local metadata for a custom field on
+  Generate metadata source files for a new custom field on a specified object.
 
-  Interactively generate local metadata for a custom field. This requires that the custom object you're adding the field
-  to be present locally
+  This command is interactive and must be run in a Salesforce DX project directory. You're required to specify the
+  field's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other field
+  properties, such as its API name.
+
+  You can generate a custom field on either a standard object, such as Account, or a custom object. In both cases, the
+  source files for the object must already exist in your local project before you run this command. If you create a
+  relationship field, the source files for the parent object must also exist in your local directory.  Use the command
+  "sf metadata retrieve -m CustomObject:<object>" to retrieve source files for both standard and custom objects from
+  your org.  To create a custom object, run the "sf generate metadata sobject" command or use the Object Manager UI in
+  your Salesforce org.
 
 EXAMPLES
-  - Create a field with a given Label (you'll be prompted to choose an object)
-  $ sf generate metadata field --label "My Field"
-  - Specify a local path to the object's folder
-  $ sf generate metadata field --label "My Field" -o force-app/main/default/objects/MyObj\_\_c
+  Create a field with the specified label; the command prompts you for the object:
+
+    $ sf generate metadata field --label "My Field"
+
+  Specify the local path to the object's folder:
+
+    $ sf generate metadata field --label "My Field" --object force-app/main/default/objects/MyObject__c
 
 FLAG DESCRIPTIONS
-  -o, --object=<value>  The directory of the object folder
+  -o, --object=<value>  The directory that contains the object's source files.
 
-    The directory of object you're adding the field to. Include **c if the object is custom. For example,
-    `force-app/main/default/objects/MyObj**c`
+    The object source files in your local project are grouped in a directoy with the same name as the object. Custom
+    object names always end in "__c". An example of the object directory for the Account standard object is
+    "force-app/main/default/objects/Account" An example custom object directory is
+    "force-app/main/default/objects/MyObject__c"
 
-    If not provided, the command will prompt you to choose from your local objects.
+    If you don't specify this flag, the command prompts you to choose from your local objects.
 ```
 
 ## `sf generate metadata platformevent`
 
-Generate local metadata for a platform event
+Generate metadata source files for a new platform event.
 
 ```
 USAGE
   $ sf generate metadata platformevent -l <value>
 
 FLAGS
-  -l, --label=<value>  (required) The label of the event.
+  -l, --label=<value>  (required) The platform event's label.
 
 DESCRIPTION
-  Generate local metadata for a platform event
+  Generate metadata source files for a new platform event.
 
-  Interactively generate local metadata for a platform object
+  This command is interactive and must be run in a Salesforce DX project directory. You're required to specify the
+  event's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other event
+  properties, such as its API name.
 
 EXAMPLES
-  - Create an platform event with the given
+  Create a platform event with the specified label:
 
-    $ sf generate metadata platformevent --label "Platform Evt"
+    $ sf generate metadata platformevent --label "My Platform Event"
 ```
 
 ## `sf generate metadata sobject`
 
-Generate local metadata for a custom object
+Generate metadata source files for a new custom object.
 
 ```
 USAGE
@@ -183,55 +198,84 @@ USAGE
 
 FLAGS
   -f, --use-default-features  Enable all optional features without prompting.
-  -l, --label=<value>         (required) The label of the object.
+  -l, --label=<value>         (required) The custom object's label.
 
 DESCRIPTION
-  Generate local metadata for a custom object
+  Generate metadata source files for a new custom object.
 
-  Interactively generate local metadata for a custom object
+  This command is interactive and must be run in a Salesforce DX project directory. You're required to specify the
+  object's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other
+  object properties, such as its API name and plural label.
+
+  All Salesforce objects are required to have a Name field, so this command also prompts you for the label and type of
+  the Name field. Run the "sf metadata generate field" command to create additional fields for the object.
+
+  To reduce the number of prompts, use the "--use-default-features" flag to automatically enable some features, such as
+  reporting and search on the object.
 
 EXAMPLES
-  - Create an object with a given Label and be prompted for additional information
-  $ sf generate metadata sobject --label "My Object"
-  - Create an object and opt in to most defaults (see flag help for details)
-  $ sf generate metadata sobject --label "My Object" --use-default-features
+  Create a custom object with the specified label and be prompted for additional information:
+
+    $ sf generate metadata sobject --label "My Object"
+
+  Create a custom object and enable optional features without prompting:
+
+    $ sf generate metadata sobject --label "My Object" --use-default-features
 
 FLAG DESCRIPTIONS
   -f, --use-default-features  Enable all optional features without prompting.
 
-    Enables search, feeds, reports, history, activities, bulk API, sharing, and streaming API.
+    Enables these features:
+
+    * Search: Allows users to find the custom object's records when they search, including SOSL.
+    * Feeds: Enables feed tracking.
+    * Reports: Allows reporting of the data in the custom object records.
+    * History: Enables object history tracking.
+    * Activities: Allows users to associate tasks and scheduled calendar events related to the custom object records.
+    * Bulk API: With Sharing and Streaming API, classifies the custom object as an Enterprise Application object.
+    * Sharing: With Bulk API and Streaming API, classifies the custom object as an Enterprise Application object.
+    * Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
 ```
 
 ## `sf generate metadata tab`
 
-Generate a tab for a custom object.
+Generate the metadata source files for a new custom tab on a custom object.
 
 ```
 USAGE
   $ sf generate metadata tab -o <value> -d <value> -i <value> [--json]
 
 FLAGS
-  -d, --directory=<value>  (required) Path to a `tabs` folder that your new tab will be created in.
-  -i, --icon=<value>       (required) An icon number from <https://lightningdesignsystem.com/icons/#custom> from 1 to
-                           100'
-  -o, --object=<value>     (required) API name of the object to generate a tab for.
+  -d, --directory=<value>  (required) Path to a "tabs" directory that will contain the source files for your new tab.
+  -i, --icon=<value>       (required) Number from 1 to 100 that specifies the color scheme and icon for the custom tab.
+  -o, --object=<value>     (required) API name of the custom object you're generating a tab for.
 
 GLOBAL FLAGS
   --json  Format output as json.
 
 DESCRIPTION
-  Generate a tab for a custom object.
+  Generate the metadata source files for a new custom tab on a custom object.
 
-  Description of a command.
+  Custom tabs let you display custom object data or other web content in Salesforce. Custom tabs appear in Salesforce as
+  an item in the app’s navigation bar and in the App Launcher.
+
+  This command must be run in a Salesforce DX project directory. You must pass all required information to it with the
+  required flags. The source files for the custom object for which you're generating a tab don't need to exist in your
+  local project.
 
 EXAMPLES
-  $ sf generate metadata tab -o MyObj\_\_c -i 54 -d force-app/main/default/tabs
+  Create a tab on the MyObject__c custom object:
+
+    $ sf generate metadata tab --object MyObject__c --icon 54 --directory force-app/main/default/tabs
 
 FLAG DESCRIPTIONS
-  -o, --object=<value>  API name of the object to generate a tab for.
+  -i, --icon=<value>  Number from 1 to 100 that specifies the color scheme and icon for the custom tab.
 
-    API name of the object to generate a tab for. Custom objects should end in \_\_c. The object need not be present in
-    your local source.
+    See https://lightningdesignsystem.com/icons/\#custom for the available icons.
+
+  -o, --object=<value>  API name of the custom object you're generating a tab for.
+
+    The API name for a custom object always ends in "__c", such as "MyObject__c".
 ```
 
 <!-- commandsstop -->
