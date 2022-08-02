@@ -918,10 +918,10 @@
     mv "~2"
     safe-json-stringify "~1"
 
-"@salesforce/cli-plugins-testkit@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@salesforce/cli-plugins-testkit/-/cli-plugins-testkit-2.3.4.tgz#e99bf294fb54bc9957405a2a1ce25e0ec27faaf2"
-  integrity sha512-Q8iAo9GVsJoAlkanMZNwGuAi341T3US9IMipS3pNO/ntm9TPMfQNyYOWy8AYvyQ/ftMDtyq5QCATejpwYVcPDQ==
+"@salesforce/cli-plugins-testkit@^2.3.8":
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/@salesforce/cli-plugins-testkit/-/cli-plugins-testkit-2.3.8.tgz#d5a4bae923fde153c2b56264d509aca1fa463948"
+  integrity sha512-4TK9FtJktPJKRbpcB3Q2fK9GHQGXjdhpi5HVWVPAdW2zRb3/sV0FH1tq8qHbh3WlOUSRN+9rTuZpLh48g+98KA==
   dependencies:
     "@salesforce/core" "^3.20.1"
     "@salesforce/kit" "^1.5.42"
@@ -930,7 +930,7 @@
     debug "^4.3.1"
     shelljs "^0.8.4"
     strip-ansi "6.0.1"
-    ts-retry-promise "^0.6.0"
+    ts-retry-promise "^0.7.0"
 
 "@salesforce/core@^3.19.2", "@salesforce/core@^3.20.1", "@salesforce/core@^3.25.0", "@salesforce/core@^3.8.0":
   version "3.25.0"
@@ -7799,6 +7799,11 @@ ts-retry-promise@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/ts-retry-promise/-/ts-retry-promise-0.6.0.tgz#95643500d5388eed25abc90aa2e99c8b6c5a7bc9"
   integrity sha512-8DF80uA7JPu6m8ouHxGkyBpPTIGQnsgIUgLDqcRaD7EEhVowjG72KqCX334gsa1P+AmzeTVdd/xEzVFCAuPCtg==
+
+ts-retry-promise@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ts-retry-promise/-/ts-retry-promise-0.7.0.tgz#08f2dcbbf5d2981495841cb63389a268324e8147"
+  integrity sha512-x6yWZXC4BfXy4UyMweOFvbS1yJ/Y5biSz/mEPiILtJZLrqD3ZxIpzVOGGgifHHdaSe3WxzFRtsRbychI6zofOg==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
