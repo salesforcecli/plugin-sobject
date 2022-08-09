@@ -32,6 +32,7 @@ export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResul
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static enableJsonFlag = false;
+  public static state = 'beta';
 
   public static flags = {
     label: Flags.string({
