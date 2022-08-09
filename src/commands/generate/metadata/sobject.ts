@@ -20,7 +20,7 @@ import { writeObjectFile } from '../../../shared/fs';
 import { SaveableCustomObject, NameFieldResponse } from '../../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.object', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'generate.object', [
   'examples',
   'summary',
   'description',

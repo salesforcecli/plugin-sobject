@@ -13,7 +13,7 @@ import { CustomTab } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.tab', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'generate.tab', [
   'summary',
   'description',
   'examples',
