@@ -9,7 +9,7 @@ import { Messages } from '@salesforce/core';
 import { integerValidation, makeNameApiCompatible } from '../../src/shared/prompts/prompts';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'prompts.shared', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'prompts.shared', [
   'numberValidationMin',
   'numberValidationMax',
 ]);

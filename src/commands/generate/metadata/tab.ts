@@ -13,7 +13,7 @@ import { CustomTab } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.tab', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'generate.tab', [
   'summary',
   'description',
   'examples',
@@ -34,6 +34,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
   public static summary = messages.getMessage('summary');
   public static description = messages.getMessage('description');
   public static examples = messages.getMessages('examples');
+  public static state = 'beta';
 
   public static flags = {
     object: Flags.string({

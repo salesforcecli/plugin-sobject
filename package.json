@@ -1,5 +1,5 @@
 {
-  "name": "@salesforce/plugin-schema-sf",
+  "name": "@salesforce/plugin-sobject",
   "description": "Create objects, fields, tabs, etc",
   "version": "0.0.7",
   "author": "Salesforce",
@@ -68,7 +68,7 @@
     "/oclif.manifest.json",
     "/schemas"
   ],
-  "homepage": "https://github.com/salesforcecli/plugin-schema-sf",
+  "homepage": "https://github.com/salesforcecli/plugin-sobject",
   "keywords": [
     "force",
     "salesforce",
@@ -100,7 +100,7 @@
       }
     }
   },
-  "repository": "salesforcecli/plugin-schema-sf",
+  "repository": "salesforcecli/plugin-sobject",
   "scripts": {
     "build": "sf-build",
     "clean": "sf-clean",

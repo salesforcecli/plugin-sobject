@@ -13,7 +13,7 @@ import { writeObjectFile } from '../../../shared/fs';
 import { SaveablePlatformEvent } from '../../../shared/types';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'generate.event', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'generate.event', [
   'examples',
   'summary',
   'description',
@@ -32,6 +32,7 @@ export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResul
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static enableJsonFlag = false;
+  public static state = 'beta';
 
   public static flags = {
     label: Flags.string({

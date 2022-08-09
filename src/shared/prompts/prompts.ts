@@ -11,7 +11,7 @@ import { Messages } from '@salesforce/core';
 import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-schema-sf', 'prompts.shared', [
+const messages = Messages.load('@salesforce/plugin-sobject', 'prompts.shared', [
   'directory',
   'pluralLabel',
   'apiName',
