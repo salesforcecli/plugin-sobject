@@ -124,6 +124,8 @@ export const picklistPrompts = async (): Promise<Omit<ValueSet, 'valueSettings'>
   let keepAsking = true;
 
   while (keepAsking) {
+    // the very definition of needing a loop for an await
+    // eslint-disable-next-line no-await-in-loop
     const response = await prompt<{ picklistValue: string }>({
       type: 'input',
       name: 'picklistValue',

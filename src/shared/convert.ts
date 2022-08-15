@@ -27,9 +27,8 @@ interface WriteJSONasXMLInputs {
   options?: IOptions;
 }
 
-const convertJsonToXml = ({ json, type, options = standardOptions }: WriteJSONasXMLInputs): string => {
-  return jsToXml.parse(type, fixExistingDollarSign(json), options);
-};
+const convertJsonToXml = ({ json, type, options = standardOptions }: WriteJSONasXMLInputs): string =>
+  jsToXml.parse(type, fixExistingDollarSign(json), options);
 
 const fixExistingDollarSign = <T extends WriteJSONasXMLInputs['json']>(existing: T): T => {
   const existingCopy = { ...existing };
