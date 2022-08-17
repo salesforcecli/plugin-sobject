@@ -50,7 +50,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
       char: 'd',
       required: true,
       exists: true,
-      parse: (input) => isTabsFolder(input),
+      parse: async (input) => isTabsFolder(input),
     }),
     icon: Flags.integer({
       char: 'i',

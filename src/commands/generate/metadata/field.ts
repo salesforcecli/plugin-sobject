@@ -109,7 +109,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
-      parse: (label) => labelValidation(label),
+      parse: async (label) => labelValidation(label),
     }),
     // this a dir and not an API name to support 1 object being in multiple package directories
     object: Flags.directory({
@@ -117,7 +117,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       exists: true,
       summary: messages.getMessage('flags.object.summary'),
       description: messages.getMessage('flags.object.description'),
-      parse: (input) => isObjectsFolder(input),
+      parse: async (input) => isObjectsFolder(input),
     }),
   };
 

@@ -63,7 +63,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
-      parse: (label) => labelValidation(label),
+      parse: async (label) => labelValidation(label),
     }),
     'use-default-features': Flags.boolean({
       char: 'f',

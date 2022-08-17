@@ -40,7 +40,7 @@ export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResul
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
-      parse: (label) => labelValidation(label),
+      parse: async (label) => labelValidation(label),
     }),
   };
 

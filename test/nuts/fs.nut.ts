@@ -18,7 +18,7 @@ import {
 } from '../../src/shared/fs';
 import { SaveableCustomObject } from '../../src/shared/types';
 
-describe('generate tab NUTs', () => {
+describe('local fs NUTs', () => {
   let session: TestSession;
   let pkgDirs: string[];
 

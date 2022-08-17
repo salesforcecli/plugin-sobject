@@ -15,7 +15,11 @@ describe('generate tab NUTs', () => {
 
   before(async () => {
     env.setString('TESTKIT_EXECUTABLE_PATH', path.join(process.cwd(), 'bin', 'dev'));
-    session = await TestSession.create({});
+    session = await TestSession.create({
+      project: {
+        name: 'tab-nut',
+      },
+    });
   });
 
   after(async () => {
@@ -24,6 +28,17 @@ describe('generate tab NUTs', () => {
 
   it('help should not throw', () => {
     const command = 'generate metadata tab --help';
-    execCmd(command, { ensureExitCode: 0, cli: 'sf' }).shellOutput.stdout;
+    execCmd(command, { ensureExitCode: 0, cli: 'sf' });
+  });
+  describe('flag validation failures', () => {
+    it('invalid folder', () => {
+      const command = `generate metadata tab --object foo --icon 1 --directory ${path.join(
+        'force-app',
+        'main',
+        'default',
+        'objects'
+      )}`;
+      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+    });
   });
 });
