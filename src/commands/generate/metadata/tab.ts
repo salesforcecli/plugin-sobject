@@ -10,6 +10,7 @@ import * as path from 'path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { CustomTab } from 'jsforce/api/metadata';
+import { isTabsFolder } from '../../../shared/flags';
 import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
@@ -34,6 +35,7 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
   public static summary = messages.getMessage('summary');
   public static description = messages.getMessage('description');
   public static examples = messages.getMessages('examples');
+  public static readonly requiresProject = true;
   public static state = 'beta';
 
   public static flags = {
@@ -48,14 +50,14 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
       char: 'd',
       required: true,
       exists: true,
+      parse: (input) => isTabsFolder(input),
     }),
     icon: Flags.integer({
       char: 'i',
       required: true,
-      // TODO: publish https://github.com/oclif/core/pull/447 and bring into sf-plugins-core to get min/max feature
-      // min: 1,
-      // max: 100,
-      // default: 1,
+      min: 1,
+      max: 100,
+      default: 1,
       summary: messages.getMessage('flags.icon.summary'),
       description: messages.getMessage('flags.icon.description'),
     }),

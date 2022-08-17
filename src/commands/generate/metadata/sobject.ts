@@ -93,8 +93,6 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
           choices: ['ReadWrite', 'Read', 'Private'],
           message: messages.getMessage('prompts.sharingModel'),
           name: 'sharingModel',
-          when: (answers: SaveableCustomObject & NameFieldResponse & { directory: string }) =>
-            answers.enableSharing || flags['use-default-features'],
         },
       ],
       flags['use-default-features'] ? defaultFeatures : {}

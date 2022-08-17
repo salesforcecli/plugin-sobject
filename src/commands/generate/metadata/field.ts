@@ -19,7 +19,7 @@ import {
   picklistPrompts,
 } from '../../../shared/prompts/prompts';
 import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField';
-import { labelValidation } from '../../../shared/flags';
+import { isObjectsFolder, labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-sobject', 'generate.field', [
@@ -117,6 +117,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       exists: true,
       summary: messages.getMessage('flags.object.summary'),
       description: messages.getMessage('flags.object.description'),
+      parse: (input) => isObjectsFolder(input),
     }),
   };
 
