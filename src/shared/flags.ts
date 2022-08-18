@@ -33,7 +33,7 @@ export const labelValidation = async (label: string): Promise<string> => {
 export const isObjectsFolder = async (path: string): Promise<string> => {
   const pathParts = resolve(path.trim()).split(sep);
   // has /objects/ AND objects is not the last item (there must be some child)
-  if (pathParts.includes('objects') && pathParts.at(-1) !== 'objects') {
+  if (pathParts.includes('objects') && pathParts[pathParts.length - 1] !== 'objects') {
     return path;
   }
   throw new SfError(messages.getMessage('error.objectDirectory', [path]));
