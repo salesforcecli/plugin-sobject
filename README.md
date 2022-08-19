@@ -247,7 +247,8 @@ USAGE
 
 FLAGS
   -d, --directory=<value>  (required) Path to a "tabs" directory that will contain the source files for your new tab.
-  -i, --icon=<value>       (required) Number from 1 to 100 that specifies the color scheme and icon for the custom tab.
+  -i, --icon=<value>       (required) [default: 1] Number from 1 to 100 that specifies the color scheme and icon for the
+                           custom tab.
   -o, --object=<value>     (required) API name of the custom object you're generating a tab for.
 
 GLOBAL FLAGS

@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/salesforcecli/plugin-sobject/compare/v0.0.7...v0.0.8) (2022-08-19)
+
+### Features
+
+- commands to beta state ([419c97a](https://github.com/salesforcecli/plugin-sobject/commit/419c97ad4bbcd1314a39371f377a51bd135b565e))
+- label validation ([9227d9b](https://github.com/salesforcecli/plugin-sobject/commit/9227d9b3247d5ca5a080b23ebce7d033d05984b5))
+- pr feedback (bugs, flag validations) ([629fb8d](https://github.com/salesforcecli/plugin-sobject/commit/629fb8d58f24a52b80420a6faaae36b1d5c63c58))
+
+### Bug Fixes
+
+- array.at is not allowed while have node14 ([d976c6f](https://github.com/salesforcecli/plugin-sobject/commit/d976c6fa82704f102e86cf8218b9ee81336f0d25))
+- version bump ([011e77b](https://github.com/salesforcecli/plugin-sobject/commit/011e77b2906fa08df55b0cbae187dbe5ca64cbe4))
+
 ### [0.0.7](https://github.com/salesforcecli/plugin-schema-sf/compare/v0.0.6...v0.0.7) (2022-08-04)
 
 ### [0.0.6](https://github.com/salesforcecli/plugin-schema-sf/compare/v0.0.5...v0.0.6) (2022-08-04)
