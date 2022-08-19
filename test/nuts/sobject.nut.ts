@@ -10,7 +10,7 @@ import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 import { env } from '@salesforce/kit';
 // import { expect } from 'chai';
 
-describe('generate tab NUTs', () => {
+describe('generate sobject NUTs', () => {
   let session: TestSession;
 
   before(async () => {
@@ -24,6 +24,13 @@ describe('generate tab NUTs', () => {
 
   it('help should not throw', () => {
     const command = 'generate metadata sobject --help';
-    execCmd(command, { ensureExitCode: 0, cli: 'sf' }).shellOutput.stdout;
+    execCmd(command, { ensureExitCode: 0, cli: 'sf' });
+  });
+
+  describe('flag validation failures', () => {
+    it('short label', () => {
+      const command = 'generate metadata sobject --label yo';
+      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+    });
   });
 });

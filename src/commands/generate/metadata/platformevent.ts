@@ -11,6 +11,7 @@ import { AnyJson } from '@salesforce/ts-types';
 import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts';
 import { writeObjectFile } from '../../../shared/fs';
 import { SaveablePlatformEvent } from '../../../shared/types';
+import { labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-sobject', 'generate.event', [
@@ -39,6 +40,7 @@ export default class ObjectGenerate extends SfCommand<PlatformEventGenerateResul
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
+      parse: async (label) => labelValidation(label),
     }),
   };
 

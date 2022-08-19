@@ -18,6 +18,7 @@ import {
 } from '../../../shared/prompts/prompts';
 import { writeObjectFile } from '../../../shared/fs';
 import { SaveableCustomObject, NameFieldResponse } from '../../../shared/types';
+import { labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
 const messages = Messages.load('@salesforce/plugin-sobject', 'generate.object', [
@@ -62,6 +63,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
+      parse: async (label) => labelValidation(label),
     }),
     'use-default-features': Flags.boolean({
       char: 'f',
@@ -91,8 +93,6 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
           choices: ['ReadWrite', 'Read', 'Private'],
           message: messages.getMessage('prompts.sharingModel'),
           name: 'sharingModel',
-          when: (answers: SaveableCustomObject & NameFieldResponse & { directory: string }) =>
-            answers.enableSharing || flags['use-default-features'],
         },
       ],
       flags['use-default-features'] ? defaultFeatures : {}
