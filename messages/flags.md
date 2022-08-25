@@ -1,6 +1,6 @@
 # error.labelLength
 
-Invalid label: %s. Label must be at least 2 characters.
+Invalid label: %s. Label must be more than 2 characters.
 
 # error.objectDirectory
 
