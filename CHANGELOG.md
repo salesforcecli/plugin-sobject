@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/salesforcecli/plugin-sobject/compare/v0.0.9...v0.0.10) (2022-08-29)
+
+### Bug Fixes
+
+- edit topic descriptions in package.json ([aa8727b](https://github.com/salesforcecli/plugin-sobject/commit/aa8727b662149935a469c11f13750a33324d85b7))
+
 ### [0.0.9](https://github.com/salesforcecli/plugin-sobject/compare/v0.0.8...v0.0.9) (2022-08-25)
 
 ### Bug Fixes
