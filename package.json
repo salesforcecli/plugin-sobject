@@ -84,10 +84,10 @@
     ],
     "topics": {
       "generate": {
-        "description": "generate local files",
+        "description": "Commands to generate a project, create a function, and more.",
         "subtopics": {
           "metadata": {
-            "description": "generate metadata files for various Salesforce metadata types"
+            "description": "Generate metadata files for various Salesforce metadata types."
           }
         }
       }
