@@ -1,5 +1,7 @@
 **NOTE: This template for sf plugins is not yet offical. Please consult with the Platform CLI team before using this template.**
 
+[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-sobject.svg?label=@salesforce/plugin-sobject)](https://www.npmjs.com/package/@salesforce/plugin-sobject) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-sobject/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-sobject/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-sobject.svg)](https://npmjs.org/package/@salesforce/plugin-sobject) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-sobject/main/LICENSE.txt)
+
 # plugin-template-sf
 
 [![NPM](https://img.shields.io/npm/v/@salesforce/plugin-template-sf.svg?label=@salesforce/plugin-template-sf)](https://www.npmjs.com/package/@salesforce/plugin-template-sf) [![CircleCI](https://circleci.com/gh/salesforcecli/plugin-template-sf/tree/main.svg?style=shield)](https://circleci.com/gh/salesforcecli/plugin-template-sf/tree/main) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-template-sf.svg)](https://npmjs.org/package/@salesforce/plugin-template-sf) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/plugin-template-sf/main/LICENSE.txt)
