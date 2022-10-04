@@ -7,14 +7,12 @@
 
 import * as path from 'path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
-import { env } from '@salesforce/kit';
 // import { expect } from 'chai';
 
 describe('generate tab NUTs', () => {
   let session: TestSession;
 
   before(async () => {
-    env.setString('TESTKIT_EXECUTABLE_PATH', path.join(process.cwd(), 'bin', 'dev'));
     session = await TestSession.create({
       project: {
         name: 'tab-nut',
@@ -28,7 +26,7 @@ describe('generate tab NUTs', () => {
 
   it('help should not throw', () => {
     const command = 'generate metadata tab --help';
-    execCmd(command, { ensureExitCode: 0, cli: 'sf' });
+    execCmd(command, { ensureExitCode: 0 });
   });
   describe('flag validation failures', () => {
     it('invalid folder', () => {
@@ -38,7 +36,7 @@ describe('generate tab NUTs', () => {
         'default',
         'objects'
       )}`;
-      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+      execCmd(command, { ensureExitCode: 1 });
     });
   });
 });

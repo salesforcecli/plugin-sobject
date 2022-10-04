@@ -8,7 +8,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { TestSession } from '@salesforce/cli-plugins-testkit';
-import { env } from '@salesforce/kit';
 import { expect } from 'chai';
 import {
   getDirectoriesThatContainObjects,
@@ -25,7 +24,6 @@ describe('local fs NUTs', () => {
   const forceAppObjectsPath = path.join('force-app', 'main', 'default', 'objects');
 
   before(async () => {
-    env.setString('TESTKIT_EXECUTABLE_PATH', path.join(process.cwd(), 'bin', 'dev'));
     session = await TestSession.create({
       project: {
         gitClone: 'https://github.com/salesforcecli/sample-project-multiple-packages',

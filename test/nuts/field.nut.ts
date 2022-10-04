@@ -7,14 +7,12 @@
 
 import * as path from 'path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
-import { env } from '@salesforce/kit';
 // import { expect } from 'chai';
 
 describe('generate field NUTs', () => {
   let session: TestSession;
 
   before(async () => {
-    env.setString('TESTKIT_EXECUTABLE_PATH', path.join(process.cwd(), 'bin', 'dev'));
     session = await TestSession.create({
       project: {
         name: 'field-nut',
@@ -28,13 +26,13 @@ describe('generate field NUTs', () => {
 
   it('help should not throw', () => {
     const command = 'generate metadata field --help';
-    execCmd(command, { ensureExitCode: 0, cli: 'sf' }).shellOutput.stdout;
+    execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
   });
 
   describe('flag validation failures', () => {
     it('short label', () => {
       const command = 'generate metadata field --label yo';
-      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+      execCmd(command, { ensureExitCode: 1 });
     });
     it('bad object dir', () => {
       const command = `generate metadata field --label longEnough --object ${path.join(
@@ -43,7 +41,7 @@ describe('generate field NUTs', () => {
         'default',
         'tabs'
       )}`;
-      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+      execCmd(command, { ensureExitCode: 1 });
     });
   });
 });

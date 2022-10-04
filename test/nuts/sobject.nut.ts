@@ -5,17 +5,14 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as path from 'path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
-import { env } from '@salesforce/kit';
 // import { expect } from 'chai';
 
 describe('generate sobject NUTs', () => {
   let session: TestSession;
 
   before(async () => {
-    env.setString('TESTKIT_EXECUTABLE_PATH', path.join(process.cwd(), 'bin', 'dev'));
-    session = await TestSession.create({});
+    session = await TestSession.create();
   });
 
   after(async () => {
@@ -24,13 +21,13 @@ describe('generate sobject NUTs', () => {
 
   it('help should not throw', () => {
     const command = 'generate metadata sobject --help';
-    execCmd(command, { ensureExitCode: 0, cli: 'sf' });
+    execCmd(command, { ensureExitCode: 0 });
   });
 
   describe('flag validation failures', () => {
     it('short label', () => {
       const command = 'generate metadata sobject --label yo';
-      execCmd(command, { ensureExitCode: 1, cli: 'sf' });
+      execCmd(command, { ensureExitCode: 1 });
     });
   });
 });
