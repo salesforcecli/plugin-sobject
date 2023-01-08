@@ -1,3 +1,12 @@
+## [0.0.38](https://github.com/salesforcecli/plugin-sobject/compare/0.0.37...0.0.38) (2023-01-08)
+
+
+### Bug Fixes
+
+* **deps:** bump json5 from 1.0.1 to 1.0.2 ([67817fc](https://github.com/salesforcecli/plugin-sobject/commit/67817fc06b6e371a7bcc572cfbf233b18d0dec02))
+
+
+
 ## [0.0.37](https://github.com/salesforcecli/plugin-sobject/compare/0.0.36...0.0.37) (2023-01-08)
 
 
