@@ -1,7 +1,7 @@
 {
   "name": "@salesforce/plugin-sobject",
   "description": "Create objects, fields, tabs, etc",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "author": "Salesforce",
   "bugs": "https://github.com/forcedotcom/cli/issues",
   "dependencies": {
