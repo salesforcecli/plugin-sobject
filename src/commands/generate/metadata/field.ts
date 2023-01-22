@@ -104,7 +104,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
   public static enableJsonFlag = false;
   public static state = 'beta';
 
-  public static flags = {
+  public static readonly flags = {
     label: Flags.string({
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
