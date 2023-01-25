@@ -1,3 +1,12 @@
+## [0.0.42](https://github.com/salesforcecli/plugin-sobject/compare/0.0.41...0.0.42) (2023-01-25)
+
+
+### Bug Fixes
+
+* align with latest naming style ([7a0f8d7](https://github.com/salesforcecli/plugin-sobject/commit/7a0f8d7a0fd843c199a56deb8e41d15e36582a7f))
+
+
+
 ## [0.0.41](https://github.com/salesforcecli/plugin-sobject/compare/0.0.40...0.0.41) (2023-01-22)
 
 
