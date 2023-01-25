@@ -194,10 +194,11 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         {
           type: 'number',
           message: messages.getMessage('prompts.precision'),
-          validate: (n: number, answers: Response) => integerValidation(n, 1, 18 - answers.scale),
+          validate: (n: number, answers: Response) =>
+            answers.scale ? integerValidation(n, 1, 18 - answers.scale) : undefined,
           name: 'precision',
           when: (answers: Response) => ['Number', 'Currency'].includes(answers.type),
-          default: (answers: Response) => 18 - answers.scale,
+          default: (answers: Response) => (answers.scale ? 18 - answers.scale : undefined),
         },
         // non-fieldtype-specific questions
         descriptionPrompt,

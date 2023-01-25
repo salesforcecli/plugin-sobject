@@ -57,7 +57,8 @@ export const relationshipFieldPrompts = async ({
       type: 'input',
       name: 'relationshipName',
       message: 'Relationship name',
-      default: (answers: RelationshipFieldProperties) => makeNameApiCompatible(answers.relationshipLabel),
+      default: (answers: RelationshipFieldProperties) =>
+        answers.relationshipLabel ? makeNameApiCompatible(answers.relationshipLabel) : undefined,
     },
     // lookup-only
     {
@@ -100,6 +101,6 @@ export const relationshipFieldPrompts = async ({
 
   return {
     ...response,
-    referenceTo: response.referenceTo.split(path.sep).pop(),
+    referenceTo: response.referenceTo?.split(path.sep).pop(),
   };
 };

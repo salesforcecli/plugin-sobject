@@ -55,6 +55,7 @@ export const writeObjectFile = async (
   objectDirectory: string,
   object: SaveablePlatformEvent | SaveableCustomObject
 ): Promise<string> => {
+  if (!object.fullName) throw new Error('object.fullName is required to write an object file');
   await fs.promises.mkdir(path.join(objectDirectory, object.fullName), { recursive: true });
   const targetFile = path.join(objectDirectory, object.fullName, `${object.fullName}.object-meta.xml`);
   await fs.promises.writeFile(targetFile, convertJsonToXml({ json: object, type: 'CustomObject' }));
