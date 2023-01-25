@@ -85,7 +85,7 @@ export const namePrompts = (label: string): Array<Question | ListQuestion> => [
   },
   {
     type: 'input',
-    when: (answers: { nameFieldType: 'AutoNumber' | 'Text' }) => answers.nameFieldType === 'AutoNumber',
+    when: (answers) => answers.nameFieldType === 'AutoNumber',
     message: messages.getMessage('nameFieldPrompts.autoNumberFormat'),
     name: 'autoNumberFormat',
     default: `${label}-{0}`,

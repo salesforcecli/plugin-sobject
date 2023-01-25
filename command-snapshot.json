@@ -1,26 +1,26 @@
 [
   {
-    "command": "generate:metadata:field",
+    "command": "schema:generate:field",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label", "object"],
-    "alias": []
+    "alias": ["generate:metadata:field"]
   },
   {
-    "command": "generate:metadata:platformevent",
+    "command": "schema:generate:platformevent",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label"],
-    "alias": []
+    "alias": ["generate:metadata:platformevent"]
   },
   {
-    "command": "generate:metadata:sobject",
+    "command": "schema:generate:sobject",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label", "use-default-features"],
-    "alias": []
+    "alias": ["generate:metadata:sobject"]
   },
   {
-    "command": "generate:metadata:tab",
+    "command": "schema:generate:tab",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["directory", "icon", "json", "object"],
-    "alias": []
+    "alias": ["generate:metadata:tab"]
   }
 ]
