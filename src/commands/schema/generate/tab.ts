@@ -32,13 +32,15 @@ export type GenerateTabResult = {
 };
 
 export default class GenerateTab extends SfCommand<GenerateTabResult> {
-  public static summary = messages.getMessage('summary');
-  public static description = messages.getMessage('description');
-  public static examples = messages.getMessages('examples');
+  public static readonly summary = messages.getMessage('summary');
+  public static readonly description = messages.getMessage('description');
+  public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static state = 'beta';
+  public static readonly aliases = ['generate:metadata:tab'];
+  public static readonly deprecateAliases = true;
 
-  public static flags = {
+  public static readonly flags = {
     object: Flags.string({
       summary: messages.getMessage('flags.object.summary'),
       description: messages.getMessage('flags.object.description'),
