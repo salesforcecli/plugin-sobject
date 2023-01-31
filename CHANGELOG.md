@@ -1,3 +1,12 @@
+# [0.1.0](https://github.com/salesforcecli/plugin-sobject/compare/0.0.42...0.1.0) (2023-01-31)
+
+
+### Features
+
+* use latest sf-plugins-core and oclif/core ([77d8dbb](https://github.com/salesforcecli/plugin-sobject/commit/77d8dbbd1c1c93ca676411bfbcdf3b1c1dfd2e48))
+
+
+
 ## [0.0.42](https://github.com/salesforcecli/plugin-sobject/compare/0.0.41...0.0.42) (2023-01-25)
 
 
