@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/salesforcecli/plugin-sobject/compare/0.1.1...0.1.2) (2023-02-06)
+
+
+### Bug Fixes
+
+* **deps:** bump http-cache-semantics from 4.1.0 to 4.1.1 ([8017072](https://github.com/salesforcecli/plugin-sobject/commit/8017072723f3fa870a2fd64da3f0367a3bbca5e7))
+
+
+
 ## [0.1.1](https://github.com/salesforcecli/plugin-sobject/compare/0.1.0...0.1.1) (2023-02-05)
 
 
