@@ -62,14 +62,15 @@ describe('local fs NUTs', () => {
   });
 
   it('writeObjectFile', async () => {
-    const obj: SaveableCustomObject = {
+    const obj = {
       fullName: 'Nut__c',
       label: 'Nut',
       nameField: {
         label: 'Nut',
         type: 'Text',
       },
-    };
+    } satisfies SaveableCustomObject;
+
     const expectedPath = path.join(
       session.project.dir,
       forceAppObjectsPath,
