@@ -1,3 +1,12 @@
+## [0.1.9](https://github.com/salesforcecli/plugin-sobject/compare/0.1.8...0.1.9) (2023-03-13)
+
+
+### Bug Fixes
+
+* **deps:** bump @salesforce/kit from 1.9.0 to 1.9.2 ([847c01f](https://github.com/salesforcecli/plugin-sobject/commit/847c01f08512631a2d83a3de4541da63a1413c0c))
+
+
+
 ## [0.1.8](https://github.com/salesforcecli/plugin-sobject/compare/0.1.7...0.1.8) (2023-03-05)
 
 
