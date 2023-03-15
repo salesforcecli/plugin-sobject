@@ -14,13 +14,7 @@ import { SaveablePlatformEvent } from '../../../shared/types';
 import { labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'generate.event', [
-  'examples',
-  'summary',
-  'description',
-  'flags.label.summary',
-  'prompts.publishBehavior',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.event');
 
 export type PlatformEventGenerateResult = {
   object: SaveablePlatformEvent;

@@ -11,21 +11,7 @@ import { Messages } from '@salesforce/core';
 import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'prompts.shared', [
-  'directory',
-  'pluralLabel',
-  'apiName',
-  'description',
-  'nameFieldPrompts.autoNumberFormat',
-  'nameFieldPrompts.label',
-  'nameFieldPrompts.type',
-  'object',
-  'picklist.first',
-  'picklist.additional',
-  'numberValidationMin',
-  'numberValidationMax',
-  'error.noDescription',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.shared');
 
 export const makeNameApiCompatible = (input: string): string =>
   input.replace(/ /g, '').replace(/-/g, '_').replace(/_{2,}/g, '_');

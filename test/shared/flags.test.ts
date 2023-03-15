@@ -10,11 +10,7 @@ import { Messages, SfError } from '@salesforce/core';
 import { labelValidation, isObjectsFolder, isTabsFolder } from '../../src/shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'flags', [
-  'error.labelLength',
-  'error.objectDirectory',
-  'error.tabsDirectory',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'flags');
 
 describe('flag tests', () => {
   describe('label validation', () => {

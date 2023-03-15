@@ -22,26 +22,7 @@ import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipFi
 import { isObjectsFolder, labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'generate.field', [
-  'examples',
-  'summary',
-  'description',
-  'flags.label.summary',
-  'flags.object.summary',
-  'flags.object.description',
-  'prompts.type',
-  'prompts.startingNumber',
-  'prompts.defaultValue',
-  'prompts.scale',
-  'prompts.precision',
-  'prompts.inlineHelpText',
-  'prompts.required',
-  'prompts.externalId',
-  'prompts.securityClassification',
-  'error.bigObjects',
-  'error.cmdt',
-  'success',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
 
 const MAX_LONG_TEXT_LENGTH = 131072;
 const MAX_TEXT_LENGTH = 255;

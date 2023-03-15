@@ -9,10 +9,7 @@ import { Messages } from '@salesforce/core';
 import { integerValidation, makeNameApiCompatible } from '../../src/shared/prompts/prompts';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'prompts.shared', [
-  'numberValidationMin',
-  'numberValidationMax',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.shared');
 
 describe('integer validation for prompts', () => {
   it('fail max gt', () => {
