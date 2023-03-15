@@ -21,18 +21,7 @@ import { SaveableCustomObject, NameFieldResponse } from '../../../shared/types';
 import { labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'generate.object', [
-  'examples',
-  'summary',
-  'description',
-  'flags.label.summary',
-  'flags.use-default-features.summary',
-  'flags.use-default-features.description',
-  'prompts.sharingModel',
-  'success',
-  'success.advice',
-  'success.field',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.object');
 
 export type CustomObjectGenerateResult = {
   object: SaveableCustomObject;

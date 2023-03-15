@@ -9,11 +9,7 @@ import { sep, resolve } from 'path';
 import { Messages, SfError } from '@salesforce/core';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'flags', [
-  'error.labelLength',
-  'error.objectDirectory',
-  'error.tabsDirectory',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'flags');
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const labelValidation = async (label: string): Promise<string> => {
