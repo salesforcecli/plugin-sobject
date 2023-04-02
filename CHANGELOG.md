@@ -1,3 +1,12 @@
+## [0.1.13](https://github.com/salesforcecli/plugin-sobject/compare/0.1.12...0.1.13) (2023-04-02)
+
+
+### Bug Fixes
+
+* **deps:** bump @oclif/core from 2.7.1 to 2.8.0 ([5815a04](https://github.com/salesforcecli/plugin-sobject/commit/5815a0498b0f8f82e5caebd4390043336d9b5839))
+
+
+
 ## [0.1.12](https://github.com/salesforcecli/plugin-sobject/compare/0.1.11...0.1.12) (2023-04-02)
 
 
