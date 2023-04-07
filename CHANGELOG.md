@@ -1,3 +1,12 @@
+## [0.1.15](https://github.com/salesforcecli/plugin-sobject/compare/0.1.14...0.1.15) (2023-04-07)
+
+
+### Bug Fixes
+
+* update package.son for correct help and command ref ([c6dff59](https://github.com/salesforcecli/plugin-sobject/commit/c6dff59f56397836ce8ee97ea104bf14eb272d42))
+
+
+
 ## [0.1.14](https://github.com/salesforcecli/plugin-sobject/compare/0.1.13...0.1.14) (2023-04-02)
 
 
