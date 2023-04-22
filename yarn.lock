@@ -3166,10 +3166,10 @@ fast-levenshtein@^3.0.0:
   dependencies:
     fastest-levenshtein "^1.0.7"
 
-fast-xml-parser@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.1.4.tgz#bb0d02d33854325b3eded07e4a4f2ceb8202ce8b"
-  integrity sha512-jKw5Miu3xRSWhXxpWWx3Jujvy231pInmUJgCtsov8JGeuLQsKmYKXlXXPXN1Hopo0YHGuesIlu1cDMKmHa2fJQ==
+fast-xml-parser@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.2.2.tgz#cb7310d1e9cf42d22c687b0fae41f3c926629368"
+  integrity sha512-DLzIPtQqmvmdq3VUKR7T6omPK/VCRNqgFlGtbESfyhcH2R4I8EzK1/K6E8PkRCK2EabWrUHK32NjYRbEFnnz0Q==
   dependencies:
     strnum "^1.0.5"
 
