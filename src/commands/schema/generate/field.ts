@@ -66,7 +66,7 @@ type SaveableCustomField = Pick<
 > & {
   // TODO: get displayLocationInDecimal into jsforce2 typings
   displayLocationInDecimal?: boolean;
-  type: typeof supportedFieldTypesCustomObject[number];
+  type: (typeof supportedFieldTypesCustomObject)[number];
 };
 
 export type FieldGenerateResult = {
@@ -175,11 +175,10 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         {
           type: 'number',
           message: messages.getMessage('prompts.precision'),
-          validate: (n: number, answers: Response) =>
-            answers.scale ? integerValidation(n, 1, 18 - answers.scale) : undefined,
+          validate: (n: number, answers: Response) => integerValidation(n, 1, 18 - (answers.scale ?? 0)),
           name: 'precision',
           when: (answers: Response) => ['Number', 'Currency'].includes(answers.type),
-          default: (answers: Response) => (answers.scale ? 18 - answers.scale : undefined),
+          default: (answers: Response) => 18 - (answers.scale ?? 0),
         },
         // non-fieldtype-specific questions
         descriptionPrompt,
