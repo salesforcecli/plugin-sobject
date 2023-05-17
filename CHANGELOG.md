@@ -1,3 +1,12 @@
+## [0.1.20](https://github.com/salesforcecli/plugin-sobject/compare/0.1.19...0.1.20) (2023-05-17)
+
+
+### Bug Fixes
+
+* number fields precision for zero-scale ([3e95454](https://github.com/salesforcecli/plugin-sobject/commit/3e954542c9546497f60c12977884a2356c5647c3))
+
+
+
 ## [0.1.19](https://github.com/salesforcecli/plugin-sobject/compare/0.1.18...0.1.19) (2023-05-14)
 
 
