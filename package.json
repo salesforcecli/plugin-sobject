@@ -24,7 +24,7 @@
     "@salesforce/dev-scripts": "^5.1.0",
     "@salesforce/plugin-command-reference": "^2.4.5",
     "@salesforce/prettier-config": "^0.0.2",
-    "@salesforce/ts-sinon": "1.4.6",
+    "@salesforce/ts-sinon": "1.4.7",
     "@swc/core": "^1.3.37",
     "@types/inquirer": "^8.2.0",
     "@types/shelljs": "^0.8.12",
