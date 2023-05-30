@@ -930,20 +930,20 @@
   resolved "https://registry.yarnpkg.com/@salesforce/dev-config/-/dev-config-4.0.1.tgz#662ffaa4409713553aaf68eed93e7d2429c3ff0e"
   integrity sha512-0zMjXG4Vjlu/mB7zbuKSXfXiP7CEZBwsPtYqNgburk/wZIU9KcMspLwVBDUxmUj9ltRksD9o1ubRUblN5M3Z0g==
 
-"@salesforce/dev-scripts@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@salesforce/dev-scripts/-/dev-scripts-5.2.0.tgz#5a8b0b9e6fd947c29dc6cd2bc68b0035481d1032"
-  integrity sha512-tN+zb13g5eBCjAS6+lslsOEH33Se7CIO35mKr3+MaSGy/vLLGus+xA5j2ZHi8dhxNn0Hg6pbZoTser04suR/gw==
+"@salesforce/dev-scripts@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@salesforce/dev-scripts/-/dev-scripts-5.3.0.tgz#b8c46359753cde18df3abcd2b39f90a50f5a0e59"
+  integrity sha512-Q2ruja7jPQ2JIR0R+EQnpkEyVjzud4/n3RkuG2Ho7JShxy4bZyKRWVN6WjvQ/0EFttiwKfd65MN/bmlBMPD9rQ==
   dependencies:
     "@commitlint/cli" "^17.1.2"
     "@commitlint/config-conventional" "^17.1.0"
     "@salesforce/dev-config" "^4.0.1"
-    "@salesforce/prettier-config" "^0.0.2"
+    "@salesforce/prettier-config" "^0.0.3"
     "@types/chai" "^4.2.11"
     "@types/mocha" "^9.0.0"
     "@types/node" "^15.6.1"
     "@types/sinon" "10.0.11"
-    chai "^4.2.0"
+    chai "^4.3.7"
     chalk "^4.0.0"
     cosmiconfig "^7.0.0"
     eslint "^8.41.0"
@@ -1003,11 +1003,6 @@
     mkdirp "^1.0.4"
     tslib "^2"
 
-"@salesforce/prettier-config@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@salesforce/prettier-config/-/prettier-config-0.0.2.tgz#ded39bf7cb75238edc9db6dd093649111350f8bc"
-  integrity sha512-KExM355BLbxCW6siGBV7oUOotXvvVp0tAWERgzUkM2FcMb9fWrjwXDrIHc8V0UdDlA3UXtFltDWgN+Yqi+BA/g==
-
 "@salesforce/prettier-config@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@salesforce/prettier-config/-/prettier-config-0.0.3.tgz#ba648d4886bb38adabe073dbea0b3a91b3753bb0"
@@ -1018,7 +1013,7 @@
   resolved "https://registry.yarnpkg.com/@salesforce/schemas/-/schemas-1.5.1.tgz#2d1bfdcf593caaa04cd4b3e6fe621097ff7f28fe"
   integrity sha512-MRqU+tn8w5IFvZ0Lm9YKLgxYxr2MQMI+fXXsTrwfUnijsps+ybF9IOTu6MOMxxl2vCUkO8XDjA435wXlWSLI6g==
 
-"@salesforce/sf-plugins-core@^2.0.1", "@salesforce/sf-plugins-core@^2.4.2":
+"@salesforce/sf-plugins-core@^2.0.1":
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/@salesforce/sf-plugins-core/-/sf-plugins-core-2.4.3.tgz#9d578dc116becf8fd9c4f5d7849692aaa9095538"
   integrity sha512-gB1GY5GscR5vjLC2GJTO7hjmKH1IqeMj1cvvsnTdKpb3z0GAMpCZN3gPyC9OiIEE2JBQSlm3HUV4K+4zcMJjmQ==
@@ -1027,6 +1022,18 @@
     "@salesforce/core" "^3.36.1"
     "@salesforce/kit" "^1.9.2"
     "@salesforce/ts-types" "^1.7.3"
+    chalk "^4"
+    inquirer "^8.2.5"
+
+"@salesforce/sf-plugins-core@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@salesforce/sf-plugins-core/-/sf-plugins-core-3.0.2.tgz#c184ace06c687ecc2efb320d9e41f5894c4223da"
+  integrity sha512-NI5qg1cF54Sp1anXR5ANTRkP4u8Maff7+NS44dE/1fPdhDLnTuZV4osuLoDqVVScHJOKY/+a+LjelycfjdOydg==
+  dependencies:
+    "@oclif/core" "^2.8.2"
+    "@salesforce/core" "^4.0.1"
+    "@salesforce/kit" "^3.0.2"
+    "@salesforce/ts-types" "^2.0.1"
     chalk "^4"
     inquirer "^8.2.5"
 
@@ -2065,7 +2072,7 @@ cardinal@^2.1.1:
     ansicolors "~0.3.2"
     redeyed "~2.1.0"
 
-chai@^4.2.0, chai@^4.3.7:
+chai@^4.3.7:
   version "4.3.7"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.3.7.tgz#ec63f6df01829088e8bf55fca839bcd464a8ec51"
   integrity sha512-HLnAzZ2iupm25PlN0xFreAlBA5zaBSv3og0DdeGA4Ar6h6rJ3A0rolRUKJhSF2V10GZKDgWF/VmAEsNWjCRB+A==
