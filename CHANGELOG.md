@@ -1,3 +1,12 @@
+## [0.1.23](https://github.com/salesforcecli/plugin-sobject/compare/0.1.22...0.1.23) (2023-06-04)
+
+
+### Bug Fixes
+
+* **deps:** bump tslib from 2.5.2 to 2.5.3 ([b1a5f0f](https://github.com/salesforcecli/plugin-sobject/commit/b1a5f0f1b1036ebad4923afe267690cd31b09105))
+
+
+
 ## [0.1.22](https://github.com/salesforcecli/plugin-sobject/compare/0.1.21...0.1.22) (2023-05-22)
 
 
