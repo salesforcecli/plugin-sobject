@@ -3,24 +3,32 @@
     "command": "schema:generate:field",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label", "object"],
-    "alias": ["generate:metadata:field"]
+    "alias": ["generate:metadata:field"],
+    "flagChars": ["l", "o"],
+    "flagAliases": []
   },
   {
     "command": "schema:generate:platformevent",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label"],
-    "alias": ["generate:metadata:platformevent"]
+    "alias": ["generate:metadata:platformevent"],
+    "flagChars": ["l"],
+    "flagAliases": []
   },
   {
     "command": "schema:generate:sobject",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["label", "use-default-features"],
-    "alias": ["generate:metadata:sobject"]
+    "alias": ["generate:metadata:sobject"],
+    "flagChars": ["f", "l"],
+    "flagAliases": []
   },
   {
     "command": "schema:generate:tab",
     "plugin": "@salesforce/plugin-sobject",
     "flags": ["directory", "icon", "json", "object"],
-    "alias": ["generate:metadata:tab"]
+    "alias": ["generate:metadata:tab"],
+    "flagChars": ["d", "i", "o"],
+    "flagAliases": []
   }
 ]
