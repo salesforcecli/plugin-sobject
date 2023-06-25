@@ -1,3 +1,12 @@
+## [0.1.28](https://github.com/salesforcecli/plugin-sobject/compare/0.1.27...0.1.28) (2023-06-25)
+
+
+### Bug Fixes
+
+* **deps:** bump @salesforce/core from 4.2.1 to 4.3.2 ([e62c6b0](https://github.com/salesforcecli/plugin-sobject/commit/e62c6b0375a2b108702d286bb1887e022e321111))
+
+
+
 ## [0.1.27](https://github.com/salesforcecli/plugin-sobject/compare/0.1.26...0.1.27) (2023-06-25)
 
 
