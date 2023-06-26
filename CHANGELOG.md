@@ -1,3 +1,12 @@
+## [0.1.29](https://github.com/salesforcecli/plugin-sobject/compare/0.1.28...0.1.29) (2023-06-26)
+
+
+### Bug Fixes
+
+* **deps:** bump @salesforce/sf-plugins-core from 3.0.4 to 3.1.3 ([a59a2e9](https://github.com/salesforcecli/plugin-sobject/commit/a59a2e901a6983c9606e333796f3a1326d997ea7))
+
+
+
 ## [0.1.28](https://github.com/salesforcecli/plugin-sobject/compare/0.1.27...0.1.28) (2023-06-25)
 
 
