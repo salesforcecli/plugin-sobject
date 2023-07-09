@@ -1,3 +1,12 @@
+## [0.1.34](https://github.com/salesforcecli/plugin-sobject/compare/0.1.33...0.1.34) (2023-07-09)
+
+
+### Bug Fixes
+
+* **deps:** bump tough-cookie from 4.0.0 to 4.1.3 ([8571838](https://github.com/salesforcecli/plugin-sobject/commit/8571838056274b3ac80562d1dc9af6ae2f640c6a))
+
+
+
 ## [0.1.33](https://github.com/salesforcecli/plugin-sobject/compare/0.1.32...0.1.33) (2023-07-09)
 
 
