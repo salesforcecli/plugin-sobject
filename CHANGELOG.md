@@ -1,3 +1,12 @@
+## [0.1.36](https://github.com/salesforcecli/plugin-sobject/compare/0.1.35...0.1.36) (2023-07-12)
+
+
+### Bug Fixes
+
+* **deps:** bump semver from 5.7.1 to 5.7.2 ([1155ed4](https://github.com/salesforcecli/plugin-sobject/commit/1155ed471a599b572db85efcb2e8ddb58c3bf1ae))
+
+
+
 ## [0.1.35](https://github.com/salesforcecli/plugin-sobject/compare/0.1.34...0.1.35) (2023-07-10)
 
 
