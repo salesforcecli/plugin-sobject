@@ -86,7 +86,8 @@
     ],
     "topics": {
       "schema": {
-        "description": "Commands to generate schema artifacts.",
+        "external": true,
+        "description": "Generate metadata files.",
         "subtopics": {
           "generate": {
             "description": "Generate metadata files for various Salesforce database schema."
