@@ -87,7 +87,7 @@
     "topics": {
       "schema": {
         "external": true,
-        "description": "Generate metadata files."
+        "description": "Generate metadata files.",
         "subtopics": {
           "generate": {
             "description": "Generate metadata files for various Salesforce database schema."
