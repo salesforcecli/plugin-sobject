@@ -14,17 +14,7 @@ import { isTabsFolder } from '../../../shared/flags';
 import { convertJsonToXml } from '../../../shared/convert';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'generate.tab', [
-  'summary',
-  'description',
-  'examples',
-  'flags.object.summary',
-  'flags.object.description',
-  'flags.directory.summary',
-  'flags.icon.summary',
-  'flags.icon.description',
-  'success',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.tab');
 
 export type GenerateTabResult = {
   tab: Pick<CustomTab, 'customObject' | 'motif'>;

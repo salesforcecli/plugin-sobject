@@ -22,26 +22,7 @@ import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipFi
 import { isObjectsFolder, labelValidation } from '../../../shared/flags';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.load('@salesforce/plugin-sobject', 'generate.field', [
-  'examples',
-  'summary',
-  'description',
-  'flags.label.summary',
-  'flags.object.summary',
-  'flags.object.description',
-  'prompts.type',
-  'prompts.startingNumber',
-  'prompts.defaultValue',
-  'prompts.scale',
-  'prompts.precision',
-  'prompts.inlineHelpText',
-  'prompts.required',
-  'prompts.externalId',
-  'prompts.securityClassification',
-  'error.bigObjects',
-  'error.cmdt',
-  'success',
-]);
+const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
 
 const MAX_LONG_TEXT_LENGTH = 131072;
 const MAX_TEXT_LENGTH = 255;
@@ -85,7 +66,7 @@ type SaveableCustomField = Pick<
 > & {
   // TODO: get displayLocationInDecimal into jsforce2 typings
   displayLocationInDecimal?: boolean;
-  type: typeof supportedFieldTypesCustomObject[number];
+  type: (typeof supportedFieldTypesCustomObject)[number];
 };
 
 export type FieldGenerateResult = {
@@ -194,11 +175,10 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         {
           type: 'number',
           message: messages.getMessage('prompts.precision'),
-          validate: (n: number, answers: Response) =>
-            answers.scale ? integerValidation(n, 1, 18 - answers.scale) : undefined,
+          validate: (n: number, answers: Response) => integerValidation(n, 1, 18 - (answers.scale ?? 0)),
           name: 'precision',
           when: (answers: Response) => ['Number', 'Currency'].includes(answers.type),
-          default: (answers: Response) => (answers.scale ? 18 - answers.scale : undefined),
+          default: (answers: Response) => 18 - (answers.scale ?? 0),
         },
         // non-fieldtype-specific questions
         descriptionPrompt,
