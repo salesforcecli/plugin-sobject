@@ -10,7 +10,7 @@
     "@salesforce/kit": "^3.0.4",
     "@salesforce/sf-plugins-core": "^3.1.10",
     "change-case": "^4.1.2",
-    "fast-glob": "^3.2.12",
+    "fast-glob": "^3.3.1",
     "fast-xml-parser": "^4.2.6",
     "inquirer": "^8.2.5",
     "js2xmlparser": "^4.0.2",
