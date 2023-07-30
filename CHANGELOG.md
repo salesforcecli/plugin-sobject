@@ -1,3 +1,12 @@
+## [0.1.41](https://github.com/salesforcecli/plugin-sobject/compare/0.1.40...0.1.41) (2023-07-30)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-glob from 3.2.12 to 3.3.1 ([5b4334d](https://github.com/salesforcecli/plugin-sobject/commit/5b4334d139dba81f7dcf8b065daf62037bf11068))
+
+
+
 ## [0.1.40](https://github.com/salesforcecli/plugin-sobject/compare/0.1.39...0.1.40) (2023-07-23)
 
 
