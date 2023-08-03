@@ -26,7 +26,6 @@ export default class GenerateTab extends SfCommand<GenerateTabResult> {
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
-  public static state = 'beta';
   public static readonly aliases = ['generate:metadata:tab'];
   public static readonly deprecateAliases = true;
 

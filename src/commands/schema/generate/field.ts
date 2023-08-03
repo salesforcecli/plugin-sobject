@@ -83,7 +83,6 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static enableJsonFlag = false;
-  public static state = 'beta';
   public static readonly aliases = ['generate:metadata:field'];
   public static readonly deprecateAliases = true;
 

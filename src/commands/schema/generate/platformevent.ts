@@ -27,7 +27,6 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static enableJsonFlag = false;
-  public static state = 'beta';
   public static readonly aliases = ['generate:metadata:platformevent'];
   public static readonly deprecateAliases = true;
   public static readonly flags = {
