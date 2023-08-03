@@ -45,7 +45,6 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public static readonly examples = messages.getMessages('examples');
   public static readonly requiresProject = true;
   public static enableJsonFlag = false;
-  public static state = 'beta';
   public static readonly aliases = ['generate:metadata:sobject'];
   public static readonly deprecateAliases = true;
   public static readonly flags = {
