@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/salesforcecli/plugin-sobject/compare/0.1.42...0.2.0) (2023-08-03)
+
+
+### Features
+
+* un-beta ([3d3b730](https://github.com/salesforcecli/plugin-sobject/commit/3d3b730fd6737948248043511f2ead6ad5f19f80))
+
+
+
 ## [0.1.42](https://github.com/salesforcecli/plugin-sobject/compare/0.1.41...0.1.42) (2023-07-30)
 
 
