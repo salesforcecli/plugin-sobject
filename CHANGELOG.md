@@ -1,3 +1,12 @@
+## [0.2.5](https://github.com/salesforcecli/plugin-sobject/compare/0.2.4...0.2.5) (2023-08-20)
+
+
+### Bug Fixes
+
+* **deps:** bump inquirer from 8.2.5 to 8.2.6 ([e608d0c](https://github.com/salesforcecli/plugin-sobject/commit/e608d0ce7132ef45119ed5b1d0938612d48b7057))
+
+
+
 ## [0.2.4](https://github.com/salesforcecli/plugin-sobject/compare/0.2.3...0.2.4) (2023-08-13)
 
 
