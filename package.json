@@ -8,7 +8,7 @@
     "@oclif/core": "^2.11.8",
     "@salesforce/core": "^5.2.0",
     "@salesforce/kit": "^3.0.9",
-    "@salesforce/sf-plugins-core": "^3.1.14",
+    "@salesforce/sf-plugins-core": "^3.1.15",
     "change-case": "^4.1.2",
     "fast-glob": "^3.3.1",
     "fast-xml-parser": "^4.2.7",
