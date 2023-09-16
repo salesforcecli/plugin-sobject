@@ -630,7 +630,7 @@
     supports-color "^8.1.1"
     tslib "^2"
 
-"@oclif/core@^2.11.1", "@oclif/core@^2.11.4", "@oclif/core@^2.11.8", "@oclif/core@^2.15.0", "@oclif/core@^2.9.3", "@oclif/core@^2.9.4":
+"@oclif/core@^2.11.1", "@oclif/core@^2.11.4", "@oclif/core@^2.11.8", "@oclif/core@^2.15.0", "@oclif/core@^2.9.4":
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/@oclif/core/-/core-2.15.0.tgz#f27797b30a77d13279fba88c1698fc34a0bd0d2a"
   integrity sha512-fNEMG5DzJHhYmI3MgpByTvltBOMyFcnRIUMxbiz2ai8rhaYgaTHMG3Q38HcosfIvtw9nCjxpcQtC8MN8QtVCcA==
@@ -706,13 +706,13 @@
     lodash "^4.17.21"
     semver "^7.5.4"
 
-"@oclif/test@^2.3.32":
-  version "2.3.32"
-  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.3.32.tgz#c03bd1edfa56e26b44218cd049ff4993604e25a3"
-  integrity sha512-EqieMRJuanDQ/o///Cr7Z01++nsCf8TuO585cySPr2SzC4rw04oJ8gp/lim5BhC+83vCPj+lwFv2bC9uV1tpYQ==
+"@oclif/test@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.5.4.tgz#bea88073591c5b6ca770d3d1d38b371f91626825"
+  integrity sha512-3VaOCD35y6nhUgb2k1UhfZN1hiXH2/t8y2gyIrLVFVG3P522ZATSSdvl3ny7QFmBP2bq6xjj/CkU7Ua/sTJ22Q==
   dependencies:
-    "@oclif/core" "^2.9.3"
-    fancy-test "^2.0.31"
+    "@oclif/core" "^2.15.0"
+    fancy-test "^2.0.38"
 
 "@octokit/auth-token@^2.4.4":
   version "2.5.0"
@@ -2946,10 +2946,10 @@ external-editor@^3.0.3:
     iconv-lite "^0.4.24"
     tmp "^0.0.33"
 
-fancy-test@^2.0.31:
-  version "2.0.32"
-  resolved "https://registry.yarnpkg.com/fancy-test/-/fancy-test-2.0.32.tgz#3cbf7ea8a83f9912b02d9ee0782517cca71834f9"
-  integrity sha512-yN40FulpMlEDVp/3YbSxVzkdUR/u0ZAk2Wu30vVvv79Dni0LoSz90ZXtLsp6e813ED0SHkaW/zfgDEp8YqF9Lw==
+fancy-test@^2.0.38:
+  version "2.0.41"
+  resolved "https://registry.yarnpkg.com/fancy-test/-/fancy-test-2.0.41.tgz#47720853e2a80369b61ca361a86ac70999460fbc"
+  integrity sha512-sOb0/gqYkelK6oNRSIkkc/BjHCbVfZeUzfbPA89HR0QKXxPZ7Fwu2l4rr6SuS3Zwoi8zV4aUZ9PNU3p2dmxETQ==
   dependencies:
     "@types/chai" "*"
     "@types/lodash" "*"
@@ -2957,7 +2957,7 @@ fancy-test@^2.0.31:
     "@types/sinon" "*"
     lodash "^4.17.13"
     mock-stdin "^1.0.0"
-    nock "^13.3.2"
+    nock "^13.3.3"
     stdout-stderr "^0.1.9"
 
 fast-copy@^3.0.0:
@@ -5021,10 +5021,10 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-nock@^13.3.2:
-  version "13.3.2"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.2.tgz#bfa6be92d37f744b1b758ea89b1105cdaf5c8b3f"
-  integrity sha512-CwbljitiWJhF1gL83NbanhoKs1l23TDlRioNraPTZrzZIEooPemrHRj5m0FZCPkB1ecdYCSWWGcHysJgX/ngnQ==
+nock@^13.3.3:
+  version "13.3.3"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-13.3.3.tgz#179759c07d3f88ad3e794ace885629c1adfd3fe7"
+  integrity sha512-z+KUlILy9SK/RjpeXDiDUEAq4T94ADPHE3qaRkf66mpEhzc/ytOMm3Bwdrbq6k1tMWkbdujiKim3G2tfQARuJw==
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
