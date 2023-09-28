@@ -113,18 +113,18 @@ sf plugins
 
 <!-- commands -->
 
-- [`sf generate metadata field`](#sf-generate-metadata-field)
-- [`sf generate metadata platformevent`](#sf-generate-metadata-platformevent)
-- [`sf generate metadata sobject`](#sf-generate-metadata-sobject)
-- [`sf generate metadata tab`](#sf-generate-metadata-tab)
+- [`sf schema generate field`](#sf-schema-generate-field)
+- [`sf schema generate platformevent`](#sf-schema-generate-platformevent)
+- [`sf schema generate sobject`](#sf-schema-generate-sobject)
+- [`sf schema generate tab`](#sf-schema-generate-tab)
 
-## `sf generate metadata field`
+## `sf schema generate field`
 
 Generate metadata source files for a new custom field on a specified object.
 
 ```
 USAGE
-  $ sf generate metadata field -l <value> [-o <value>]
+  $ sf schema generate field -l <value> [-o <value>]
 
 FLAGS
   -l, --label=<value>   (required) The field's label.
@@ -144,14 +144,17 @@ DESCRIPTION
   your org.  To create a custom object, run the "sf generate metadata sobject" command or use the Object Manager UI in
   your Salesforce org.
 
+ALIASES
+  $ sf generate metadata field
+
 EXAMPLES
   Create a field with the specified label; the command prompts you for the object:
 
-    $ sf generate metadata field --label "My Field"
+    $ sf schema generate field --label "My Field"
 
   Specify the local path to the object's folder:
 
-    $ sf generate metadata field --label "My Field" --object force-app/main/default/objects/MyObject__c
+    $ sf schema generate field --label "My Field" --object force-app/main/default/objects/MyObject__c
 
 FLAG DESCRIPTIONS
   -o, --object=<value>  The directory that contains the object's source files.
@@ -164,13 +167,15 @@ FLAG DESCRIPTIONS
     If you don't specify this flag, the command prompts you to choose from your local objects.
 ```
 
-## `sf generate metadata platformevent`
+_See code: [src/commands/schema/generate/field.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.8/src/commands/schema/generate/field.ts)_
+
+## `sf schema generate platformevent`
 
 Generate metadata source files for a new platform event.
 
 ```
 USAGE
-  $ sf generate metadata platformevent -l <value>
+  $ sf schema generate platformevent -l <value>
 
 FLAGS
   -l, --label=<value>  (required) The platform event's label.
@@ -182,19 +187,24 @@ DESCRIPTION
   event's label with the "--label" flag. The command uses this label to provide intelligent suggestions for other event
   properties, such as its API name.
 
+ALIASES
+  $ sf generate metadata platformevent
+
 EXAMPLES
   Create a platform event with the specified label:
 
-    $ sf generate metadata platformevent --label "My Platform Event"
+    $ sf schema generate platformevent --label "My Platform Event"
 ```
 
-## `sf generate metadata sobject`
+_See code: [src/commands/schema/generate/platformevent.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.8/src/commands/schema/generate/platformevent.ts)_
+
+## `sf schema generate sobject`
 
 Generate metadata source files for a new custom object.
 
 ```
 USAGE
-  $ sf generate metadata sobject -l <value> [-f]
+  $ sf schema generate sobject -l <value> [-f]
 
 FLAGS
   -f, --use-default-features  Enable all optional features without prompting.
@@ -213,14 +223,17 @@ DESCRIPTION
   To reduce the number of prompts, use the "--use-default-features" flag to automatically enable some features, such as
   reporting and search on the object.
 
+ALIASES
+  $ sf generate metadata sobject
+
 EXAMPLES
   Create a custom object with the specified label and be prompted for additional information:
 
-    $ sf generate metadata sobject --label "My Object"
+    $ sf schema generate sobject --label "My Object"
 
   Create a custom object and enable optional features without prompting:
 
-    $ sf generate metadata sobject --label "My Object" --use-default-features
+    $ sf schema generate sobject --label "My Object" --use-default-features
 
 FLAG DESCRIPTIONS
   -f, --use-default-features  Enable all optional features without prompting.
@@ -237,13 +250,15 @@ FLAG DESCRIPTIONS
     * Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
 ```
 
-## `sf generate metadata tab`
+_See code: [src/commands/schema/generate/sobject.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.8/src/commands/schema/generate/sobject.ts)_
+
+## `sf schema generate tab`
 
 Generate the metadata source files for a new custom tab on a custom object.
 
 ```
 USAGE
-  $ sf generate metadata tab -o <value> -d <value> -i <value> [--json]
+  $ sf schema generate tab -o <value> -d <value> -i <value> [--json]
 
 FLAGS
   -d, --directory=<value>  (required) Path to a "tabs" directory that will contain the source files for your new tab.
@@ -264,10 +279,13 @@ DESCRIPTION
   required flags. The source files for the custom object for which you're generating a tab don't need to exist in your
   local project.
 
+ALIASES
+  $ sf generate metadata tab
+
 EXAMPLES
   Create a tab on the MyObject__c custom object:
 
-    $ sf generate metadata tab --object MyObject__c --icon 54 --directory force-app/main/default/tabs
+    $ sf schema generate tab --object MyObject__c --icon 54 --directory force-app/main/default/tabs
 
 FLAG DESCRIPTIONS
   -i, --icon=<value>  Number from 1 to 100 that specifies the color scheme and icon for the custom tab.
@@ -278,5 +296,7 @@ FLAG DESCRIPTIONS
 
     The API name for a custom object always ends in "__c", such as "MyObject__c".
 ```
+
+_See code: [src/commands/schema/generate/tab.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.8/src/commands/schema/generate/tab.ts)_
 
 <!-- commandsstop -->
