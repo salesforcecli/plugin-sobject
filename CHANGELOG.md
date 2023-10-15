@@ -1,3 +1,9 @@
+## [0.2.12](https://github.com/salesforcecli/plugin-sobject/compare/0.2.11...0.2.12) (2023-10-15)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 5.3.1 to 5.3.9 ([fdaeba1](https://github.com/salesforcecli/plugin-sobject/commit/fdaeba1ba9f75e21de59bdf8e5599fff7fc91613))
+
 ## [0.2.11](https://github.com/salesforcecli/plugin-sobject/compare/0.2.10...0.2.11) (2023-10-08)
 
 ### Bug Fixes

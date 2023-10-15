@@ -167,7 +167,7 @@ FLAG DESCRIPTIONS
     If you don't specify this flag, the command prompts you to choose from your local objects.
 ```
 
-_See code: [src/commands/schema/generate/field.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.11/src/commands/schema/generate/field.ts)_
+_See code: [src/commands/schema/generate/field.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.12/src/commands/schema/generate/field.ts)_
 
 ## `sf schema generate platformevent`
 
@@ -196,7 +196,7 @@ EXAMPLES
     $ sf schema generate platformevent --label "My Platform Event"
 ```
 
-_See code: [src/commands/schema/generate/platformevent.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.11/src/commands/schema/generate/platformevent.ts)_
+_See code: [src/commands/schema/generate/platformevent.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.12/src/commands/schema/generate/platformevent.ts)_
 
 ## `sf schema generate sobject`
 
@@ -250,7 +250,7 @@ FLAG DESCRIPTIONS
     * Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
 ```
 
-_See code: [src/commands/schema/generate/sobject.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.11/src/commands/schema/generate/sobject.ts)_
+_See code: [src/commands/schema/generate/sobject.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.12/src/commands/schema/generate/sobject.ts)_
 
 ## `sf schema generate tab`
 
@@ -297,6 +297,6 @@ FLAG DESCRIPTIONS
     The API name for a custom object always ends in "__c", such as "MyObject__c".
 ```
 
-_See code: [src/commands/schema/generate/tab.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.11/src/commands/schema/generate/tab.ts)_
+_See code: [src/commands/schema/generate/tab.ts](https://github.com/salesforcecli/plugin-sobject/blob/0.2.12/src/commands/schema/generate/tab.ts)_
 
 <!-- commandsstop -->
