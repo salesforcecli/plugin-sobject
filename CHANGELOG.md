@@ -1,3 +1,9 @@
+## [0.2.13](https://github.com/salesforcecli/plugin-sobject/compare/0.2.12...0.2.13) (2023-10-17)
+
+### Bug Fixes
+
+- **deps:** bump @babel/traverse from 7.11.0 to 7.23.2 ([2bd4a26](https://github.com/salesforcecli/plugin-sobject/commit/2bd4a26b1e2fe96f9465cadeb799678f92f9976a))
+
 ## [0.2.12](https://github.com/salesforcecli/plugin-sobject/compare/0.2.11...0.2.12) (2023-10-15)
 
 ### Bug Fixes
