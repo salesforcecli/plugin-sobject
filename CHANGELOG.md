@@ -1,3 +1,9 @@
+## [0.2.14](https://github.com/salesforcecli/plugin-sobject/compare/0.2.13...0.2.14) (2023-10-22)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/kit from 3.0.13 to 3.0.15 ([2aa789c](https://github.com/salesforcecli/plugin-sobject/commit/2aa789c41ef068834e02be39c5a77e0a7a6537f6))
+
 ## [0.2.13](https://github.com/salesforcecli/plugin-sobject/compare/0.2.12...0.2.13) (2023-10-17)
 
 ### Bug Fixes
