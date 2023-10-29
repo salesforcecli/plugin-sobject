@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { sep, resolve } from 'path';
+import { sep, resolve } from 'node:path';
 import { Messages, SfError } from '@salesforce/core';
 
 Messages.importMessagesDirectory(__dirname);
