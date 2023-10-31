@@ -5,10 +5,12 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { sep, resolve } from 'node:path';
+import {sep, resolve, dirname} from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Messages, SfError } from '@salesforce/core';
 
-Messages.importMessagesDirectory(__dirname);
+
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'flags');
 
 // eslint-disable-next-line @typescript-eslint/require-await

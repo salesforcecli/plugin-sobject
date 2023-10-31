@@ -4,12 +4,12 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as path from 'node:path';
-import * as fs from 'node:fs';
-import * as fg from 'fast-glob';
+import path from 'node:path';
+import fs  from 'node:fs';
+import fg from 'fast-glob';
 import { CustomObject } from 'jsforce/api/metadata';
-import { convertJsonToXml, parseXml } from './convert';
-import { SaveableCustomObject, SaveablePlatformEvent } from './types';
+import { convertJsonToXml, parseXml } from './convert.js';
+import { SaveableCustomObject, SaveablePlatformEvent } from './types.js';
 
 const getObjectXmlByPathAsJson = async (objectFilePath: string): Promise<CustomObject> => {
   const xml = await fs.promises.readFile(objectFilePath, 'utf8');
