@@ -12,7 +12,6 @@
     "change-case": "^4.1.2",
     "fast-glob": "^3.3.1",
     "fast-xml-parser": "^4.3.2",
-    "inquirer": "^9.2.11",
     "js2xmlparser": "^4.0.2"
   },
   "devDependencies": {
