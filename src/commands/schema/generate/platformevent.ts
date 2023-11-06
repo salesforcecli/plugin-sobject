@@ -5,15 +5,17 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import { fileURLToPath } from 'node:url';
+import {dirname} from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts';
-import { writeObjectFile } from '../../../shared/fs';
-import { SaveablePlatformEvent } from '../../../shared/types';
-import { labelValidation } from '../../../shared/flags';
+import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts.js';
+import { writeObjectFile } from '../../../shared/fs.js';
+import { SaveablePlatformEvent } from '../../../shared/types.js';
+import { labelValidation } from '../../../shared/flags.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.event');
 
 export type PlatformEventGenerateResult = {

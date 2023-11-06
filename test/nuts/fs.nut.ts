@@ -5,8 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as path from 'node:path';
-import * as fs from 'node:fs';
+import path  from 'node:path';
+import fs  from 'node:fs';
 import { TestSession } from '@salesforce/cli-plugins-testkit';
 import { expect } from 'chai';
 import {
@@ -14,8 +14,8 @@ import {
   getObjectDirectories,
   getObjectXmlByFolderAsJson,
   writeObjectFile,
-} from '../../src/shared/fs';
-import { SaveableCustomObject } from '../../src/shared/types';
+} from '../../src/shared/fs.js';
+import { SaveableCustomObject } from '../../src/shared/types.js';
 
 describe('local fs NUTs', () => {
   let session: TestSession;

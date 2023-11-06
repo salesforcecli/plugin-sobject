@@ -4,15 +4,16 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import * as path from 'node:path';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { NamedPackageDir } from '@salesforce/core';
-import { prompt } from 'inquirer';
 import { CustomField } from 'jsforce/api/metadata';
 import { Messages } from '@salesforce/core';
-import { getObjectXmlByFolderAsJson } from '../fs';
-import { objectPrompt, makeNameApiCompatible } from './prompts';
+import { Prompter } from '@salesforce/sf-plugins-core';
+import { getObjectXmlByFolderAsJson } from '../fs.js';
+import { objectPrompt, makeNameApiCompatible } from './prompts.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.relationship');
 
 type RelationshipFieldProperties = Pick<
@@ -35,8 +36,9 @@ export const relationshipFieldPrompts = async ({
   packageDirs: NamedPackageDir[];
   childObjectFolderPath: string;
 }): Promise<RelationshipFieldProperties> => {
+  const prompter = new Prompter();
   const childObjectXml = await getObjectXmlByFolderAsJson(childObjectFolderPath);
-  const response = await prompt<RelationshipFieldProperties>([
+  const response = await prompter.prompt<RelationshipFieldProperties>([
     // prompt the user to select from objects in local source
     await objectPrompt(packageDirs, 'referenceTo', messages.getMessage('objectPrompt')),
     {

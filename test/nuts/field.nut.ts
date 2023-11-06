@@ -5,9 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as path from 'node:path';
+import path  from 'node:path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
-// import { expect } from 'chai';
 
 describe('generate field NUTs', () => {
   let session: TestSession;

@@ -6,7 +6,7 @@
  */
 import { expect } from 'chai';
 import { CustomObject } from 'jsforce/api/metadata';
-import { parseXml } from '../../src/shared/convert';
+import { parseXml } from '../../src/shared/convert.js';
 
 // tests configurations of the xml parser
 describe('builds deployable objects', () => {

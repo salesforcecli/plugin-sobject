@@ -5,15 +5,16 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import * as fs from 'node:fs';
-import * as path from 'node:path';
+import fs  from 'node:fs';
+import path, {dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import { CustomTab } from 'jsforce/api/metadata';
-import { isTabsFolder } from '../../../shared/flags';
-import { convertJsonToXml } from '../../../shared/convert';
+import { isTabsFolder } from '../../../shared/flags.js';
+import { convertJsonToXml } from '../../../shared/convert.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.tab');
 
 export type GenerateTabResult = {

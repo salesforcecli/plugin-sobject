@@ -4,13 +4,15 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { NamedPackageDir } from '@salesforce/core';
-import { prompt, Question, ListQuestion } from 'inquirer';
 import { ValueSet, CustomValue } from 'jsforce/api/metadata';
 import { Messages } from '@salesforce/core';
-import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs';
+import { Prompter } from '@salesforce/sf-plugins-core';
+import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs.js';
 
-Messages.importMessagesDirectory(__dirname);
+Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.shared');
 
 export const makeNameApiCompatible = (input: string): string =>
@@ -26,21 +28,21 @@ const getSuffix = (objectType: ObjectType): string => {
       return '__e';
   }
 };
-export const directoryPrompt = async (packageDirs: NamedPackageDir[]): Promise<ListQuestion> => ({
+export const directoryPrompt = async (packageDirs: NamedPackageDir[]): Promise<Prompter.Answers> => ({
   type: 'list',
   message: messages.getMessage('directory'),
   name: 'directory',
   choices: await getDirectoriesThatContainObjects(packageDirs.map((pd) => pd.path)),
 });
 
-export const pluralPrompt = (label: string): Question => ({
+export const pluralPrompt = (label: string): Prompter.Answers => ({
   type: 'input',
   message: messages.getMessage('pluralLabel'),
   name: 'pluralLabel',
   default: `${label}s`,
 });
 
-export const apiNamePrompt = (label: string, objectType: ObjectType): Question => ({
+export const apiNamePrompt = (label: string, objectType: ObjectType): Prompter.Answers => ({
   type: 'input',
   message: messages.getMessage('apiName'),
   name: 'fullName',
@@ -55,7 +57,7 @@ export const descriptionPrompt = {
 };
 
 /** Ask about the name/type for the Name field, with a followup for AutoNumber format if AutoNumber is chosen  */
-export const namePrompts = (label: string): Array<Question | ListQuestion> => [
+export const namePrompts = (label: string): Prompter.Answers[] => [
   {
     type: 'input',
     message: messages.getMessage('nameFieldPrompts.label'),
@@ -71,7 +73,7 @@ export const namePrompts = (label: string): Array<Question | ListQuestion> => [
   },
   {
     type: 'input',
-    when: (answers) => answers.nameFieldType === 'AutoNumber',
+    when: (answers: { nameFieldType: string }) => answers.nameFieldType === 'AutoNumber',
     message: messages.getMessage('nameFieldPrompts.autoNumberFormat'),
     name: 'autoNumberFormat',
     default: `${label}-{0}`,
@@ -86,7 +88,7 @@ export const objectPrompt = async (
   packageDirs: NamedPackageDir[],
   name: 'object' | 'referenceTo' = 'object',
   message = messages.getMessage('object')
-): Promise<ListQuestion> => ({
+): Promise<Prompter.Answers> => ({
   type: 'list',
   message,
   name,
@@ -108,11 +110,12 @@ export const integerValidation = (value: number, min: number, max: number): true
 export const picklistPrompts = async (): Promise<Omit<ValueSet, 'valueSettings'>> => {
   const output: CustomValue[] = [];
   let keepAsking = true;
+  const prompter = new Prompter();
 
   while (keepAsking) {
     // the very definition of needing a loop for an await
     // eslint-disable-next-line no-await-in-loop
-    const response = await prompt<{ picklistValue: string }>({
+    const response = await prompter.prompt<{ picklistValue: string }>({
       type: 'input',
       name: 'picklistValue',
       validate: (input: string) => (output.find((v) => v.fullName === input) ? `${input} already exists` : true),
