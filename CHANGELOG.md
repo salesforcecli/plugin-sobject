@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/salesforcecli/plugin-sobject/compare/0.2.18...1.0.1) (2023-11-13)
+
+### Bug Fixes
+
+- 1.0.0 release ([7c950fc](https://github.com/salesforcecli/plugin-sobject/commit/7c950fc1a51107b5f8892d3e199bb12e8b904f67))
+
 ## [0.2.18](https://github.com/salesforcecli/plugin-sobject/compare/0.2.17...0.2.18) (2023-11-12)
 
 ### Bug Fixes
