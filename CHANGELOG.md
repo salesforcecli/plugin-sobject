@@ -1,3 +1,9 @@
+## [1.0.2](https://github.com/salesforcecli/plugin-sobject/compare/1.0.1...1.0.2) (2023-11-15)
+
+### Bug Fixes
+
+- updates from devScripts ([#453](https://github.com/salesforcecli/plugin-sobject/issues/453)) and core v6 ([538a6fd](https://github.com/salesforcecli/plugin-sobject/commit/538a6fd49e4c6a32675a07f444a310dbd808a39f))
+
 ## [1.0.1](https://github.com/salesforcecli/plugin-sobject/compare/0.2.18...1.0.1) (2023-11-13)
 
 ### Bug Fixes
