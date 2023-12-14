@@ -14,7 +14,7 @@ API name of the custom object you're generating a tab for.
 
 # flags.object.description
 
-The API name for a custom object always ends in "__c", such as "MyObject__c".
+The API name for a custom object always ends in `__c`, such as `MyObject__c`.
 
 # flags.directory.summary
 
@@ -26,13 +26,13 @@ Number from 1 to 100 that specifies the color scheme and icon for the custom tab
 
 # flags.icon.description
 
-See https://lightningdesignsystem.com/icons/\#custom for the available icons.
+See https://lightningdesignsystem.com/icons/#custom for the available icons.
 
 # examples
 
-- Create a tab on the MyObject__c custom object:
+- Create a tab on the `MyObject__c` custom object:
 
-  <%= config.bin %> <%= command.id %> --object MyObject__c --icon 54 --directory force-app/main/default/tabs
+  <%= config.bin %> <%= command.id %> --object `MyObject__c` --icon 54 --directory force-app/main/default/tabs
 
 # success
 
