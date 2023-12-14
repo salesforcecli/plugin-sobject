@@ -6,9 +6,8 @@
  */
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { NamedPackageDir } from '@salesforce/core';
-import { ValueSet, CustomValue } from 'jsforce/api/metadata';
-import { Messages } from '@salesforce/core';
+import type { ValueSet, CustomValue } from 'jsforce/api/metadata';
+import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { Prompter } from '@salesforce/sf-plugins-core';
 import { getDirectoriesThatContainObjects, getObjectDirectories } from '../fs.js';
 

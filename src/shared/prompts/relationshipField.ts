@@ -6,9 +6,8 @@
  */
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { NamedPackageDir } from '@salesforce/core';
-import { CustomField } from 'jsforce/api/metadata';
-import { Messages } from '@salesforce/core';
+import type { CustomField } from 'jsforce/api/metadata';
+import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { Prompter } from '@salesforce/sf-plugins-core';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
 import { objectPrompt, makeNameApiCompatible } from './prompts.js';
