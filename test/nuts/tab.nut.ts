@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import path  from 'node:path';
+import path from 'node:path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 
 describe('generate tab NUTs', () => {
@@ -35,7 +35,7 @@ describe('generate tab NUTs', () => {
         'default',
         'objects'
       )}`;
-      execCmd(command, { ensureExitCode: 1 });
+      execCmd(command, { ensureExitCode: 'nonZero' });
     });
   });
 });

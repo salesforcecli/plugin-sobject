@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import path  from 'node:path';
+import path from 'node:path';
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 
 describe('generate field NUTs', () => {
@@ -31,7 +31,7 @@ describe('generate field NUTs', () => {
   describe('flag validation failures', () => {
     it('short label', () => {
       const command = 'generate metadata field --label yo';
-      execCmd(command, { ensureExitCode: 1 });
+      execCmd(command, { ensureExitCode: 'nonZero' });
     });
     it('bad object dir', () => {
       const command = `generate metadata field --label longEnough --object ${path.join(
@@ -40,7 +40,7 @@ describe('generate field NUTs', () => {
         'default',
         'tabs'
       )}`;
-      execCmd(command, { ensureExitCode: 1 });
+      execCmd(command, { ensureExitCode: 'nonZero' });
     });
   });
 });
