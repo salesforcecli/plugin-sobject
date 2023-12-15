@@ -6,10 +6,10 @@
  */
 
 import { fileURLToPath } from 'node:url';
-import {dirname} from 'node:path';
+import { dirname } from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { AnyJson } from '@salesforce/ts-types';
+import type { AnyJson } from '@salesforce/ts-types';
 import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts.js';
 import { writeObjectFile } from '../../../shared/fs.js';
 import { SaveablePlatformEvent } from '../../../shared/types.js';

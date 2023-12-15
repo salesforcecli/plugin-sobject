@@ -5,12 +5,12 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import fs  from 'node:fs';
-import path, {dirname} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import fs from 'node:fs';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { CustomTab } from 'jsforce/api/metadata';
+import type { CustomTab } from 'jsforce/api/metadata';
 import { isTabsFolder } from '../../../shared/flags.js';
 import { convertJsonToXml } from '../../../shared/convert.js';
 

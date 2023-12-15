@@ -4,13 +4,13 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import fs  from 'node:fs';
-import path, {dirname} from 'node:path';
+import fs from 'node:fs';
+import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import { AnyJson } from '@salesforce/ts-types';
-import { CustomField } from 'jsforce/api/metadata';
+import type { AnyJson } from '@salesforce/ts-types';
+import type { CustomField } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../../shared/convert.js';
 import {
   descriptionPrompt,

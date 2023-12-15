@@ -6,9 +6,9 @@
  */
 import * as jsToXml from 'js2xmlparser';
 import { XMLParser } from 'fast-xml-parser';
-import { IOptions } from 'js2xmlparser/lib/options.js';
-import { CustomObject, CustomField } from 'jsforce/api/metadata';
-import { JsonMap } from '@salesforce/ts-types';
+import type { IOptions } from 'js2xmlparser/lib/options.js';
+import type { CustomObject, CustomField } from 'jsforce/api/metadata';
+import type { JsonMap } from '@salesforce/ts-types';
 
 const standardOptions: IOptions = {
   declaration: {

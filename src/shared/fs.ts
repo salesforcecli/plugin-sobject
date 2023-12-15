@@ -5,9 +5,9 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import path from 'node:path';
-import fs  from 'node:fs';
+import fs from 'node:fs';
 import fg from 'fast-glob';
-import { CustomObject } from 'jsforce/api/metadata';
+import type { CustomObject } from 'jsforce/api/metadata';
 import { convertJsonToXml, parseXml } from './convert.js';
 import { SaveableCustomObject, SaveablePlatformEvent } from './types.js';
 

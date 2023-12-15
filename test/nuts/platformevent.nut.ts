@@ -30,7 +30,7 @@ describe('generate platformevent NUTs', () => {
   describe('flag validation failures', () => {
     it('short label', () => {
       const command = 'generate metadata platformevent --label yo';
-      execCmd(command, { ensureExitCode: 1 });
+      execCmd(command, { ensureExitCode: 'nonZero' });
     });
   });
 });

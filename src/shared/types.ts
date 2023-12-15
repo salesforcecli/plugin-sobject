@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { CustomObject, CustomField } from 'jsforce/api/metadata';
+import type { CustomObject, CustomField } from 'jsforce/api/metadata';
 
 /** Used to capture the types for NameField in the inquirer prompts */
 export type NameFieldResponse = {
