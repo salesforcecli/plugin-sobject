@@ -161,7 +161,7 @@ FLAG DESCRIPTIONS
     If you don't specify this flag, the command prompts you to choose from your local objects.
 ```
 
-_See code: [src/commands/schema/generate/field.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.6/src/commands/schema/generate/field.ts)_
+_See code: [src/commands/schema/generate/field.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.7/src/commands/schema/generate/field.ts)_
 
 ## `sf schema generate platformevent`
 
@@ -190,7 +190,7 @@ EXAMPLES
     $ sf schema generate platformevent --label "My Platform Event"
 ```
 
-_See code: [src/commands/schema/generate/platformevent.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.6/src/commands/schema/generate/platformevent.ts)_
+_See code: [src/commands/schema/generate/platformevent.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.7/src/commands/schema/generate/platformevent.ts)_
 
 ## `sf schema generate sobject`
 
@@ -244,7 +244,7 @@ FLAG DESCRIPTIONS
     * Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
 ```
 
-_See code: [src/commands/schema/generate/sobject.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.6/src/commands/schema/generate/sobject.ts)_
+_See code: [src/commands/schema/generate/sobject.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.7/src/commands/schema/generate/sobject.ts)_
 
 ## `sf schema generate tab`
 
@@ -277,9 +277,9 @@ ALIASES
   $ sf generate metadata tab
 
 EXAMPLES
-  Create a tab on the MyObject__c custom object:
+  Create a tab on the `MyObject__c` custom object:
 
-    $ sf schema generate tab --object MyObject__c --icon 54 --directory force-app/main/default/tabs
+    $ sf schema generate tab --object `MyObject__c` --icon 54 --directory force-app/main/default/tabs
 
 FLAG DESCRIPTIONS
   -i, --icon=<value>  Number from 1 to 100 that specifies the color scheme and icon for the custom tab.
@@ -288,9 +288,9 @@ FLAG DESCRIPTIONS
 
   -o, --object=<value>  API name of the custom object you're generating a tab for.
 
-    The API name for a custom object always ends in "__c", such as "MyObject__c".
+    The API name for a custom object always ends in `__c`, such as `MyObject__c`.
 ```
 
-_See code: [src/commands/schema/generate/tab.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.6/src/commands/schema/generate/tab.ts)_
+_See code: [src/commands/schema/generate/tab.ts](https://github.com/salesforcecli/plugin-sobject/blob/1.0.7/src/commands/schema/generate/tab.ts)_
 
 <!-- commandsstop -->
