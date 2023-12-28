@@ -4,15 +4,15 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path'
+
 import type { CustomField } from 'jsforce/api/metadata';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { Prompter } from '@salesforce/sf-plugins-core';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
 import { objectPrompt, makeNameApiCompatible } from './prompts.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.relationship');
 
 type RelationshipFieldProperties = Pick<
