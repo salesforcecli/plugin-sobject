@@ -6,15 +6,15 @@
  */
 
 import fs from 'node:fs';
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path'
+
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import type { CustomTab } from 'jsforce/api/metadata';
 import { isTabsFolder } from '../../../shared/flags.js';
 import { convertJsonToXml } from '../../../shared/convert.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.tab');
 
 export type GenerateTabResult = {

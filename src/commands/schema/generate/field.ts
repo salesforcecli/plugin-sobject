@@ -5,8 +5,8 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import fs from 'node:fs';
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path'
+
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import type { AnyJson } from '@salesforce/ts-types';
@@ -22,7 +22,7 @@ import {
 import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField.js';
 import { isObjectsFolder, labelValidation } from '../../../shared/flags.js';
 
-Messages.importMessagesDirectory(dirname(fileURLToPath(import.meta.url)));
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
 
 const MAX_LONG_TEXT_LENGTH = 131072;
