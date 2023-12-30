@@ -5,23 +5,20 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { dirname } from 'node:path';
-
+import select from '@inquirer/select';
+import confirm from '@inquirer/confirm';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import type { AnyJson } from '@salesforce/ts-types';
-import { sentenceCase } from 'change-case';
-import {
-  descriptionPrompt,
-  directoryPrompt,
-  pluralPrompt,
-  apiNamePrompt,
-  namePrompts,
-} from '../../../shared/prompts/prompts.js';
+import { nameFieldPrompts } from '../../../shared/prompts/nameField.js';
+import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
+import { pluralPrompt } from '../../../shared/prompts/plural.js';
+import { directoryPrompt } from '../../../shared/prompts/directory.js';
+import { descriptionPrompt } from '../../../shared/prompts/description.js';
 import { writeObjectFile } from '../../../shared/fs.js';
-import { SaveableCustomObject, NameFieldResponse } from '../../../shared/types.js';
+import { SaveableCustomObject } from '../../../shared/types.js';
 import { labelValidation } from '../../../shared/flags.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.object');
 
 export type CustomObjectGenerateResult = {
@@ -29,7 +26,19 @@ export type CustomObjectGenerateResult = {
   path: string;
 };
 
-const defaultFeatures: Partial<SaveableCustomObject> = {
+type DefaultFeatures = Pick<
+  SaveableCustomObject,
+  | 'enableHistory'
+  | 'enableActivities'
+  | 'enableSearch'
+  | 'enableFeeds'
+  | 'enableReports'
+  | 'enableSharing'
+  | 'enableBulkApi'
+  | 'enableStreamingApi'
+>;
+
+const defaultFeatures: DefaultFeatures = {
   enableHistory: true,
   enableActivities: true,
   enableSearch: true,
@@ -38,7 +47,7 @@ const defaultFeatures: Partial<SaveableCustomObject> = {
   enableBulkApi: true,
   enableSharing: true,
   enableStreamingApi: true,
-};
+} as const;
 
 export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult> {
   public static readonly summary = messages.getMessage('summary');
@@ -65,45 +74,31 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public async run(): Promise<CustomObjectGenerateResult> {
     const { flags } = await this.parse(ObjectGenerate);
 
-    const responses = await this.prompt<SaveableCustomObject & NameFieldResponse & { directory: string }>(
-      [
-        await directoryPrompt(this.project.getPackageDirectories()),
-        pluralPrompt(flags.label),
-        apiNamePrompt(flags.label, 'CustomObject'),
-        descriptionPrompt,
-        ...namePrompts(flags.label),
-        // transform the default features into confirm prompts
-        ...Object.keys(defaultFeatures).map((name) => ({
-          type: 'confirm',
-          name,
-          message: sentenceCase(name).replace('Api', 'API'),
-        })),
-        {
-          type: 'list',
-          choices: ['ReadWrite', 'Read', 'Private'],
-          message: messages.getMessage('prompts.sharingModel'),
-          name: 'sharingModel',
-        },
-      ],
-      flags['use-default-features'] ? defaultFeatures : {}
-    );
+    const directory = await directoryPrompt(this.project.getPackageDirectories());
+    const pluralLabel = await pluralPrompt(flags.label);
+    const fullName = await apiNamePrompt(flags.label, 'CustomObject');
+    const description = await descriptionPrompt();
+    const nameField = await nameFieldPrompts(flags.label);
 
-    const { nameFieldType, nameFieldLabel, autoNumberFormat, directory, ...customObject } = responses;
+    const defaultFeaturesSelected = flags['use-default-features'] ? defaultFeatures : await promptForDefaultFeatures();
+
+    const sharingModel = await select({
+      message: messages.getMessage('prompts.sharingModel'),
+      choices: [{ value: 'ReadWrite' }, { value: 'Read' }, { value: 'Private' }],
+    });
 
     const resultsObject = {
-      ...customObject,
-      nameField: {
-        ...{
-          type: nameFieldType,
-          label: nameFieldLabel,
-        },
-        ...(responses.nameFieldType === 'AutoNumber' ? { displayFormat: autoNumberFormat } : {}),
-      },
-      deploymentStatus: 'Deployed',
+      pluralLabel,
+      fullName,
+      description,
+      nameField,
+      sharingModel,
+      ...defaultFeaturesSelected,
       label: flags.label,
-    };
+      deploymentStatus: 'Deployed',
+    } satisfies SaveableCustomObject;
 
-    this.styledJSON(resultsObject as AnyJson);
+    this.styledJSON(resultsObject);
     const writePath = await writeObjectFile(directory, resultsObject);
     this.logSuccess(messages.getMessage('success', [writePath]));
     this.info(messages.getMessage('success.field', [dirname(writePath)]));
@@ -112,3 +107,20 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
     return { object: resultsObject, path: writePath };
   }
 }
+
+const promptForDefaultFeatures = async (): Promise<DefaultFeatures> => {
+  const enterprise = await confirm({
+    message: 'Enable Enterprise Features (Sharing, Bulk API, and Streaming API)',
+    default: true,
+  });
+  return {
+    enableBulkApi: enterprise,
+    enableSharing: enterprise,
+    enableStreamingApi: enterprise,
+    enableHistory: await confirm({ message: 'Enable History', default: true }),
+    enableActivities: await confirm({ message: 'Enable Activities', default: true }),
+    enableSearch: await confirm({ message: 'Enable Search', default: true }),
+    enableFeeds: await confirm({ message: 'Enable Feeds', default: true }),
+    enableReports: await confirm({ message: 'Enable Reports', default: true }),
+  };
+};

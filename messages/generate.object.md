@@ -22,14 +22,14 @@ Enable all optional features without prompting.
 
 Enables these features:
 
-* Search: Allows users to find the custom object's records when they search, including SOSL.
-* Feeds: Enables feed tracking.
-* Reports: Allows reporting of the data in the custom object records.
-* History: Enables object history tracking.
-* Activities: Allows users to associate tasks and scheduled calendar events related to the custom object records.
-* Bulk API: With Sharing and Streaming API, classifies the custom object as an Enterprise Application object.
-* Sharing: With Bulk API and Streaming API, classifies the custom object as an Enterprise Application object.
-* Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
+- Search: Allows users to find the custom object's records when they search, including SOSL.
+- Feeds: Enables feed tracking.
+- Reports: Allows reporting of the data in the custom object records.
+- History: Enables object history tracking.
+- Activities: Allows users to associate tasks and scheduled calendar events related to the custom object records.
+- Bulk API: With Sharing and Streaming API, classifies the custom object as an Enterprise Application object.
+- Sharing: With Bulk API and Streaming API, classifies the custom object as an Enterprise Application object.
+- Streaming API: With Bulk API and Sharing, classifies the custom object as an Enterprise Application object.
 
 # examples
 
@@ -51,7 +51,7 @@ The first time you deploy your new custom object to a source-tracking org, the o
 
 # success.field
 
-Run this command to add a field to your object: sf generate metadata field --object %s --label "Your Field"
+Run this command to add a field to your object: sf schema generate field --object %s --label "Your Field"
 
 # prompts.sharingModel
 

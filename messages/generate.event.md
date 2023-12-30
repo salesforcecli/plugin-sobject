@@ -19,3 +19,7 @@ The platform event's label.
 # prompts.publishBehavior
 
 Do you want platform events to publish after a transaction completes, or immediately?
+
+# success.field
+
+Run this command to add a field to your event: sf schema generate field --object %s --label "Your Field"

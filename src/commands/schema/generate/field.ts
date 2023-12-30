@@ -4,25 +4,28 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
+
 import fs from 'node:fs';
-import path from 'node:path'
+import path from 'node:path';
+import input from '@inquirer/input';
+import select from '@inquirer/select';
+import confirm from '@inquirer/confirm';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import type { AnyJson } from '@salesforce/ts-types';
 import type { CustomField } from 'jsforce/api/metadata';
 import { convertJsonToXml } from '../../../shared/convert.js';
-import {
-  descriptionPrompt,
-  apiNamePrompt,
-  objectPrompt,
-  integerValidation,
-  picklistPrompts,
-} from '../../../shared/prompts/prompts.js';
+import { picklistPrompts } from '../../../shared/prompts/picklist.js';
+import { integerValidation } from '../../../shared/prompts/functions.js';
+import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
+import { descriptionPrompt } from '../../../shared/prompts/description.js';
+import { objectPrompt } from '../../../shared/prompts/object.js';
 import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField.js';
 import { isObjectsFolder, labelValidation } from '../../../shared/flags.js';
+import { toSelectOption } from '../../../shared/prompts/functions.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
 
 const MAX_LONG_TEXT_LENGTH = 131072;
@@ -64,6 +67,11 @@ type SaveableCustomField = Pick<
   | 'precision'
   | 'visibleLines'
   | 'length'
+  | 'unique'
+  | 'externalId'
+  | 'startingNumber'
+  | 'defaultValue'
+  | 'securityClassification'
 > & {
   // TODO: get displayLocationInDecimal into jsforce2 typings
   displayLocationInDecimal?: boolean;
@@ -74,9 +82,6 @@ export type FieldGenerateResult = {
   field: SaveableCustomField;
   path: string;
 };
-
-// the parts of the field you might prompt for, plus additional questions not on the field
-type Response = SaveableCustomField & { object: string };
 
 export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
   public static readonly summary = messages.getMessage('summary');
@@ -92,7 +97,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
-      parse: async (label) => labelValidation(label),
+      parse: labelValidation,
     }),
     // this a dir and not an API name to support 1 object being in multiple package directories
     object: Flags.directory({
@@ -100,155 +105,73 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       exists: true,
       summary: messages.getMessage('flags.object.summary'),
       description: messages.getMessage('flags.object.description'),
-      parse: async (input) => isObjectsFolder(input),
+      parse: isObjectsFolder,
     }),
   };
 
   public async run(): Promise<FieldGenerateResult> {
     const { flags } = await this.parse(FieldGenerate);
-    const responses = await this.prompt<Response>(
-      [
-        await objectPrompt(this.project.getPackageDirectories()),
-        apiNamePrompt(flags.label, 'CustomField'),
-        {
-          type: 'list',
-          message: messages.getMessage('prompts.type'),
-          name: 'type',
-          choices: (answers: { object: string }) => getSupportedFieldTypes(answers.object),
-        },
-        // AutoNumber
-        {
-          type: 'number',
-          message: messages.getMessage('prompts.startingNumber'),
+    const object = flags.object ?? (await objectPrompt(this.project.getPackageDirectories()));
+    const fullName = await apiNamePrompt(flags.label, 'CustomField');
+    const type = (await select({
+      message: messages.getMessage('prompts.type'),
+      choices: getSupportedFieldTypes(object).map(toSelectOption),
+      // select accepts a type param, but either TS or inquirer isn't happy with the typing of it
+    })) as (typeof supportedFieldTypesCustomObject)[number];
 
-          validate: (n: number) => integerValidation(n, 0, Number.MAX_SAFE_INTEGER),
-          name: 'startingNumber',
-          when: (answers: Response) => answers.type === 'AutoNumber',
-          default: 0,
-        },
-        // checkbox type requires a default value
-        {
-          type: 'list',
-          message: messages.getMessage('prompts.defaultValue'),
-          choices: [
-            { value: false, name: 'false' },
-            { value: true, name: 'true' },
-          ],
-          name: 'defaultValue',
-          when: (answers: Response) => answers.type === 'Checkbox',
-          default: false,
-        },
-        // text types
-        {
-          type: 'number',
-          message: `Length (max ${MAX_LONG_TEXT_LENGTH})`,
-          validate: (n: number) => integerValidation(n, 1, MAX_LONG_TEXT_LENGTH),
-          name: 'length',
-          when: (answers: Response) => ['Html', 'LongTextArea'].includes(answers.type),
-          default: MAX_LONG_TEXT_LENGTH,
-        },
-        {
-          type: 'number',
-          message: `Length (max ${MAX_TEXT_LENGTH})`,
-          validate: (n: number) => integerValidation(n, 1, MAX_TEXT_LENGTH),
-          name: 'length',
-          when: (answers: Response) => answers.type === 'Text',
-          default: MAX_TEXT_LENGTH,
-        },
-        {
-          type: 'number',
-          message: 'Visible Lines',
-          validate: (n: number) => integerValidation(n, 1, 1000),
-          name: 'visibleLines',
-          when: (answers: Response) => ['Html', 'LongTextArea'].includes(answers.type),
-          default: 5,
-        },
-        // number types
-        {
-          type: 'number',
-          message: messages.getMessage('prompts.scale'),
-          validate: (n: number) => integerValidation(n, 0, 18),
-          name: 'scale',
-          when: (answers: Response) => ['Number', 'Currency', 'Location'].includes(answers.type),
-          default: 0,
-        },
-        {
-          type: 'number',
-          message: messages.getMessage('prompts.precision'),
-          validate: (n: number, answers: Response) => integerValidation(n, 1, 18 - (answers.scale ?? 0)),
-          name: 'precision',
-          when: (answers: Response) => ['Number', 'Currency'].includes(answers.type),
-          default: (answers: Response) => 18 - (answers.scale ?? 0),
-        },
-        // non-fieldtype-specific questions
-        descriptionPrompt,
-        {
-          type: 'input',
-          message: messages.getMessage('prompts.inlineHelpText'),
-          name: 'inlineHelpText',
-          when: (answers: Response) => !answers.object.includes('__e'),
-        },
-        {
-          type: 'confirm',
-          message: messages.getMessage('prompts.required'),
-          name: 'required',
-          when: (answers: Response) => !['Checkbox', 'MasterDetail', 'Lookup', 'LongTextArea'].includes(answers.type),
-          default: false,
-        },
-        {
-          type: 'confirm',
-          message: 'Unique',
-          name: 'unique',
-          when: (answers: Response) => ['Number', 'Text'].includes(answers.type),
-          default: false,
-        },
-        {
-          type: 'confirm',
-          message: messages.getMessage('prompts.externalId'),
-          name: 'externalId',
-          when: (answers: Response) => ['Number', 'Text'].includes(answers.type) && answers.object?.endsWith('__e'),
-          default: false,
-        },
-        {
-          type: 'list',
-          message: messages.getMessage('prompts.securityClassification'),
-          name: 'securityClassification',
-          choices: ['Public', 'Internal', 'Confidential', 'Restricted', 'Mission Critical'],
-          default: 'Internal',
-        },
-      ],
-      // pre-populate the object if they gave us one
-      flags.object ? { object: flags.object } : {}
-    );
+    const startingNumber = await startingNumberPrompt(type);
+    const defaultValue = await defaultValuePrompt(type);
+    const length = await lengthPrompt(type);
 
-    const { object, ...customField } = responses;
+    const visibleLines = await visibleLinePrompt(type);
+    // number types
+    const scale = await scalePrompt(type);
+    const precision = await precisionPrompt(type, scale);
+
+    // non-fieldtype-specific questions
+    const description = await descriptionPrompt();
+    const inlineHelpText = await inlineHelpPrompt(object);
+    const required = await requiredPrompt(type);
+    const unique = await uniquePrompt(type);
+    const externalId = await externalIdPrompt(type, object);
 
     const result: FieldGenerateResult = {
       field: {
-        ...customField,
+        fullName,
+        type,
+        ...(precision !== undefined ? { precision } : {}),
+        ...(scale !== undefined ? { scale } : {}),
+        ...(visibleLines !== undefined ? { visibleLines } : {}),
+        ...(length !== undefined ? { length } : {}),
+        ...(inlineHelpText !== undefined ? { inlineHelpText } : {}),
+        ...(required !== undefined ? { required } : {}),
+        ...(unique !== undefined ? { unique } : {}),
+        ...(externalId !== undefined ? { externalId } : {}),
+        ...(startingNumber !== undefined ? { startingNumber } : {}),
+        ...(defaultValue !== undefined ? { defaultValue } : {}),
+        description,
         label: flags.label,
         // always use decimal version of location unless someone asks us not to in a feature request
-        ...(customField.type === 'Location' ? { displayLocationInDecimal: true } : {}),
+        ...(type === 'Location' ? { displayLocationInDecimal: true } : {}),
         // building picklists is an independent inquirer series of questions
-        ...(customField.type === 'Picklist' ? { valueSet: await picklistPrompts() } : {}),
+        ...(type === 'Picklist' ? { valueSet: await picklistPrompts() } : {}),
         // relationship fields have their own series of questions
-        ...(responses.type === 'MasterDetail' || responses.type === 'Lookup'
+        ...(type === 'MasterDetail' || type === 'Lookup'
           ? await relationshipFieldPrompts({
-              type: responses.type,
+              type,
               packageDirs: this.project.getPackageDirectories(),
-              childObjectFolderPath: responses.object,
+              childObjectFolderPath: object,
             })
           : {}),
+        securityClassification: await securityPrompt(),
       },
-      path: path.join(object, 'fields', `${responses.fullName}.field-meta.xml`),
+      path: path.join(object, 'fields', `${fullName}.field-meta.xml`),
     };
     this.styledJSON(result as AnyJson);
     await fs.promises.mkdir(path.join(object, 'fields'), { recursive: true });
     await fs.promises.writeFile(result.path, convertJsonToXml({ json: result.field, type: 'CustomField' }));
 
-    this.logSuccess(
-      messages.getMessage('success', [path.join(object, 'fields', `${responses.fullName}.field-meta.xml`)])
-    );
+    this.logSuccess(messages.getMessage('success', [path.join(object, 'fields', `${fullName}.field-meta.xml`)]));
     return result;
   }
 }
@@ -271,3 +194,119 @@ const getSupportedFieldTypes = (
   }
   return supportedFieldTypesCustomObject;
 };
+
+/**
+ * Prompt for the length property based on the field type
+ *
+ * @param type the field type
+ */
+const lengthPrompt = async (type: string): Promise<number | undefined> =>
+  type === 'Text'
+    ? Number(
+        await input({
+          message: `Length (max ${MAX_TEXT_LENGTH})`,
+          default: MAX_TEXT_LENGTH.toString(),
+          validate: integerValidation({ min: 1, max: MAX_TEXT_LENGTH }),
+        })
+      )
+    : type === 'Html' || type === 'LongTextArea'
+    ? Number(
+        await input({
+          message: `Length (max ${MAX_LONG_TEXT_LENGTH})`,
+          default: MAX_LONG_TEXT_LENGTH.toString(),
+          validate: integerValidation({ min: 1, max: MAX_LONG_TEXT_LENGTH }),
+        })
+      )
+    : undefined;
+
+// checkbox type requires a default value
+const defaultValuePrompt = async (type: string): Promise<string | undefined> =>
+  type === 'Checkbox'
+    ? select({
+        message: messages.getMessage('prompts.defaultValue'),
+        choices: [{ value: 'false' }, { value: 'true' }],
+        default: 'false',
+      })
+    : undefined;
+
+const startingNumberPrompt = async (type: string): Promise<number | undefined> =>
+  type === 'AutoNumber'
+    ? Number(
+        await input({
+          message: messages.getMessage('prompts.startingNumber'),
+          default: '0',
+          validate: integerValidation({ min: 0, max: Number.MAX_SAFE_INTEGER }),
+        })
+      )
+    : undefined;
+
+const securityPrompt = async (): Promise<string> =>
+  select({
+    message: messages.getMessage('prompts.securityClassification'),
+    choices: ['Public', 'Internal', 'Confidential', 'Restricted', 'Mission Critical'].map(toSelectOption),
+    default: 'Internal',
+  });
+
+const externalIdPrompt = async (type: string, object: string): Promise<boolean | undefined> =>
+  (type === 'Number' || type === 'Text') && !object.endsWith('__e')
+    ? confirm({
+        message: messages.getMessage('prompts.externalId'),
+        default: false,
+      })
+    : undefined;
+
+const uniquePrompt = async (type: string): Promise<boolean | undefined> =>
+  type === 'Number' || type === 'Text'
+    ? confirm({
+        message: 'Unique',
+        default: false,
+      })
+    : undefined;
+
+const requiredPrompt = async (type: string): Promise<boolean | undefined> =>
+  ['Checkbox', 'MasterDetail', 'Lookup', 'LongTextArea'].includes(type)
+    ? undefined
+    : confirm({
+        message: messages.getMessage('prompts.required'),
+        default: false,
+      });
+
+const inlineHelpPrompt = async (object: string): Promise<string | undefined> =>
+  object.includes('__e')
+    ? undefined
+    : input({
+        message: messages.getMessage('prompts.inlineHelpText'),
+      });
+
+const precisionPrompt = async (type: string, scale: number | undefined): Promise<number | undefined> =>
+  type === 'Number' || type === 'Currency'
+    ? Number(
+        await input({
+          message: messages.getMessage('prompts.precision'),
+          validate: integerValidation({ min: 1, max: 18 - (scale ?? 0) }),
+          default: (18 - (scale ?? 0)).toString(),
+        })
+      )
+    : undefined;
+
+const scalePrompt = async (type: string): Promise<number | undefined> =>
+  type === 'Number' || type === 'Currency' || type === 'Location'
+    ? Number(
+        await input({
+          message: messages.getMessage('prompts.scale'),
+          validate: integerValidation({ min: 0, max: 18 }),
+          default: '0',
+        })
+      )
+    : undefined;
+
+const visibleLinePrompt = async (type: string): Promise<number | undefined> =>
+  type === 'Html' || type === 'LongTextArea'
+    ? Number(
+        await input({
+          message: 'Visible Lines',
+          validate: integerValidation({ min: 1, max: 1000 }),
+          default: '5',
+        })
+      )
+    : undefined;

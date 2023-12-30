@@ -4,15 +4,17 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import path from 'node:path'
-
+import path from 'node:path';
+import input from '@inquirer/input';
+import confirm from '@inquirer/confirm';
+import select from '@inquirer/select';
 import type { CustomField } from 'jsforce/api/metadata';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
-import { Prompter } from '@salesforce/sf-plugins-core';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
-import { objectPrompt, makeNameApiCompatible } from './prompts.js';
+import { objectPrompt } from './object.js';
+import { makeNameApiCompatible } from './functions.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.relationship');
 
 type RelationshipFieldProperties = Pick<
@@ -35,65 +37,53 @@ export const relationshipFieldPrompts = async ({
   packageDirs: NamedPackageDir[];
   childObjectFolderPath: string;
 }): Promise<RelationshipFieldProperties> => {
-  const prompter = new Prompter();
   const childObjectXml = await getObjectXmlByFolderAsJson(childObjectFolderPath);
-  const response = await prompter.prompt<RelationshipFieldProperties>([
-    // prompt the user to select from objects in local source
-    await objectPrompt(packageDirs, 'referenceTo', messages.getMessage('objectPrompt')),
-    {
-      type: 'input',
-      name: 'relationshipLabel',
-      message: 'Relationship label',
-      default: childObjectXml.pluralLabel,
-    },
-    {
-      type: 'input',
-      name: 'relationshipName',
-      message: 'Relationship name',
-      default: (answers: RelationshipFieldProperties) =>
-        answers.relationshipLabel ? makeNameApiCompatible(answers.relationshipLabel) : undefined,
-    },
-    // lookup-only
-    {
-      type: 'list',
-      name: 'deleteConstraint',
-      message: messages.getMessage('lookupDeleteConstraint'),
-      when: type === 'Lookup',
-      default: 'SetNull',
-      choices: [
-        {
-          value: 'SetNull',
-          name: messages.getMessage('lookupDeleteConstraint.setNull'),
-        },
-        {
-          value: 'Restrict',
-          name: messages.getMessage('lookupDeleteConstraint.restrict'),
-        },
-        {
-          value: 'Cascade',
-          name: messages.getMessage('lookupDeleteConstraint.cascade'),
-        },
-      ],
-    },
-    // master-detail only
-    {
-      type: 'confirm',
-      name: 'reparentableMasterDetail',
-      message: messages.getMessage('reparentableMasterDetail'),
-      when: type === 'MasterDetail',
-      default: false,
-    },
-    {
-      type: 'confirm',
-      name: 'writeRequiresMasterRead',
-      message: messages.getMessage('writeRequiresMasterRead'),
-      when: type === 'MasterDetail',
-      default: false,
-    },
-  ]);
-
+  const relationshipLabel = await input({
+    message: 'Relationship label',
+    ...(childObjectXml.pluralLabel ? { default: childObjectXml.pluralLabel } : {}),
+  });
+  const relationshipName = await input({
+    message: 'Relationship name',
+    default: makeNameApiCompatible(relationshipLabel),
+  });
   return {
-    ...response,
-    referenceTo: response.referenceTo?.split(path.sep).pop(),
+    referenceTo: (await objectPrompt(packageDirs, messages.getMessage('objectPrompt'))).split(path.sep).pop(),
+    relationshipLabel,
+    relationshipName,
+    ...(type === 'Lookup' ? { deleteConstraint: await deleteConstraintPrompt() } : {}),
+    ...(type === 'MasterDetail' ? await masterDetailPrompts() : {}),
   };
 };
+
+const masterDetailPrompts = async (): Promise<
+  Pick<RelationshipFieldProperties, 'reparentableMasterDetail' | 'writeRequiresMasterRead'>
+> => ({
+  reparentableMasterDetail: await confirm({
+    message: messages.getMessage('reparentableMasterDetail'),
+    default: false,
+  }),
+  writeRequiresMasterRead: await confirm({
+    message: messages.getMessage('writeRequiresMasterRead'),
+    default: false,
+  }),
+});
+
+const deleteConstraintPrompt = async (): Promise<string> =>
+  select({
+    message: messages.getMessage('lookupDeleteConstraint'),
+    default: 'setNull',
+    choices: [
+      {
+        value: 'SetNull',
+        name: messages.getMessage('lookupDeleteConstraint.setNull'),
+      },
+      {
+        value: 'Restrict',
+        name: messages.getMessage('lookupDeleteConstraint.restrict'),
+      },
+      {
+        value: 'Cascade',
+        name: messages.getMessage('lookupDeleteConstraint.cascade'),
+      },
+    ],
+  });
