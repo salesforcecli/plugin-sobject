@@ -20,20 +20,7 @@
       "additionalProperties": false,
       "properties": {
         "nameField": {
-          "type": "object",
-          "properties": {
-            "label": {
-              "type": ["string", "null"]
-            },
-            "type": {
-              "type": ["string", "null"]
-            },
-            "displayFormat": {
-              "type": ["string", "null"]
-            }
-          },
-          "additionalProperties": false,
-          "description": "Used by classical CustomObject"
+          "$ref": "#/definitions/NameField"
         },
         "label": {
           "type": ["string", "null"]
@@ -80,6 +67,22 @@
       },
       "required": ["nameField"],
       "description": "There are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't. Many apply to the various sub-species (mdt, external, events)\n\nThis type represents a \"classical\" CustomObject subset that can deploy."
+    },
+    "NameField": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": ["string", "null"]
+        },
+        "type": {
+          "type": ["string", "null"]
+        },
+        "displayFormat": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": false,
+      "description": "Used by classical CustomObject"
     }
   }
 }

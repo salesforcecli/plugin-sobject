@@ -44,6 +44,21 @@
             },
             "length": {
               "type": ["number", "null"]
+            },
+            "unique": {
+              "type": ["boolean", "null"]
+            },
+            "externalId": {
+              "type": ["boolean", "null"]
+            },
+            "startingNumber": {
+              "type": ["number", "null"]
+            },
+            "defaultValue": {
+              "type": ["string", "null"]
+            },
+            "securityClassification": {
+              "type": ["string", "null"]
             }
           },
           "required": ["type"]
