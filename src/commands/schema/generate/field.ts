@@ -24,12 +24,13 @@ import { objectPrompt } from '../../../shared/prompts/object.js';
 import { relationshipFieldPrompts } from '../../../shared/prompts/relationshipField.js';
 import { isObjectsFolder, labelValidation } from '../../../shared/flags.js';
 import { toSelectOption } from '../../../shared/prompts/functions.js';
+import { lengthPrompt } from '../../../shared/prompts/fields/text.js';
+import { visibleLinePrompt } from '../../../shared/prompts/fields/text.js';
+import { precisionPrompt } from '../../../shared/prompts/fields/number.js';
+import { scalePrompt } from '../../../shared/prompts/fields/number.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
-
-const MAX_LONG_TEXT_LENGTH = 131072;
-const MAX_TEXT_LENGTH = 255;
+export const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.field');
 
 const supportedFieldTypesCustomObject = [
   'AutoNumber',
@@ -195,30 +196,6 @@ const getSupportedFieldTypes = (
   return supportedFieldTypesCustomObject;
 };
 
-/**
- * Prompt for the length property based on the field type
- *
- * @param type the field type
- */
-const lengthPrompt = async (type: string): Promise<number | undefined> =>
-  type === 'Text'
-    ? Number(
-        await input({
-          message: `Length (max ${MAX_TEXT_LENGTH})`,
-          default: MAX_TEXT_LENGTH.toString(),
-          validate: integerValidation({ min: 1, max: MAX_TEXT_LENGTH }),
-        })
-      )
-    : type === 'Html' || type === 'LongTextArea'
-    ? Number(
-        await input({
-          message: `Length (max ${MAX_LONG_TEXT_LENGTH})`,
-          default: MAX_LONG_TEXT_LENGTH.toString(),
-          validate: integerValidation({ min: 1, max: MAX_LONG_TEXT_LENGTH }),
-        })
-      )
-    : undefined;
-
 // checkbox type requires a default value
 const defaultValuePrompt = async (type: string): Promise<string | undefined> =>
   type === 'Checkbox'
@@ -277,36 +254,3 @@ const inlineHelpPrompt = async (object: string): Promise<string | undefined> =>
     : input({
         message: messages.getMessage('prompts.inlineHelpText'),
       });
-
-const precisionPrompt = async (type: string, scale: number | undefined): Promise<number | undefined> =>
-  type === 'Number' || type === 'Currency'
-    ? Number(
-        await input({
-          message: messages.getMessage('prompts.precision'),
-          validate: integerValidation({ min: 1, max: 18 - (scale ?? 0) }),
-          default: (18 - (scale ?? 0)).toString(),
-        })
-      )
-    : undefined;
-
-const scalePrompt = async (type: string): Promise<number | undefined> =>
-  type === 'Number' || type === 'Currency' || type === 'Location'
-    ? Number(
-        await input({
-          message: messages.getMessage('prompts.scale'),
-          validate: integerValidation({ min: 0, max: 18 }),
-          default: '0',
-        })
-      )
-    : undefined;
-
-const visibleLinePrompt = async (type: string): Promise<number | undefined> =>
-  type === 'Html' || type === 'LongTextArea'
-    ? Number(
-        await input({
-          message: 'Visible Lines',
-          validate: integerValidation({ min: 1, max: 1000 }),
-          default: '5',
-        })
-      )
-    : undefined;

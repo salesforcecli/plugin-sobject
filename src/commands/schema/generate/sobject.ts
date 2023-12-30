@@ -75,25 +75,17 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
     const { flags } = await this.parse(ObjectGenerate);
 
     const directory = await directoryPrompt(this.project.getPackageDirectories());
-    const pluralLabel = await pluralPrompt(flags.label);
-    const fullName = await apiNamePrompt(flags.label, 'CustomObject');
-    const description = await descriptionPrompt();
-    const nameField = await nameFieldPrompts(flags.label);
-
-    const defaultFeaturesSelected = flags['use-default-features'] ? defaultFeatures : await promptForDefaultFeatures();
-
-    const sharingModel = await select({
-      message: messages.getMessage('prompts.sharingModel'),
-      choices: [{ value: 'ReadWrite' }, { value: 'Read' }, { value: 'Private' }],
-    });
 
     const resultsObject = {
-      pluralLabel,
-      fullName,
-      description,
-      nameField,
-      sharingModel,
-      ...defaultFeaturesSelected,
+      pluralLabel: await pluralPrompt(flags.label),
+      fullName: await apiNamePrompt(flags.label, 'CustomObject'),
+      description: await descriptionPrompt(),
+      nameField: await nameFieldPrompts(flags.label),
+      ...(flags['use-default-features'] ? defaultFeatures : await promptForDefaultFeatures()),
+      sharingModel: await select({
+        message: messages.getMessage('prompts.sharingModel'),
+        choices: [{ value: 'ReadWrite' }, { value: 'Read' }, { value: 'Private' }],
+      }),
       label: flags.label,
       deploymentStatus: 'Deployed',
     } satisfies SaveableCustomObject;

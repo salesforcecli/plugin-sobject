@@ -47,19 +47,15 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
     const { flags } = await this.parse(PlatformEventGenerate);
 
     const directory = await directoryPrompt(this.project.getPackageDirectories());
-    const pluralLabel = await pluralPrompt(flags.label);
-    const fullName = await apiNamePrompt(flags.label, 'PlatformEvent');
-    const description = await descriptionPrompt();
-    const publishBehavior = await select({
-      message: messages.getMessage('prompts.publishBehavior'),
-      choices: ['PublishImmediately', 'PublishAfterCommit'].map(toSelectOption),
-    });
 
     const objectToWrite: PlatformEventGenerateResult['object'] = {
-      publishBehavior,
-      fullName,
-      pluralLabel,
-      description,
+      fullName: await apiNamePrompt(flags.label, 'PlatformEvent'),
+      pluralLabel: await pluralPrompt(flags.label),
+      description: await descriptionPrompt(),
+      publishBehavior: await select({
+        message: messages.getMessage('prompts.publishBehavior'),
+        choices: ['PublishImmediately', 'PublishAfterCommit'].map(toSelectOption),
+      }),
       deploymentStatus: 'Deployed',
       eventType: 'HighVolume',
       label: flags.label,
