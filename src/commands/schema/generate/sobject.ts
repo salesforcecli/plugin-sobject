@@ -74,7 +74,7 @@ export default class ObjectGenerate extends SfCommand<CustomObjectGenerateResult
   public async run(): Promise<CustomObjectGenerateResult> {
     const { flags } = await this.parse(ObjectGenerate);
 
-    const directory = await directoryPrompt(this.project.getPackageDirectories());
+    const directory = await directoryPrompt(this.project!.getPackageDirectories());
 
     const resultsObject = {
       pluralLabel: await pluralPrompt(flags.label),

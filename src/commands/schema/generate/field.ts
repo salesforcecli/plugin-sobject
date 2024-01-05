@@ -112,7 +112,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
 
   public async run(): Promise<FieldGenerateResult> {
     const { flags } = await this.parse(FieldGenerate);
-    const object = flags.object ?? (await objectPrompt(this.project.getPackageDirectories()));
+    const object = flags.object ?? (await objectPrompt(this.project!.getPackageDirectories()));
     const fullName = await apiNamePrompt(flags.label, 'CustomField');
     const type = (await select({
       message: messages.getMessage('prompts.type'),
@@ -160,7 +160,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
         ...(type === 'MasterDetail' || type === 'Lookup'
           ? await relationshipFieldPrompts({
               type,
-              packageDirs: this.project.getPackageDirectories(),
+              packageDirs: this.project!.getPackageDirectories(),
               childObjectFolderPath: object,
             })
           : {}),

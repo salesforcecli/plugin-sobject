@@ -46,7 +46,7 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
   public async run(): Promise<PlatformEventGenerateResult> {
     const { flags } = await this.parse(PlatformEventGenerate);
 
-    const directory = await directoryPrompt(this.project.getPackageDirectories());
+    const directory = await directoryPrompt(this.project!.getPackageDirectories());
 
     const objectToWrite: PlatformEventGenerateResult['object'] = {
       fullName: await apiNamePrompt(flags.label, 'PlatformEvent'),
