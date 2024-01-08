@@ -4,18 +4,21 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-
-
-
+import { dirname } from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
+import select from '@inquirer/select';
 import type { AnyJson } from '@salesforce/ts-types';
-import { apiNamePrompt, descriptionPrompt, directoryPrompt, pluralPrompt } from '../../../shared/prompts/prompts.js';
+import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
+import { pluralPrompt } from '../../../shared/prompts/plural.js';
+import { directoryPrompt } from '../../../shared/prompts/directory.js';
+import { descriptionPrompt } from '../../../shared/prompts/description.js';
 import { writeObjectFile } from '../../../shared/fs.js';
 import { SaveablePlatformEvent } from '../../../shared/types.js';
 import { labelValidation } from '../../../shared/flags.js';
+import { toSelectOption } from '../../../shared/prompts/functions.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'generate.event');
 
 export type PlatformEventGenerateResult = {
@@ -36,29 +39,23 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
       char: 'l',
       summary: messages.getMessage('flags.label.summary'),
       required: true,
-      parse: async (label) => labelValidation(label),
+      parse: labelValidation,
     }),
   };
 
   public async run(): Promise<PlatformEventGenerateResult> {
     const { flags } = await this.parse(PlatformEventGenerate);
 
-    const responses = await this.prompt<SaveablePlatformEvent & { directory: string }>([
-      await directoryPrompt(this.project.getPackageDirectories()),
-      pluralPrompt(flags.label),
-      apiNamePrompt(flags.label, 'PlatformEvent'),
-      descriptionPrompt,
-      {
-        type: 'list',
-        message: messages.getMessage('prompts.publishBehavior'),
-        name: 'publishBehavior',
-        choices: ['PublishImmediately', 'PublishAfterCommit'],
-      },
-    ]);
-    const { directory, ...platformEvent } = responses;
+    const directory = await directoryPrompt(this.project!.getPackageDirectories());
 
     const objectToWrite: PlatformEventGenerateResult['object'] = {
-      ...platformEvent,
+      fullName: await apiNamePrompt(flags.label, 'PlatformEvent'),
+      pluralLabel: await pluralPrompt(flags.label),
+      description: await descriptionPrompt(),
+      publishBehavior: await select({
+        message: messages.getMessage('prompts.publishBehavior'),
+        choices: ['PublishImmediately', 'PublishAfterCommit'].map(toSelectOption),
+      }),
       deploymentStatus: 'Deployed',
       eventType: 'HighVolume',
       label: flags.label,
@@ -66,6 +63,8 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
 
     this.styledJSON(objectToWrite as AnyJson);
     const writePath = await writeObjectFile(directory, objectToWrite);
+    this.info(messages.getMessage('success.field', [dirname(writePath)]));
+
     return { object: objectToWrite, path: writePath };
   }
 }

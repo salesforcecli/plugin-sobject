@@ -8,11 +8,11 @@ Plural label:
 
 # apiName
 
-API name (custom objects and fields must end in "__c" and platform events in "__e"):
+API name (must end in %s)
 
 # description
 
-Description (great developers write great descriptions):  
+Description (great developers write great descriptions):
 
 # error.noDescription
 
@@ -36,7 +36,7 @@ Which object is this new field for?
 
 # picklist.first
 
-Enter the first picklist value, which will also be the default: 
+Enter the first picklist value, which will also be the default:
 
 # picklist.additional
 

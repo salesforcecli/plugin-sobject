@@ -5,29 +5,28 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-
 import { expect } from 'chai';
 import { Messages } from '@salesforce/core';
-import { integerValidation, makeNameApiCompatible } from '../../src/shared/prompts/prompts.js';
+import { integerValidation, makeNameApiCompatible } from '../../src/shared/prompts/functions.js';
 
-Messages.importMessagesDirectoryFromMetaUrl(import.meta.url)
+Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.shared');
 
 describe('integer validation for prompts', () => {
   it('fail max gt', () => {
-    expect(integerValidation(11, 1, 10)).to.equal(messages.getMessage('numberValidationMax', [11, 10]));
+    expect(integerValidation({ min: 1, max: 10 })('11')).to.equal(messages.getMessage('numberValidationMax', [11, 10]));
   });
   it('fail min', () => {
-    expect(integerValidation(0, 1, 10)).to.equal(messages.getMessage('numberValidationMin', [0, 1]));
+    expect(integerValidation({ min: 1, max: 10 })('0')).to.equal(messages.getMessage('numberValidationMin', [0, 1]));
   });
   it('pass = min', () => {
-    expect(integerValidation(1, 1, 10)).to.equal(true);
+    expect(integerValidation({ min: 1, max: 10 })('1')).to.equal(true);
   });
   it('pass = max', () => {
-    expect(integerValidation(10, 1, 10)).to.equal(true);
+    expect(integerValidation({ min: 1, max: 10 })('10')).to.equal(true);
   });
   it('pass inside range', () => {
-    expect(integerValidation(5, 1, 10)).to.equal(true);
+    expect(integerValidation({ min: 1, max: 10 })('5')).to.equal(true);
   });
 });
 

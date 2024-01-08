@@ -7,15 +7,8 @@
 
 import type { CustomObject, CustomField } from 'jsforce/api/metadata';
 
-/** Used to capture the types for NameField in the inquirer prompts */
-export type NameFieldResponse = {
-  nameFieldType: 'Text' | 'AutoNumber';
-  nameFieldLabel: 'string';
-  autoNumberFormat?: string;
-};
-
 /** Used by classical CustomObject */
-type NameField = Pick<CustomField, 'label' | 'type' | 'displayFormat'>;
+export type NameField = Pick<CustomField, 'label' | 'type' | 'displayFormat'>;
 
 /**
  * There are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't.
