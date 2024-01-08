@@ -15,6 +15,10 @@ export const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'pro
 export const apiNamePrompt = async (label: string, objectType: ObjectType): Promise<string> =>
   input({
     message: messages.getMessage('apiName', [objectType === 'PlatformEvent' ? '__e' : '__c']),
+    validate: (i) =>
+      i.endsWith(getSuffix(objectType))
+        ? true
+        : messages.getMessage('apiName', [objectType === 'PlatformEvent' ? '__e' : '__c']),
     default: `${makeNameApiCompatible(label)}${getSuffix(objectType)}`,
   });
 
