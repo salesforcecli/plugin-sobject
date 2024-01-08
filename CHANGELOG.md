@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/salesforcecli/plugin-sobject/compare/1.0.9...1.1.0) (2024-01-08)
+
+### Bug Fixes
+
+- missing schema props ([cb2ec66](https://github.com/salesforcecli/plugin-sobject/commit/cb2ec6682c610567475e0377d6770cf8ad8be176))
+
+### Features
+
+- use new inquirer ([c2f279f](https://github.com/salesforcecli/plugin-sobject/commit/c2f279ff50bec75ab1fc303ed95526df50a67294))
+
 ## [1.0.9](https://github.com/salesforcecli/plugin-sobject/compare/1.0.8...1.0.9) (2024-01-07)
 
 ### Bug Fixes
