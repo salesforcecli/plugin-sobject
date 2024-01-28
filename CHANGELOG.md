@@ -1,3 +1,9 @@
+## [1.1.4](https://github.com/salesforcecli/plugin-sobject/compare/1.1.3...1.1.4) (2024-01-28)
+
+### Bug Fixes
+
+- **deps:** bump @inquirer/confirm from 2.0.15 to 2.0.17 ([2c6044d](https://github.com/salesforcecli/plugin-sobject/commit/2c6044d1c98673b28258638fd136a9b179d84738))
+
 ## [1.1.3](https://github.com/salesforcecli/plugin-sobject/compare/1.1.2...1.1.3) (2024-01-21)
 
 ### Bug Fixes
