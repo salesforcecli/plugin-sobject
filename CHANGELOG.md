@@ -1,3 +1,9 @@
+## [1.1.13](https://github.com/salesforcecli/plugin-sobject/compare/1.1.12...1.1.13) (2024-02-21)
+
+### Bug Fixes
+
+- **deps:** bump ip from 2.0.0 to 2.0.1 ([d94150b](https://github.com/salesforcecli/plugin-sobject/commit/d94150bc2412bc1f1afdc4c7383e5074d2fa512f))
+
 ## [1.1.12](https://github.com/salesforcecli/plugin-sobject/compare/1.1.11...1.1.12) (2024-02-18)
 
 ### Bug Fixes
