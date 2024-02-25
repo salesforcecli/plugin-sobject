@@ -1,3 +1,9 @@
+## [1.1.15](https://github.com/salesforcecli/plugin-sobject/compare/1.1.14...1.1.15) (2024-02-25)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 3.19.2 to 3.19.6 ([38bf42d](https://github.com/salesforcecli/plugin-sobject/commit/38bf42d54e3bac0fdb1ccc294a6eb5ed7e1c39fa))
+
 ## [1.1.14](https://github.com/salesforcecli/plugin-sobject/compare/1.1.13...1.1.14) (2024-02-25)
 
 ### Bug Fixes
