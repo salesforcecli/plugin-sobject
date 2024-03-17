@@ -1,3 +1,9 @@
+## [1.1.19](https://github.com/salesforcecli/plugin-sobject/compare/1.1.18...1.1.19) (2024-03-17)
+
+### Bug Fixes
+
+- **deps:** bump fast-xml-parser from 4.3.5 to 4.3.6 ([b4786dd](https://github.com/salesforcecli/plugin-sobject/commit/b4786ddf3ef9a9105181643f158049a7719bf61e))
+
 ## [1.1.18](https://github.com/salesforcecli/plugin-sobject/compare/1.1.17...1.1.18) (2024-03-10)
 
 ### Bug Fixes
