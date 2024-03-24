@@ -7,7 +7,7 @@
 import input from '@inquirer/input';
 import { integerValidation } from '../functions.js';
 
-const MAX_LONG_TEXT_LENGTH = 131072;
+const MAX_LONG_TEXT_LENGTH = 131_072;
 const MAX_TEXT_LENGTH = 255;
 
 export const lengthPrompt = async (type: string): Promise<number | undefined> =>
