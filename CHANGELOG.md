@@ -1,3 +1,9 @@
+# [1.2.0](https://github.com/salesforcecli/plugin-sobject/compare/1.1.21...1.2.0) (2024-03-25)
+
+### Features
+
+- bump sf-plugins-core ([a508e83](https://github.com/salesforcecli/plugin-sobject/commit/a508e83a9e752d54468b1e1156e27dcd80247c69))
+
 ## [1.1.21](https://github.com/salesforcecli/plugin-sobject/compare/1.1.20...1.1.21) (2024-03-24)
 
 ### Bug Fixes
