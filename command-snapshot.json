@@ -1,34 +1,34 @@
 [
   {
-    "command": "schema:generate:field",
-    "plugin": "@salesforce/plugin-sobject",
-    "flags": ["label", "object"],
     "alias": ["generate:metadata:field"],
+    "command": "schema:generate:field",
+    "flagAliases": [],
     "flagChars": ["l", "o"],
-    "flagAliases": []
+    "flags": ["flags-dir", "label", "object"],
+    "plugin": "@salesforce/plugin-sobject"
   },
   {
-    "command": "schema:generate:platformevent",
-    "plugin": "@salesforce/plugin-sobject",
-    "flags": ["label"],
     "alias": ["generate:metadata:platformevent"],
+    "command": "schema:generate:platformevent",
+    "flagAliases": [],
     "flagChars": ["l"],
-    "flagAliases": []
+    "flags": ["flags-dir", "label"],
+    "plugin": "@salesforce/plugin-sobject"
   },
   {
-    "command": "schema:generate:sobject",
-    "plugin": "@salesforce/plugin-sobject",
-    "flags": ["label", "use-default-features"],
     "alias": ["generate:metadata:sobject"],
+    "command": "schema:generate:sobject",
+    "flagAliases": [],
     "flagChars": ["f", "l"],
-    "flagAliases": []
+    "flags": ["flags-dir", "label", "use-default-features"],
+    "plugin": "@salesforce/plugin-sobject"
   },
   {
-    "command": "schema:generate:tab",
-    "plugin": "@salesforce/plugin-sobject",
-    "flags": ["directory", "icon", "json", "object"],
     "alias": ["generate:metadata:tab"],
+    "command": "schema:generate:tab",
+    "flagAliases": [],
     "flagChars": ["d", "i", "o"],
-    "flagAliases": []
+    "flags": ["directory", "flags-dir", "icon", "json", "object"],
+    "plugin": "@salesforce/plugin-sobject"
   }
 ]
