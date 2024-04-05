@@ -21,7 +21,7 @@ const standardOptions: IOptions = {
   },
 };
 
-interface WriteJSONasXMLInputs {
+type WriteJSONasXMLInputs = {
   json: CustomField | CustomObject | JsonMap;
   type: string;
   options?: IOptions;
