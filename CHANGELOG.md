@@ -1,3 +1,9 @@
+# [1.3.0](https://github.com/salesforcecli/plugin-sobject/compare/1.2.2...1.3.0) (2024-04-10)
+
+### Features
+
+- core7 jsforce-node ([5a2932d](https://github.com/salesforcecli/plugin-sobject/commit/5a2932d82d9bec36e5aaa7cfb8d1b16d18916394))
+
 ## [1.2.2](https://github.com/salesforcecli/plugin-sobject/compare/1.2.1...1.2.2) (2024-04-08)
 
 ### Bug Fixes
