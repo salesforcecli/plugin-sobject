@@ -8,7 +8,7 @@ import path from 'node:path';
 import input from '@inquirer/input';
 import confirm from '@inquirer/confirm';
 import select from '@inquirer/select';
-import type { CustomField } from 'jsforce/api/metadata';
+import type { CustomField } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
 import { objectPrompt } from './object.js';

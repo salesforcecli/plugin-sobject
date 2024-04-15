@@ -7,7 +7,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import fg from 'fast-glob';
-import type { CustomObject } from 'jsforce/api/metadata';
+import type { CustomObject } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import { convertJsonToXml, parseXml } from './convert.js';
 import { SaveableCustomObject, SaveablePlatformEvent } from './types.js';
 

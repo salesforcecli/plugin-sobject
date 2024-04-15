@@ -14,7 +14,7 @@ import confirm from '@inquirer/confirm';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import type { AnyJson } from '@salesforce/ts-types';
-import type { CustomField } from 'jsforce/api/metadata';
+import type { CustomField } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import { convertJsonToXml } from '../../../shared/convert.js';
 import { picklistPrompts } from '../../../shared/prompts/picklist.js';
 import { integerValidation } from '../../../shared/prompts/functions.js';

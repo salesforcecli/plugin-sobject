@@ -4,7 +4,7 @@
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
-import type { ValueSet, CustomValue } from 'jsforce/api/metadata';
+import type { ValueSet, CustomValue } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import input from '@inquirer/input';
 import { Messages } from '@salesforce/core';
 
