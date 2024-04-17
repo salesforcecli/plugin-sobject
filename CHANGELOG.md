@@ -1,3 +1,9 @@
+## [1.3.4](https://github.com/salesforcecli/plugin-sobject/compare/1.3.3...1.3.4) (2024-04-17)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/plugin-command-reference from 3.0.75 to 3.0.76 ([#591](https://github.com/salesforcecli/plugin-sobject/issues/591)) ([e607467](https://github.com/salesforcecli/plugin-sobject/commit/e607467a0de765830bbf196e46be483d63c428f3))
+
 ## [1.3.3](https://github.com/salesforcecli/plugin-sobject/compare/1.3.2...1.3.3) (2024-04-14)
 
 ### Bug Fixes
