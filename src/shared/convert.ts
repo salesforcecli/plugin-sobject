@@ -7,7 +7,7 @@
 import * as jsToXml from 'js2xmlparser';
 import { XMLParser } from 'fast-xml-parser';
 import type { IOptions } from 'js2xmlparser/lib/options.js';
-import type { CustomObject, CustomField } from 'jsforce/api/metadata';
+import type { CustomObject, CustomField } from '@jsforce/jsforce-node/lib/api/metadata.js';
 import type { JsonMap } from '@salesforce/ts-types';
 
 const standardOptions: IOptions = {
@@ -25,7 +25,7 @@ type WriteJSONasXMLInputs = {
   json: CustomField | CustomObject | JsonMap;
   type: string;
   options?: IOptions;
-}
+};
 
 const convertJsonToXml = ({ json, type, options = standardOptions }: WriteJSONasXMLInputs): string =>
   jsToXml.parse(type, fixExistingDollarSign(json), options);
