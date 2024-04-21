@@ -1,3 +1,9 @@
+## [1.3.6](https://github.com/salesforcecli/plugin-sobject/compare/1.3.5...1.3.6) (2024-04-21)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/sf-plugins-core from 9.0.1 to 9.0.5 ([c4b8f40](https://github.com/salesforcecli/plugin-sobject/commit/c4b8f403d63666d405227cb3fe6d63e4233a903a))
+
 ## [1.3.5](https://github.com/salesforcecli/plugin-sobject/compare/1.3.4...1.3.5) (2024-04-21)
 
 ### Bug Fixes
