@@ -9,8 +9,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
-import { Messages } from '@salesforce/core';
-import type { CustomTab } from '@jsforce/jsforce-node/lib/api/metadata.js';
+import { Messages } from '@salesforce/core/messages';
+import type { CustomTab } from '@salesforce/types/metadata';
 import { isTabsFolder } from '../../../shared/flags.js';
 import { convertJsonToXml } from '../../../shared/convert.js';
 

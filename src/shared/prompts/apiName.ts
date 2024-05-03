@@ -6,7 +6,7 @@
  */
 
 import input from '@inquirer/input';
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import { makeNameApiCompatible } from './functions.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);

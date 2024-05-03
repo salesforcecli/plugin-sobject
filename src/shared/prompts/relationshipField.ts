@@ -8,7 +8,7 @@ import path from 'node:path';
 import input from '@inquirer/input';
 import confirm from '@inquirer/confirm';
 import select from '@inquirer/select';
-import type { CustomField } from '@jsforce/jsforce-node/lib/api/metadata.js';
+import type { CustomField, DeleteConstraint } from '@salesforce/types/metadata';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
 import { objectPrompt } from './object.js';
@@ -68,10 +68,10 @@ const masterDetailPrompts = async (): Promise<
   }),
 });
 
-const deleteConstraintPrompt = async (): Promise<string> =>
+const deleteConstraintPrompt = async (): Promise<DeleteConstraint> =>
   select({
     message: messages.getMessage('lookupDeleteConstraint'),
-    default: 'setNull',
+    default: 'SetNull',
     choices: [
       {
         value: 'SetNull',

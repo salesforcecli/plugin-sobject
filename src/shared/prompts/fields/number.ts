@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import input from '@inquirer/input';
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import { integerValidation } from '../functions.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);

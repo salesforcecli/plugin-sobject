@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 import { expect } from 'chai';
-import type { CustomObject } from '@jsforce/jsforce-node/lib/api/metadata.js';
+import type { CustomObject } from '@salesforce/types/metadata';
 import { parseXml } from '../../src/shared/convert.js';
 
 // tests configurations of the xml parser

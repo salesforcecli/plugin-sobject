@@ -14,7 +14,7 @@ import confirm from '@inquirer/confirm';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
 import type { AnyJson } from '@salesforce/ts-types';
-import type { CustomField } from '@jsforce/jsforce-node/lib/api/metadata.js';
+import type { CustomField } from '@salesforce/types/metadata';
 import { convertJsonToXml } from '../../../shared/convert.js';
 import { picklistPrompts } from '../../../shared/prompts/picklist.js';
 import { integerValidation } from '../../../shared/prompts/functions.js';
@@ -73,9 +73,8 @@ type SaveableCustomField = Pick<
   | 'startingNumber'
   | 'defaultValue'
   | 'securityClassification'
+  | 'displayLocationInDecimal'
 > & {
-  // TODO: get displayLocationInDecimal into jsforce2 typings
-  displayLocationInDecimal?: boolean;
   type: (typeof supportedFieldTypesCustomObject)[number];
 };
 
