@@ -6,7 +6,7 @@
  */
 
 import { expect } from 'chai';
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import { integerValidation, makeNameApiCompatible } from '../../src/shared/prompts/functions.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);

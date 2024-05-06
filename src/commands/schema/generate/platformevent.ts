@@ -6,7 +6,7 @@
  */
 import { dirname } from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import select from '@inquirer/select';
 import type { AnyJson } from '@salesforce/ts-types';
 import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
@@ -54,7 +54,7 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
       description: await descriptionPrompt(),
       publishBehavior: await select({
         message: messages.getMessage('prompts.publishBehavior'),
-        choices: ['PublishImmediately', 'PublishAfterCommit'].map(toSelectOption),
+        choices: (['PublishImmediately', 'PublishAfterCommit'] as const).map(toSelectOption),
       }),
       deploymentStatus: 'Deployed',
       eventType: 'HighVolume',

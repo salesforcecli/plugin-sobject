@@ -5,10 +5,11 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import input from '@inquirer/input';
 import select from '@inquirer/select';
 
+import { FieldType } from '../../../node_modules/@salesforce/types/lib/metadata.js';
 import { NameField } from '../types.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
@@ -21,7 +22,7 @@ export const nameFieldPrompts = async (objectLabel: string): Promise<NameField> 
     default: `${objectLabel} Name`,
   });
 
-  const type = await select({
+  const type = await select<FieldType>({
     message: messages.getMessage('nameFieldPrompts.type'),
     default: 'Text',
     choices: [{ value: 'Text' }, { value: 'AutoNumber' }],

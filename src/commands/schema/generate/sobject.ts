@@ -8,7 +8,7 @@ import { dirname } from 'node:path';
 import select from '@inquirer/select';
 import confirm from '@inquirer/confirm';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
-import { Messages } from '@salesforce/core';
+import { Messages } from '@salesforce/core/messages';
 import { nameFieldPrompts } from '../../../shared/prompts/nameField.js';
 import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
 import { pluralPrompt } from '../../../shared/prompts/plural.js';

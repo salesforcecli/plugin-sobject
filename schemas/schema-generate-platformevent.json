@@ -19,29 +19,41 @@
       "type": "object",
       "properties": {
         "fullName": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "label": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "deploymentStatus": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/DeploymentStatus"
         },
         "description": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "pluralLabel": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "eventType": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/PlatformEventType"
         },
         "publishBehavior": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/PlatformEventPublishBehavior"
         }
       },
       "additionalProperties": false,
-      "description": "There are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't. Many apply to the various sub-species (mdt, external, events)\n\nThis type represents a PlatformEvent that can deploy."
+      "description": "This type represents a PlatformEvent that can deploy."
+    },
+    "DeploymentStatus": {
+      "type": "string",
+      "enum": ["InDevelopment", "Deployed"]
+    },
+    "PlatformEventType": {
+      "type": "string",
+      "enum": ["HighVolume", "StandardVolume", "ExternalEvent"]
+    },
+    "PlatformEventPublishBehavior": {
+      "type": "string",
+      "enum": ["PublishAfterCommit", "PublishImmediately"]
     }
   }
 }
