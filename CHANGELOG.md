@@ -1,3 +1,9 @@
+# [1.4.0](https://github.com/salesforcecli/plugin-sobject/compare/1.3.7...1.4.0) (2024-05-06)
+
+### Features
+
+- use new wsdl types ([#610](https://github.com/salesforcecli/plugin-sobject/issues/610)) ([8f5a61e](https://github.com/salesforcecli/plugin-sobject/commit/8f5a61e39fb061ca8b4c98c93d7c18200d50397e))
+
 ## [1.3.7](https://github.com/salesforcecli/plugin-sobject/compare/1.3.6...1.3.7) (2024-05-05)
 
 ### Bug Fixes
