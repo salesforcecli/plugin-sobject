@@ -9,56 +9,56 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "displayLocationInDecimal": {
-              "type": "boolean"
-            },
             "type": {
-              "type": ["string", "null"]
+              "$ref": "#/definitions/FieldType"
             },
             "label": {
-              "type": ["string", "null"]
+              "type": "string"
             },
             "description": {
-              "type": ["string", "null"]
+              "type": "string"
             },
             "trackHistory": {
-              "type": ["boolean", "null"]
+              "type": "boolean"
             },
             "inlineHelpText": {
-              "type": ["string", "null"]
+              "type": "string"
             },
             "required": {
-              "type": ["boolean", "null"]
+              "type": "boolean"
             },
             "fullName": {
-              "type": ["string", "null"]
+              "type": "string"
             },
             "scale": {
-              "type": ["number", "null"]
+              "type": "number"
             },
             "precision": {
-              "type": ["number", "null"]
+              "type": "number"
             },
             "visibleLines": {
-              "type": ["number", "null"]
+              "type": "number"
             },
             "length": {
-              "type": ["number", "null"]
+              "type": "number"
             },
             "unique": {
-              "type": ["boolean", "null"]
+              "type": "boolean"
             },
             "externalId": {
-              "type": ["boolean", "null"]
+              "type": "boolean"
             },
             "startingNumber": {
-              "type": ["number", "null"]
+              "type": "number"
             },
             "defaultValue": {
-              "type": ["string", "null"]
+              "type": "string"
             },
             "securityClassification": {
-              "type": ["string", "null"]
+              "type": "string"
+            },
+            "displayLocationInDecimal": {
+              "type": "boolean"
             }
           },
           "required": ["type"]
@@ -69,6 +69,41 @@
       },
       "required": ["field", "path"],
       "additionalProperties": false
+    },
+    "FieldType": {
+      "type": "string",
+      "enum": [
+        "AutoNumber",
+        "Lookup",
+        "MasterDetail",
+        "Checkbox",
+        "Currency",
+        "Date",
+        "DateTime",
+        "Email",
+        "Number",
+        "Percent",
+        "Phone",
+        "Picklist",
+        "MultiselectPicklist",
+        "Text",
+        "TextArea",
+        "LongTextArea",
+        "Html",
+        "Url",
+        "EncryptedText",
+        "Summary",
+        "Hierarchy",
+        "File",
+        "MetadataRelationship",
+        "Location",
+        "ExternalLookup",
+        "IndirectLookup",
+        "CustomDataType",
+        "Time",
+        "Address",
+        "Array"
+      ]
     }
   }
 }

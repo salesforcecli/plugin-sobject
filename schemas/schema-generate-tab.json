@@ -9,10 +9,10 @@
           "type": "object",
           "properties": {
             "customObject": {
-              "type": ["boolean", "null"]
+              "type": "boolean"
             },
             "motif": {
-              "type": ["string", "null"]
+              "type": "string"
             }
           },
           "additionalProperties": false

@@ -23,66 +23,119 @@
           "$ref": "#/definitions/NameField"
         },
         "label": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "deploymentStatus": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/DeploymentStatus"
         },
         "description": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "enableHistory": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableActivities": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableBulkApi": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableFeeds": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableReports": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableSearch": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableStreamingApi": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "enableSharing": {
-          "type": ["boolean", "null"]
+          "type": "boolean"
         },
         "pluralLabel": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "sharingModel": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/SharingModel"
         },
         "fullName": {
-          "type": ["string", "null"]
+          "type": "string"
         }
       },
       "required": ["nameField"],
-      "description": "There are a lot of properties that we don't, and some that jsforce thinks are mandatory that aren't. Many apply to the various sub-species (mdt, external, events)\n\nThis type represents a \"classical\" CustomObject subset that can deploy."
+      "description": "This type represents a \"classical\" CustomObject subset that can deploy."
     },
     "NameField": {
       "type": "object",
       "properties": {
         "label": {
-          "type": ["string", "null"]
+          "type": "string"
         },
         "type": {
-          "type": ["string", "null"]
+          "$ref": "#/definitions/FieldType"
         },
         "displayFormat": {
-          "type": ["string", "null"]
+          "type": "string"
         }
       },
       "additionalProperties": false,
       "description": "Used by classical CustomObject"
+    },
+    "FieldType": {
+      "type": "string",
+      "enum": [
+        "AutoNumber",
+        "Lookup",
+        "MasterDetail",
+        "Checkbox",
+        "Currency",
+        "Date",
+        "DateTime",
+        "Email",
+        "Number",
+        "Percent",
+        "Phone",
+        "Picklist",
+        "MultiselectPicklist",
+        "Text",
+        "TextArea",
+        "LongTextArea",
+        "Html",
+        "Url",
+        "EncryptedText",
+        "Summary",
+        "Hierarchy",
+        "File",
+        "MetadataRelationship",
+        "Location",
+        "ExternalLookup",
+        "IndirectLookup",
+        "CustomDataType",
+        "Time",
+        "Address",
+        "Array"
+      ]
+    },
+    "DeploymentStatus": {
+      "type": "string",
+      "enum": ["InDevelopment", "Deployed"]
+    },
+    "SharingModel": {
+      "type": "string",
+      "enum": [
+        "Private",
+        "Read",
+        "ReadSelect",
+        "ReadWrite",
+        "ReadWriteTransfer",
+        "FullAccess",
+        "ControlledByParent",
+        "ControlledByLeadOrContact",
+        "ControlledByCampaign"
+      ]
     }
   }
 }
