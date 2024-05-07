@@ -9,7 +9,7 @@ import { Messages } from '@salesforce/core/messages';
 import input from '@inquirer/input';
 import select from '@inquirer/select';
 
-import { FieldType } from '../../../node_modules/@salesforce/types/lib/metadata.js';
+import { FieldType } from '@salesforce/types/metadata';
 import { NameField } from '../types.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);

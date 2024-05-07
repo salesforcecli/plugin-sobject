@@ -6,7 +6,7 @@
  */
 import input from '@inquirer/input';
 import { Messages } from '@salesforce/core/messages';
-import type { ValueSet, CustomValue } from '../../../node_modules/@salesforce/types/lib/metadata.js';
+import type { ValueSet, CustomValue } from '@salesforce/types/metadata';
 
 /**
  * recursively keep adding picklist values until the user says to stop

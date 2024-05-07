@@ -9,7 +9,7 @@ import input from '@inquirer/input';
 import confirm from '@inquirer/confirm';
 import select from '@inquirer/select';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
-import type { CustomField, DeleteConstraint } from '../../../node_modules/@salesforce/types/lib/metadata.js';
+import type { CustomField, DeleteConstraint } from '@salesforce/types/metadata';
 import { getObjectXmlByFolderAsJson } from '../fs.js';
 import { objectPrompt } from './object.js';
 import { makeNameApiCompatible } from './functions.js';

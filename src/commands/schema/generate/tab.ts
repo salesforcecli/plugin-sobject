@@ -10,7 +10,7 @@ import path from 'node:path';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core/messages';
-import type { CustomTab } from '../../../../node_modules/@salesforce/types/lib/metadata.js';
+import type { CustomTab } from '@salesforce/types/metadata';
 import { isTabsFolder } from '../../../shared/flags.js';
 import { convertJsonToXml } from '../../../shared/convert.js';
 
