@@ -5,7 +5,7 @@
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import type { CustomObject, CustomField } from '../../node_modules/@salesforce/types/lib/metadata.js';
+import type { CustomObject, CustomField } from '@salesforce/types/metadata';
 
 /** Used by classical CustomObject */
 export type NameField = Pick<CustomField, 'label' | 'type' | 'displayFormat'>;

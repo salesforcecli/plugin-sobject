@@ -1,5 +1,17 @@
 {
   "test": {
     "testsPath": "test/**/*.test.ts"
+  },
+  "wireit": {
+    "test": {
+      "dependencies": [
+        "test:compile",
+        "test:only",
+        "test:command-reference",
+        "test:deprecation-policy",
+        "lint",
+        "link-check"
+      ]
+    }
   }
 }
