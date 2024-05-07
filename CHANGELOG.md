@@ -1,3 +1,9 @@
+## [1.4.1](https://github.com/salesforcecli/plugin-sobject/compare/1.4.0...1.4.1) (2024-05-07)
+
+### Bug Fixes
+
+- remove schema check ([#617](https://github.com/salesforcecli/plugin-sobject/issues/617)) ([0f6d78c](https://github.com/salesforcecli/plugin-sobject/commit/0f6d78c7b3bdf539aea235b022706cfaace084dc))
+
 # [1.4.0](https://github.com/salesforcecli/plugin-sobject/compare/1.3.7...1.4.0) (2024-05-06)
 
 ### Features
