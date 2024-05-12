@@ -1,3 +1,9 @@
+## [1.4.2](https://github.com/salesforcecli/plugin-sobject/compare/1.4.1...1.4.2) (2024-05-12)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 7.3.3 to 7.3.6 ([070a1dd](https://github.com/salesforcecli/plugin-sobject/commit/070a1dd20b9f41410c462f77edbaa988ea940554))
+
 ## [1.4.1](https://github.com/salesforcecli/plugin-sobject/compare/1.4.0...1.4.1) (2024-05-07)
 
 ### Bug Fixes
