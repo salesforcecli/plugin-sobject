@@ -1,3 +1,5 @@
+## [1.4.9](https://github.com/salesforcecli/plugin-sobject/compare/1.4.8...1.4.9) (2024-06-06)
+
 ## [1.4.8](https://github.com/salesforcecli/plugin-sobject/compare/1.4.7...1.4.8) (2024-06-03)
 
 ### Bug Fixes
