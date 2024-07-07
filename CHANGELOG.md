@@ -1,3 +1,9 @@
+## [1.4.18](https://github.com/salesforcecli/plugin-sobject/compare/1.4.17...1.4.18) (2024-07-07)
+
+### Bug Fixes
+
+- **deps:** bump @inquirer/select from 2.3.7 to 2.3.10 ([8212863](https://github.com/salesforcecli/plugin-sobject/commit/82128638955afdc5f52bfd4abaa1027d4b293f7c))
+
 ## [1.4.17](https://github.com/salesforcecli/plugin-sobject/compare/1.4.16...1.4.17) (2024-07-07)
 
 ### Bug Fixes
