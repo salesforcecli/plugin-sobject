@@ -7,7 +7,7 @@
   "dependencies": {
     "@inquirer/confirm": "^3.1.14",
     "@inquirer/input": "^2.2.4",
-    "@inquirer/select": "^2.3.10",
+    "@inquirer/select": "^2.4.2",
     "@oclif/core": "^4",
     "@salesforce/core": "^8.1.0",
     "@salesforce/kit": "^3.1.6",
