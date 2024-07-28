@@ -1,3 +1,9 @@
+## [1.4.21](https://github.com/salesforcecli/plugin-sobject/compare/1.4.20...1.4.21) (2024-07-28)
+
+### Bug Fixes
+
+- **deps:** bump @inquirer/input from 2.2.3 to 2.2.4 ([d4272c2](https://github.com/salesforcecli/plugin-sobject/commit/d4272c279efebd83df7085723524599239499570))
+
 ## [1.4.20](https://github.com/salesforcecli/plugin-sobject/compare/1.4.19...1.4.20) (2024-07-21)
 
 ### Bug Fixes
