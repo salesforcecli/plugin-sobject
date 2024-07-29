@@ -19,13 +19,13 @@
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^5.2.10",
     "@salesforce/cli-plugins-testkit": "^5.3.19",
-    "@salesforce/dev-scripts": "^10.2.4",
+    "@salesforce/dev-scripts": "^10.2.5",
     "@salesforce/plugin-command-reference": "^3.1.10",
     "@salesforce/types": "^1.2.0",
     "eslint-plugin-sf-plugin": "^1.20.0",
     "oclif": "^4.14.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.4"
   },
   "config": {},
   "engines": {
