@@ -11,7 +11,7 @@
     "@oclif/core": "^4",
     "@salesforce/core": "^8.3.0",
     "@salesforce/kit": "^3.1.6",
-    "@salesforce/sf-plugins-core": "^11.2.4",
+    "@salesforce/sf-plugins-core": "^11.3.2",
     "fast-glob": "^3.3.2",
     "fast-xml-parser": "^4.4.1",
     "js2xmlparser": "^4.0.2"
