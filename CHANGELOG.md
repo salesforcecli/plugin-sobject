@@ -1,3 +1,9 @@
+## [1.4.46](https://github.com/salesforcecli/plugin-sobject/compare/1.4.45...1.4.46) (2024-11-17)
+
+### Bug Fixes
+
+- **deps:** bump cross-spawn from 7.0.3 to 7.0.5 ([acc819f](https://github.com/salesforcecli/plugin-sobject/commit/acc819f209440f9a39fa61ca17947d998f72388f))
+
 ## [1.4.45](https://github.com/salesforcecli/plugin-sobject/compare/1.4.44...1.4.45) (2024-11-10)
 
 ### Bug Fixes
