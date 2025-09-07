@@ -1,3 +1,9 @@
+## [1.4.71](https://github.com/salesforcecli/plugin-sobject/compare/1.4.70...1.4.71) (2025-09-07)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/kit from 3.2.3 to 3.2.4 ([4d18ea5](https://github.com/salesforcecli/plugin-sobject/commit/4d18ea575efbb03c931b561eb3f1cdd7a100637e))
+
 ## [1.4.70](https://github.com/salesforcecli/plugin-sobject/compare/1.4.69...1.4.70) (2025-08-31)
 
 ### Bug Fixes
