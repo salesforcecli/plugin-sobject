@@ -1,3 +1,9 @@
+## [1.4.74](https://github.com/salesforcecli/plugin-sobject/compare/1.4.73...1.4.74) (2025-10-12)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 4.5.4 to 4.5.5 ([cfc5e06](https://github.com/salesforcecli/plugin-sobject/commit/cfc5e06aaa8ef838494ca92db5d51bb2105f9107))
+
 ## [1.4.73](https://github.com/salesforcecli/plugin-sobject/compare/1.4.72...1.4.73) (2025-09-14)
 
 ### Bug Fixes
