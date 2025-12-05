@@ -1,3 +1,9 @@
+## [1.4.80](https://github.com/salesforcecli/plugin-sobject/compare/1.4.79...1.4.80) (2025-12-05)
+
+### Bug Fixes
+
+- **deps:** bump jws from 3.2.2 to 3.2.3 ([b38af8b](https://github.com/salesforcecli/plugin-sobject/commit/b38af8bc9cca9963edc875b9b26e7ddac90d944e))
+
 ## [1.4.79](https://github.com/salesforcecli/plugin-sobject/compare/1.4.78...1.4.79) (2025-11-02)
 
 ### Bug Fixes
