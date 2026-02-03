@@ -1,3 +1,9 @@
+## [1.4.82](https://github.com/salesforcecli/plugin-sobject/compare/1.4.81...1.4.82) (2026-02-03)
+
+### Bug Fixes
+
+- bump to latest fast-xml-parser and license ([2be8d44](https://github.com/salesforcecli/plugin-sobject/commit/2be8d44f4a693b66b30abaaf017ad002a113a46f))
+
 ## [1.4.81](https://github.com/salesforcecli/plugin-sobject/compare/1.4.80...1.4.81) (2025-12-07)
 
 ### Bug Fixes
