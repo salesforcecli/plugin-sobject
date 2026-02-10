@@ -4,6 +4,8 @@
   "version": "1.4.82",
   "author": "Salesforce",
   "bugs": "https://github.com/forcedotcom/cli/issues",
+  "enableO11y": true,
+  "o11yUploadEndpoint": "https://794testsite.my.site.com/byolwr/webruntime/log/metrics",
   "dependencies": {
     "@inquirer/confirm": "^3.2.0",
     "@inquirer/input": "^2.3.0",
