@@ -1,3 +1,9 @@
+## [1.4.88](https://github.com/salesforcecli/plugin-sobject/compare/1.4.87...1.4.88) (2026-03-20)
+
+### Bug Fixes
+
+- **deps:** bump flatted from 3.2.9 to 3.4.2 ([c2cb822](https://github.com/salesforcecli/plugin-sobject/commit/c2cb822b7fb622e677b2a533f6a2b07bd9d747f3))
+
 ## [1.4.87](https://github.com/salesforcecli/plugin-sobject/compare/1.4.86...1.4.87) (2026-03-20)
 
 ### Bug Fixes
