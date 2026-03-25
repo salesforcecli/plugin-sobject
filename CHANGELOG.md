@@ -1,3 +1,9 @@
+## [1.4.89](https://github.com/salesforcecli/plugin-sobject/compare/1.4.88...1.4.89) (2026-03-25)
+
+### Bug Fixes
+
+- **deps:** bump lodash from 4.17.21 to 4.17.23 ([b2d1601](https://github.com/salesforcecli/plugin-sobject/commit/b2d16013161fa6ec6202a32421f368ed36ca5c0a))
+
 ## [1.4.88](https://github.com/salesforcecli/plugin-sobject/compare/1.4.87...1.4.88) (2026-03-20)
 
 ### Bug Fixes
