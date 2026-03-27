@@ -1,3 +1,9 @@
+## [1.4.91](https://github.com/salesforcecli/plugin-sobject/compare/1.4.90...1.4.91) (2026-03-27)
+
+### Bug Fixes
+
+- **deps:** bump handlebars from 4.7.8 to 4.7.9 ([2cea748](https://github.com/salesforcecli/plugin-sobject/commit/2cea748811ec8e5ad3457768b2b160e6d06216cd))
+
 ## [1.4.90](https://github.com/salesforcecli/plugin-sobject/compare/1.4.89...1.4.90) (2026-03-25)
 
 ### Bug Fixes
