@@ -1,3 +1,9 @@
+## [1.4.101](https://github.com/salesforcecli/plugin-sobject/compare/1.4.100...1.4.101) (2026-05-03)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/core from 8.28.4 to 8.29.0 ([d5c5b51](https://github.com/salesforcecli/plugin-sobject/commit/d5c5b513fef4a37a5a211a139c2445a654bc79e6))
+
 ## [1.4.100](https://github.com/salesforcecli/plugin-sobject/compare/1.4.99...1.4.100) (2026-04-26)
 
 ### Bug Fixes
