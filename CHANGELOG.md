@@ -1,3 +1,9 @@
+## [1.4.103](https://github.com/salesforcecli/plugin-sobject/compare/1.4.102...1.4.103) (2026-05-09)
+
+### Bug Fixes
+
+- **deps:** bump fast-xml-builder from 1.1.5 to 1.2.0 ([0c6d109](https://github.com/salesforcecli/plugin-sobject/commit/0c6d109dbf23280921aed59e7c2afef5b360eb49))
+
 ## [1.4.102](https://github.com/salesforcecli/plugin-sobject/compare/1.4.101...1.4.102) (2026-05-03)
 
 ### Bug Fixes
