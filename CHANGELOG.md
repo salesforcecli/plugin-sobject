@@ -1,3 +1,9 @@
+## [1.4.106](https://github.com/salesforcecli/plugin-sobject/compare/1.4.105...1.4.106) (2026-05-14)
+
+### Bug Fixes
+
+- bumped depencencies @W-22477677@ ([fdf72ec](https://github.com/salesforcecli/plugin-sobject/commit/fdf72eca68d5bc28fce7e579920779ae976b37f5))
+
 ## [1.4.105](https://github.com/salesforcecli/plugin-sobject/compare/1.4.104...1.4.105) (2026-05-10)
 
 ### Bug Fixes
