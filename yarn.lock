@@ -1221,7 +1221,7 @@
     "@inquirer/core" "^10.3.2"
     "@inquirer/type" "^3.0.10"
 
-"@inquirer/password@^5.0.13":
+"@inquirer/password@^5.1.1":
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/@inquirer/password/-/password-5.1.1.tgz#f21efb614da9c905095262f51781fd2a721fceac"
   integrity sha512-3XBfF7DAsp5qeDsvN5Rd1HmbNokVvEQoUM0QLrRcybC9nX96w3Pbmu7qUsb3IT3J3jBvs2+mTXaKHOUsgHMLzg==
@@ -1678,13 +1678,13 @@
   resolved "https://registry.yarnpkg.com/@salesforce/prettier-config/-/prettier-config-0.0.3.tgz#ba648d4886bb38adabe073dbea0b3a91b3753bb0"
   integrity sha512-hYOhoPTCSYMDYn+U1rlEk16PoBeAJPkrdg4/UtAzupM1mRRJOwEPMG1d7U8DxJFKuXW3DMEYWr2MwAIBDaHmFg==
 
-"@salesforce/sf-plugins-core@^12.2.17", "@salesforce/sf-plugins-core@^12.2.23":
-  version "12.2.23"
-  resolved "https://registry.yarnpkg.com/@salesforce/sf-plugins-core/-/sf-plugins-core-12.2.23.tgz#b2699e326e1501a9ba43f3064f73f40acd7ef4ca"
-  integrity sha512-1qNzCjUeEHEo5aI0Jy5dUc8DiA4OFfU12l6fu54Oapfd9OQt454Vd+TwGKWxU2UTLPcWhTzpwXcET1SKte4DJQ==
+"@salesforce/sf-plugins-core@^12.2.17", "@salesforce/sf-plugins-core@^12.2.24":
+  version "12.2.24"
+  resolved "https://registry.yarnpkg.com/@salesforce/sf-plugins-core/-/sf-plugins-core-12.2.24.tgz#ead41c7e4b49a60bc72a52737a2eaacc686ec35c"
+  integrity sha512-+lc7QMRz19Uk9f3lJO442LrUMvrRrfX6+xe1w42PihWjjoXpF9fZfZ7zk7H2WDF56PTo5SMJMrb5PjneiIrH3Q==
   dependencies:
     "@inquirer/confirm" "^6.1.1"
-    "@inquirer/password" "^5.0.13"
+    "@inquirer/password" "^5.1.1"
     "@oclif/core" "^4.11.4"
     "@oclif/table" "^0.5.9"
     "@salesforce/core" "^8.31.0"
