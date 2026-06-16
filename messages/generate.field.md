@@ -18,7 +18,7 @@ The directory that contains the object's source files.
 
 # flags.object.description
 
-The object source files in your local project are grouped in a directoy with the same name as the object. Custom object names always end in "__c". An example of the object directory for the Account standard object is "force-app/main/default/objects/Account" An example custom object directory is "force-app/main/default/objects/MyObject__c"
+The object source files in your local project are grouped in a directory with the same name as the object. Custom object names always end in "__c". An example of the object directory for the Account standard object is "force-app/main/default/objects/Account" An example custom object directory is "force-app/main/default/objects/MyObject__c"
 
 If you don't specify this flag, the command prompts you to choose from your local objects.
 
