@@ -1,3 +1,9 @@
+## [1.4.116](https://github.com/salesforcecli/plugin-sobject/compare/1.4.115...1.4.116) (2026-06-17)
+
+### Bug Fixes
+
+- **deps:** bump form-data from 4.0.5 to 4.0.6 ([9bea1f8](https://github.com/salesforcecli/plugin-sobject/commit/9bea1f854863a500bf5945e27bcea686907f3581))
+
 ## [1.4.115](https://github.com/salesforcecli/plugin-sobject/compare/1.4.114...1.4.115) (2026-06-17)
 
 ### Bug Fixes
