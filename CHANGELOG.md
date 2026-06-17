@@ -1,3 +1,9 @@
+## [1.4.114](https://github.com/salesforcecli/plugin-sobject/compare/1.4.113...1.4.114) (2026-06-17)
+
+### Bug Fixes
+
+- **deps:** bump ws from 8.20.1 to 8.21.0 ([6bb1a4e](https://github.com/salesforcecli/plugin-sobject/commit/6bb1a4e1595702ad619dd09df254869336d1637e))
+
 ## [1.4.113](https://github.com/salesforcecli/plugin-sobject/compare/1.4.112...1.4.113) (2026-06-17)
 
 ### Bug Fixes
