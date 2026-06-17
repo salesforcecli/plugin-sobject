@@ -1,3 +1,9 @@
+## [1.4.115](https://github.com/salesforcecli/plugin-sobject/compare/1.4.114...1.4.115) (2026-06-17)
+
+### Bug Fixes
+
+- **deps:** bump @babel/core from 7.25.2 to 7.29.7 ([9886525](https://github.com/salesforcecli/plugin-sobject/commit/98865251d6430655d5148ad264326de8c6b1fae3))
+
 ## [1.4.114](https://github.com/salesforcecli/plugin-sobject/compare/1.4.113...1.4.114) (2026-06-17)
 
 ### Bug Fixes
