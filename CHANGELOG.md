@@ -1,3 +1,9 @@
+## [1.4.119](https://github.com/salesforcecli/plugin-sobject/compare/1.4.118...1.4.119) (2026-07-05)
+
+### Bug Fixes
+
+- **deps:** bump @salesforce/sf-plugins-core from 12.2.24 to 12.2.25 ([9e8e2ff](https://github.com/salesforcecli/plugin-sobject/commit/9e8e2ffcc128fd54bdbb873f5d930e4039981bea))
+
 ## [1.4.118](https://github.com/salesforcecli/plugin-sobject/compare/1.4.117...1.4.118) (2026-06-28)
 
 ### Bug Fixes
