@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/FieldGenerateResult",
+  "definitions": {
+    "FieldGenerateResult": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "AutoNumber",
+                "Checkbox",
+                "Currency",
+                "DateTime",
+                "Date",
+                "Email",
+                "Html",
+                "Location",
+                "LongTextArea",
+                "Lookup",
+                "MasterDetail",
+                "Number",
+                "Phone",
+                "Picklist",
+                "Text",
+                "Time",
+                "Url"
+              ]
+            }
+          },
+          "required": ["type"]
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": ["field", "path"],
+      "additionalProperties": false
+    }
+  }
+}
