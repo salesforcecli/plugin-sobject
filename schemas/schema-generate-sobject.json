@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/CustomObjectGenerateResult",
+  "definitions": {
+    "CustomObjectGenerateResult": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/SaveableCustomObject"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": ["object", "path"],
+      "additionalProperties": false
+    },
+    "SaveableCustomObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nameField": {
+          "$ref": "#/definitions/NameField"
+        }
+      },
+      "required": ["nameField"],
+      "description": "This type represents a \"classical\" CustomObject subset that can deploy."
+    },
+    "NameField": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Used by classical CustomObject"
+    }
+  }
+}

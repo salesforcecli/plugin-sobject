@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/PlatformEventGenerateResult",
+  "definitions": {
+    "PlatformEventGenerateResult": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/SaveablePlatformEvent"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": ["object", "path"],
+      "additionalProperties": false
+    },
+    "SaveablePlatformEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "This type represents a PlatformEvent that can deploy."
+    }
+  }
+}
