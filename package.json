@@ -15,7 +15,7 @@
     "@salesforce/kit": "^3.2.6",
     "@salesforce/sf-plugins-core": "^12.2.25",
     "fast-glob": "^3.3.3",
-    "fast-xml-parser": "^5.9.3",
+    "fast-xml-parser": "^5.10.1",
     "js2xmlparser": "^4.0.2"
   },
   "devDependencies": {
