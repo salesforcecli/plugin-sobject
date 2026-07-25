@@ -1,3 +1,9 @@
+## [1.4.124](https://github.com/salesforcecli/plugin-sobject/compare/1.4.123...1.4.124) (2026-07-25)
+
+### Bug Fixes
+
+- **deps:** bump linkify-it from 5.0.1 to 5.0.2 ([285a3c9](https://github.com/salesforcecli/plugin-sobject/commit/285a3c905875de5ef6f65158c7bf66ecfc1e97be))
+
 ## [1.4.123](https://github.com/salesforcecli/plugin-sobject/compare/1.4.122...1.4.123) (2026-07-19)
 
 ### Bug Fixes
