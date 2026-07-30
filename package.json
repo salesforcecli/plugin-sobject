@@ -11,9 +11,9 @@
     "@inquirer/input": "^2.3.0",
     "@inquirer/select": "^2.5.0",
     "@oclif/core": "^4.11.7",
-    "@salesforce/core": "^8.32.6",
-    "@salesforce/kit": "^3.2.6",
-    "@salesforce/sf-plugins-core": "^12.2.25",
+    "@salesforce/core": "^9.0.0",
+    "@salesforce/kit": "^4.0.0",
+    "@salesforce/sf-plugins-core": "^13.0.0",
     "fast-glob": "^3.3.3",
     "fast-xml-parser": "^5.10.1",
     "js2xmlparser": "^4.0.2"
@@ -31,7 +31,7 @@
   },
   "config": {},
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "files": [
     "/lib",
