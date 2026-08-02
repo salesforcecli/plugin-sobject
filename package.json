@@ -10,7 +10,7 @@
     "@inquirer/confirm": "^3.2.0",
     "@inquirer/input": "^2.3.0",
     "@inquirer/select": "^2.5.0",
-    "@oclif/core": "^4.11.7",
+    "@oclif/core": "^4.13.2",
     "@salesforce/core": "^9.0.0",
     "@salesforce/kit": "^4.0.0",
     "@salesforce/sf-plugins-core": "^13.0.0",
