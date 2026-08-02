@@ -1,3 +1,9 @@
+## [2.0.1](https://github.com/salesforcecli/plugin-sobject/compare/2.0.0...2.0.1) (2026-08-02)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 4.11.14 to 4.13.2 ([cc9e7bc](https://github.com/salesforcecli/plugin-sobject/commit/cc9e7bc7c1c6b1c6d8efd18711f9ee6eb89247cc))
+
 # [2.0.0](https://github.com/salesforcecli/plugin-sobject/compare/1.4.125...2.0.0) (2026-07-30)
 
 - feat!: require Node >=22, drop EOL Node versions @W-23480655@ ([1c75121](https://github.com/salesforcecli/plugin-sobject/commit/1c75121b86a67cde043de44f2d529e785ad280ff))
