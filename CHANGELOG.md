@@ -1,3 +1,9 @@
+## [2.0.2](https://github.com/salesforcecli/plugin-sobject/compare/2.0.1...2.0.2) (2026-08-04)
+
+### Bug Fixes
+
+- **deps:** bump undici from 8.5.0 to 8.10.0 ([d325dfe](https://github.com/salesforcecli/plugin-sobject/commit/d325dfe6b4921a2191ad24fa1e88a34f54c60b9d))
+
 ## [2.0.1](https://github.com/salesforcecli/plugin-sobject/compare/2.0.0...2.0.1) (2026-08-02)
 
 ### Bug Fixes
