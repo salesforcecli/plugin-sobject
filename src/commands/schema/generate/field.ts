@@ -176,7 +176,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       },
       path: path.join(object, 'fields', `${fullName}.field-meta.xml`),
     };
-    this.styledJSON(result as AnyJson);
+    this.styledJSON(result);
     await fs.promises.mkdir(path.join(object, 'fields'), { recursive: true });
     await fs.promises.writeFile(result.path, convertJsonToXml({ json: result.field, type: 'CustomField' }));
 
