@@ -70,7 +70,7 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
       label: flags.label,
     };
 
-    this.styledJSON(objectToWrite as AnyJson);
+    this.styledJSON(objectToWrite);
     const writePath = await writeObjectFile(directory, objectToWrite);
     this.info(messages.getMessage('success.field', [dirname(writePath)]));
 
