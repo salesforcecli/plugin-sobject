@@ -22,7 +22,6 @@ import confirm from '@inquirer/confirm';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import type { AnyJson } from '@salesforce/ts-types';
 import type { CustomField } from '@salesforce/types/metadata';
 import { convertJsonToXml } from '../../../shared/convert.js';
 import { picklistPrompts } from '../../../shared/prompts/picklist.js';
