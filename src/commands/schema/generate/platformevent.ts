@@ -17,7 +17,6 @@ import { dirname } from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core/messages';
 import select from '@inquirer/select';
-import type { AnyJson } from '@salesforce/ts-types';
 import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
 import { pluralPrompt } from '../../../shared/prompts/plural.js';
 import { directoryPrompt } from '../../../shared/prompts/directory.js';
