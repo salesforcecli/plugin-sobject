@@ -16,9 +16,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import input from '@inquirer/input';
-import select from '@inquirer/select';
-import confirm from '@inquirer/confirm';
+import { input, select, confirm } from '@inquirer/prompts';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';

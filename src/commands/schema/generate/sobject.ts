@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 import { dirname } from 'node:path';
-import select from '@inquirer/select';
-import confirm from '@inquirer/confirm';
+import { select, confirm } from '@inquirer/prompts';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core/messages';
 import { nameFieldPrompts } from '../../../shared/prompts/nameField.js';

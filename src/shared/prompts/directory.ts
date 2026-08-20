@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { type NamedPackageDir, Messages } from '@salesforce/core';
-import select from '@inquirer/select';
+import { select } from '@inquirer/prompts';
 import { getDirectoriesThatContainObjects } from '../fs.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);

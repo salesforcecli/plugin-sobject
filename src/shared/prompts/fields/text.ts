@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import input from '@inquirer/input';
+import { input } from '@inquirer/prompts';
 import { integerValidation } from '../functions.js';
 
 const MAX_LONG_TEXT_LENGTH = 131_072;

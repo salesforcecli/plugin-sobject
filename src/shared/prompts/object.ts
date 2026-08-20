@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import select from '@inquirer/select';
+import { select } from '@inquirer/prompts';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
 import { getObjectDirectories } from '../fs.js';
 

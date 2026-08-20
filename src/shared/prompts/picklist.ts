@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import input from '@inquirer/input';
+import { input } from '@inquirer/prompts';
 import { Messages } from '@salesforce/core/messages';
 import type { ValueSet, CustomValue } from '@salesforce/types/metadata';
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import input from '@inquirer/input';
+import { input } from '@inquirer/prompts';
 import { Messages } from '@salesforce/core/messages';
 import { makeNameApiCompatible } from './functions.js';
 
