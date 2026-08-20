@@ -81,9 +81,9 @@ type SaveableCustomField = Pick<
   | 'startingNumber'
   | 'defaultValue'
   | 'securityClassification'
-  | 'displayLocationInDecimal'
 > & {
   type: (typeof supportedFieldTypesCustomObject)[number];
+  displayLocationInDecimal?: boolean;
 };
 
 export type FieldGenerateResult = {
