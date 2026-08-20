@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 import path from 'node:path';
-import input from '@inquirer/input';
-import confirm from '@inquirer/confirm';
-import select from '@inquirer/select';
+import { input, confirm, select } from '@inquirer/prompts';
 import { Messages, type NamedPackageDir } from '@salesforce/core';
 import type { CustomField, DeleteConstraint } from '@salesforce/types/metadata';
 import { getObjectXmlByFolderAsJson } from '../fs.js';

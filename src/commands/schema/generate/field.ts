@@ -16,13 +16,10 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import input from '@inquirer/input';
-import select from '@inquirer/select';
-import confirm from '@inquirer/confirm';
+import { input, select, confirm } from '@inquirer/prompts';
 
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core';
-import type { AnyJson } from '@salesforce/ts-types';
 import type { CustomField } from '@salesforce/types/metadata';
 import { convertJsonToXml } from '../../../shared/convert.js';
 import { picklistPrompts } from '../../../shared/prompts/picklist.js';
@@ -82,9 +79,9 @@ type SaveableCustomField = Pick<
   | 'startingNumber'
   | 'defaultValue'
   | 'securityClassification'
-  | 'displayLocationInDecimal'
 > & {
   type: (typeof supportedFieldTypesCustomObject)[number];
+  displayLocationInDecimal?: boolean;
 };
 
 export type FieldGenerateResult = {
@@ -176,7 +173,7 @@ export default class FieldGenerate extends SfCommand<FieldGenerateResult> {
       },
       path: path.join(object, 'fields', `${fullName}.field-meta.xml`),
     };
-    this.styledJSON(result as AnyJson);
+    this.styledJSON(result);
     await fs.promises.mkdir(path.join(object, 'fields'), { recursive: true });
     await fs.promises.writeFile(result.path, convertJsonToXml({ json: result.field, type: 'CustomField' }));
 

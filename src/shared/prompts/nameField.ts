@@ -15,8 +15,7 @@
  */
 
 import { Messages } from '@salesforce/core/messages';
-import input from '@inquirer/input';
-import select from '@inquirer/select';
+import { input, select } from '@inquirer/prompts';
 
 import { FieldType } from '@salesforce/types/metadata';
 import { NameField } from '../types.js';

@@ -16,8 +16,7 @@
 import { dirname } from 'node:path';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { Messages } from '@salesforce/core/messages';
-import select from '@inquirer/select';
-import type { AnyJson } from '@salesforce/ts-types';
+import { select } from '@inquirer/prompts';
 import { apiNamePrompt } from '../../../shared/prompts/apiName.js';
 import { pluralPrompt } from '../../../shared/prompts/plural.js';
 import { directoryPrompt } from '../../../shared/prompts/directory.js';
@@ -70,7 +69,7 @@ export default class PlatformEventGenerate extends SfCommand<PlatformEventGenera
       label: flags.label,
     };
 
-    this.styledJSON(objectToWrite as AnyJson);
+    this.styledJSON(objectToWrite);
     const writePath = await writeObjectFile(directory, objectToWrite);
     this.info(messages.getMessage('success.field', [dirname(writePath)]));
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { Messages } from '@salesforce/core/messages';
-import input from '@inquirer/input';
+import { input } from '@inquirer/prompts';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 export const messages = Messages.loadMessages('@salesforce/plugin-sobject', 'prompts.shared');
