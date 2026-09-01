@@ -1,3 +1,9 @@
+## [2.0.6](https://github.com/salesforcecli/plugin-sobject/compare/2.0.5...2.0.6) (2026-09-01)
+
+### Bug Fixes
+
+- upgrade @oclif/core to v5 @W-23512455@ ([#1048](https://github.com/salesforcecli/plugin-sobject/issues/1048)) ([e878180](https://github.com/salesforcecli/plugin-sobject/commit/e87818065b589dab1a5f237b3f02dcacd6d69436))
+
 ## [2.0.5](https://github.com/salesforcecli/plugin-sobject/compare/2.0.4...2.0.5) (2026-08-09)
 
 ### Bug Fixes
