@@ -1,8 +1,8 @@
-**NOTE: This template for sf plugins is not yet offical. Please consult with the Platform CLI team before using this template.**
+**NOTE: This template for sf plugins is not yet official. Please consult with the Platform CLI team before using this template.**
 
-# plugin-template-sf
+# plugin-sobject
 
-[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-template-sf.svg?label=@salesforce/plugin-template-sf)](https://www.npmjs.com/package/@salesforce/plugin-template-sf) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-template-sf.svg)](https://npmjs.org/package/@salesforce/plugin-template-sf) [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://opensource.org/license/apache-2-0)
+[![NPM](https://img.shields.io/npm/v/@salesforce/plugin-sobject.svg?label=@salesforce/plugin-sobject)](https://www.npmjs.com/package/@salesforce/plugin-sobject) [![Downloads/week](https://img.shields.io/npm/dw/@salesforce/plugin-sobject.svg)](https://npmjs.org/package/@salesforce/plugin-sobject) [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://opensource.org/license/apache-2-0)
 
 ## Using the template
 
@@ -49,7 +49,7 @@ We always recommend using the latest version of these commands bundled with the 
 ## Install
 
 ```bash
-sf plugins install @salesforce/plugin-template-sf@x.y.z
+sf plugins install @salesforce/plugin-sobject@x.y.z
 ```
 
 ## Issues
@@ -81,7 +81,7 @@ To build the plugin locally, make sure to have yarn installed and run the follow
 
 ```bash
 # Clone the repository
-git clone git@github.com:salesforcecli/plugin-template-sf
+git clone git@github.com:salesforcecli/plugin-sobject
 
 # Install the dependencies and compile
 yarn && yarn build
