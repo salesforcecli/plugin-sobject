@@ -1,3 +1,9 @@
+## [2.0.10](https://github.com/salesforcecli/plugin-sobject/compare/2.0.9...2.0.10) (2026-10-09)
+
+### Bug Fixes
+
+- **deps:** bump fast-copy from 3.0.2 to 3.1.0 ([ae0f54d](https://github.com/salesforcecli/plugin-sobject/commit/ae0f54d9faef9fc2fbff40a8160e5a6bee3dd1dc))
+
 ## [2.0.9](https://github.com/salesforcecli/plugin-sobject/compare/2.0.8...2.0.9) (2026-10-07)
 
 ### Bug Fixes
