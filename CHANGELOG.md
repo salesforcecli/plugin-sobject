@@ -1,3 +1,9 @@
+## [2.0.12](https://github.com/salesforcecli/plugin-sobject/compare/2.0.11...2.0.12) (2026-10-09)
+
+### Bug Fixes
+
+- **deps:** bump source-map-js from 1.2.1 to 1.2.2 ([9bdc19b](https://github.com/salesforcecli/plugin-sobject/commit/9bdc19bfe0e7f61bf92cc10729f4e7e83814c6e0))
+
 ## [2.0.11](https://github.com/salesforcecli/plugin-sobject/compare/2.0.10...2.0.11) (2026-10-09)
 
 ### Bug Fixes
