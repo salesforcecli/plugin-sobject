@@ -1,3 +1,9 @@
+## [2.0.11](https://github.com/salesforcecli/plugin-sobject/compare/2.0.10...2.0.11) (2026-10-09)
+
+### Bug Fixes
+
+- **deps:** bump handlebars from 4.7.9 to 4.7.10 ([f2fb0f5](https://github.com/salesforcecli/plugin-sobject/commit/f2fb0f5b3a2a25c8a557dabd0c2de8f13058ce37))
+
 ## [2.0.10](https://github.com/salesforcecli/plugin-sobject/compare/2.0.9...2.0.10) (2026-10-09)
 
 ### Bug Fixes
