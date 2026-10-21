@@ -15,7 +15,7 @@
  */
 import path from 'node:path';
 import fs from 'node:fs';
-import fg from 'fast-glob';
+import { glob } from 'tinyglobby';
 import type { CustomObject } from '@salesforce/types/metadata';
 import { convertJsonToXml, parseXml } from './convert.js';
 import { SaveableCustomObject, SaveablePlatformEvent } from './types.js';
@@ -29,12 +29,27 @@ const getObjectXmlByPathAsJson = async (objectFilePath: string): Promise<CustomO
 const ensurePosixPath = (filePath: string): string => filePath.split(path.sep).join(path.posix.sep);
 
 /**
+ * tinyglobby returns paths relative to cwd (even for absolute patterns), directories with a trailing slash,
+ * and interleaves results across patterns.
+ * Glob each pattern in order, keep absolute patterns absolute, and strip the trailing slash.
+ */
+const globPaths = async (patterns: string | string[], onlyDirectories = false): Promise<string[]> => {
+  const patternList = Array.isArray(patterns) ? patterns : [patterns];
+  const results = await Promise.all(
+    patternList.map((pattern) =>
+      glob(pattern, { onlyDirectories, expandDirectories: false, absolute: path.isAbsolute(pattern) })
+    )
+  );
+  return [...new Set(results.flat().map((p) => path.normalize(p.endsWith('/') ? p.slice(0, -1) : p)))];
+};
+
+/**
  * @param targetPaths typically your pkgDirs or project path
  * @returns directories that end in `/objects/`
  */
 export const getDirectoriesThatContainObjects = async (targetPaths: string[]): Promise<string[]> => {
   const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/`);
-  return (await fg(globs, { onlyDirectories: true })).map((dir) => path.normalize(dir));
+  return globPaths(globs, true);
 };
 
 /**
@@ -43,7 +58,7 @@ export const getDirectoriesThatContainObjects = async (targetPaths: string[]): P
  */
 export const getObjectDirectories = async (targetPaths: string[]): Promise<string[]> => {
   const globs = targetPaths.map((p) => `${ensurePosixPath(p)}/**/objects/*`);
-  return (await fg(globs, { onlyDirectories: true })).map((dir) => path.normalize(dir));
+  return globPaths(globs, true);
 };
 
 /**
@@ -52,7 +67,7 @@ export const getObjectDirectories = async (targetPaths: string[]): Promise<strin
  */
 export const getObjectXmlByFolderAsJson = async (folder: string): Promise<CustomObject> => {
   const globs = `${ensurePosixPath(folder)}/*.object-meta.xml`;
-  const [objectMetaPath] = await fg(globs);
+  const [objectMetaPath] = await globPaths(globs);
   return getObjectXmlByPathAsJson(objectMetaPath);
 };
 
