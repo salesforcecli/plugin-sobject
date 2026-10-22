@@ -1,3 +1,9 @@
+## [2.0.14](https://github.com/salesforcecli/plugin-sobject/compare/2.0.13...2.0.14) (2026-10-22)
+
+### Bug Fixes
+
+- replace fast-glob with tinyglobby ([093f658](https://github.com/salesforcecli/plugin-sobject/commit/093f658e7f4f8c2cfc2b295d040a40fb727374c8))
+
 ## [2.0.13](https://github.com/salesforcecli/plugin-sobject/compare/2.0.12...2.0.13) (2026-10-18)
 
 ### Bug Fixes
