@@ -1,3 +1,9 @@
+## [2.0.15](https://github.com/salesforcecli/plugin-sobject/compare/2.0.14...2.0.15) (2026-10-23)
+
+### Bug Fixes
+
+- **deps:** bump markdown-it from 14.3.1 to 14.3.3 ([0bb7e4a](https://github.com/salesforcecli/plugin-sobject/commit/0bb7e4a241354e0041d76f9d98bba21e20b675d8))
+
 ## [2.0.14](https://github.com/salesforcecli/plugin-sobject/compare/2.0.13...2.0.14) (2026-10-22)
 
 ### Bug Fixes
