@@ -12,7 +12,7 @@
     "@salesforce/core": "^9.1.0",
     "@salesforce/kit": "^4.0.1",
     "@salesforce/sf-plugins-core": "^13.0.4",
-    "fast-xml-parser": "^5.10.1",
+    "fast-xml-parser": "^5.11.2",
     "js2xmlparser": "^4.0.2",
     "tinyglobby": "^0.2.17"
   },
