@@ -1,3 +1,9 @@
+## [2.0.16](https://github.com/salesforcecli/plugin-sobject/compare/2.0.15...2.0.16) (2026-10-25)
+
+### Bug Fixes
+
+- **deps:** bump zod from 4.4.3 to 4.6.7 ([2c83c64](https://github.com/salesforcecli/plugin-sobject/commit/2c83c6456381c61cefee8ed983fac6b98c20a996))
+
 ## [2.0.15](https://github.com/salesforcecli/plugin-sobject/compare/2.0.14...2.0.15) (2026-10-23)
 
 ### Bug Fixes
