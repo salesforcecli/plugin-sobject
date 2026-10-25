@@ -1,3 +1,9 @@
+## [2.0.17](https://github.com/salesforcecli/plugin-sobject/compare/2.0.16...2.0.17) (2026-10-25)
+
+### Bug Fixes
+
+- **deps:** bump fast-uri from 3.1.8 to 3.1.9 ([90c6b71](https://github.com/salesforcecli/plugin-sobject/commit/90c6b7109fed2d8723a776a3fc6246a67384f9cb))
+
 ## [2.0.16](https://github.com/salesforcecli/plugin-sobject/compare/2.0.15...2.0.16) (2026-10-25)
 
 ### Bug Fixes
