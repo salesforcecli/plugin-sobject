@@ -1,3 +1,9 @@
+## [2.0.21](https://github.com/salesforcecli/plugin-sobject/compare/2.0.20...2.0.21) (2026-11-01)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 5.1.8 to 5.1.10 ([ee4f40f](https://github.com/salesforcecli/plugin-sobject/commit/ee4f40fd66e5be0561fb92e0138eccea035e7b5e))
+
 ## [2.0.20](https://github.com/salesforcecli/plugin-sobject/compare/2.0.19...2.0.20) (2026-10-27)
 
 ### Bug Fixes
