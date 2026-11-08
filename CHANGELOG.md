@@ -1,3 +1,9 @@
+## [2.0.23](https://github.com/salesforcecli/plugin-sobject/compare/2.0.22...2.0.23) (2026-11-08)
+
+### Bug Fixes
+
+- **deps:** bump js-yaml from 3.15.1 to 3.15.2 ([099e41a](https://github.com/salesforcecli/plugin-sobject/commit/099e41a438a1be15abb9fab8a8a318226998e082))
+
 ## [2.0.22](https://github.com/salesforcecli/plugin-sobject/compare/2.0.21...2.0.22) (2026-11-01)
 
 ### Bug Fixes
