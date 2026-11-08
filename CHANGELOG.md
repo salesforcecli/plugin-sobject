@@ -1,3 +1,9 @@
+## [2.0.24](https://github.com/salesforcecli/plugin-sobject/compare/2.0.23...2.0.24) (2026-11-08)
+
+### Bug Fixes
+
+- **deps:** bump brace-expansion from 1.1.18 to 1.1.21 ([ea8067a](https://github.com/salesforcecli/plugin-sobject/commit/ea8067a631164fb490b365d990f2957a78a29a43))
+
 ## [2.0.23](https://github.com/salesforcecli/plugin-sobject/compare/2.0.22...2.0.23) (2026-11-08)
 
 ### Bug Fixes
